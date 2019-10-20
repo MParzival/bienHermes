@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BienController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>les derniers biens</h2>
+        <div class="row flex">
+            {% for bien in biens %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ bien.titreannonce }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
