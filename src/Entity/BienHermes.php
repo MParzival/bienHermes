@@ -14,6 +14,30 @@ use Cocur\Slugify\Slugify;
 class BienHermes
 {
     /**
+     * type de transaction
+     */
+    const TYPETRANSACTION = [
+        1 => 'Vente fonds de commerce',
+        2 => 'Gérance',
+        3 => 'Vente location immobilier d\'entreprise',
+        4 => 'Location',
+        5 => 'DAB'
+    ];
+
+    const TYPEBIEN = [
+      1 => 'Murs ou local commercial',
+      2 => 'Immobilier d\'entreprise',
+      10 => 'Café-Bar-Brasserie-Restaurant-Tabac',
+      20 => 'Hôtel-Auberge-Camping',
+      30 => 'Boulangerie-Pâtisserie-Confiserie-Terminal de cuisson',
+      40 => 'Beauté & soins du corps',
+      41 => 'Equipement de la maison',
+      42 => 'Equipement de la personne',
+      43 => 'Métiers de bouche',
+      50 => 'Divers'
+    ];
+
+    /**
      * @var int
      *
      * @ORM\Column(name="CodeReseau", type="smallint", nullable=false, options={"default"="000","unsigned"=true})
@@ -90,9 +114,9 @@ class BienHermes
     private $top = '0';
 
     /**
-     * @var bool
+     * @var int|null
      *
-     * @ORM\Column(name="TypeTransact", type="boolean", nullable=false)
+     * @ORM\Column(name="TypeTransact", type="smallint", nullable=true)
      */
     private $typetransact = '0';
 
@@ -1424,6 +1448,11 @@ class BienHermes
         return $this;
     }
 
+    public function getId()
+    {
+        return $this->getCodeagence() . $this->getNumero();
+    }
+
     /**
      * @return bool|null
      */
@@ -1519,6 +1548,11 @@ class BienHermes
         return $this;
     }
 
+    public function getTransactionType () : string
+    {
+        return self::TYPETRANSACTION[$this->typetransact];
+    }
+
     /**
      * @return int|null
      */
@@ -1535,6 +1569,11 @@ class BienHermes
     {
         $this->typebien = $typebien;
         return $this;
+    }
+
+    public function getBienType() : string
+    {
+        return self::TYPEBIEN[$this->typebien];
     }
 
     /**

@@ -12,16 +12,24 @@
     <div class="container">
     <h2>les derniers biens</h2>
         <div class="row flex">
-            {% for property in properties %}
-                <div class="col-md-3">
+            {% for bien in biens %}
+                <div class="col-md-4 mt-4">
                     <div class="card">
+                        <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="" style="width: 100%; height:200px ">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ path('bien_show', {numero: property.numero, slug: property.slug}) }}">{{ property.titreannonce }}</a>
+                                <a href="{{ path('bien_show', {codeagence: bien.codeagence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
                             </h5>
-                            <p class="card-text">{{ property.annonce }}</p>
-                            <p class="card-text">{{ property.ville }} ({{ property.codepostal }})</p>
-                            <div class="text-danger" style="font-weight: bold; font-size: 1.3rem">{{ property.formattedPrice }} €</div>
+                            <p class="card-text">{{ bien.ville }} ({{ bien.codepostal }})</p>
+                            <p>{{ bien.activite }}</p>
+                            <p>{{ bien.bienType }}</p>
+                            <div class="text-danger" style="font-weight: bold; font-size: 1.3rem">
+                                {% if bien.prixpublic != 0 %}
+                                    {{ bien.formattedPrice }} € FAI*
+                                {% else %}
+                                    {{ bien.loyerannuel }} € HT / AN
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>

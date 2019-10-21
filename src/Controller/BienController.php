@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BienHermes;
 use App\Repository\BienHermesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,16 +33,31 @@ class BienController extends AbstractController
     }
 
     /**
-     * @Route("/biens/{slug}-{numero}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/biens/{slug}-{codeagence}.{numero}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"})
+     * @param string $slug
+     * @param BienHermes $bienHermes
      * @return Response
      */
-    public function show($slug, $numero): Response
+    public function show(string $slug, BienHermes $bienHermes): Response
     {
-        $bien = $this->repository->findOneBy([
-            'numero' => $numero
-        ]);
+        if($bienHermes->getSlug() !== $slug){
+           return $this->redirectToRoute('bien_show', [
+               'codeagence' => $bienHermes->getCodeagence(),
+                'numero' => $bienHermes->getNumero(),
+                'slug' => $bienHermes->getSlug()
+            ], 301);
+        }
         return $this->render('bien/show.html.twig',[
-            'bien' => $bien
+            'bien' => $bienHermes
         ]);
     }
+
+    /**
+     * @Route("/biens/new", name="bien_new")
+     */
+    public function new ()
+    {
+
+    }
+
 }

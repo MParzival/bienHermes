@@ -16,9 +16,9 @@ class HomeController extends AbstractController
      */
     public function index(BienHermesRepository $repository): Response
     {
-        $properties = $repository->findLatest();
+        $biens = $repository->findLatest();
         return $this->render('home/home.html.twig', [
-            'properties' => $properties
+            'biens' => $biens
         ]);
     }
 }
