@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="{{ path('app_bien') }}" method="post">
+                <div class="form-group">
+                    <input type="text" name="nomSearch" class="form-control" placeholder="Rechercher un bien par nom...">
+                    <input type="text" name="codePostalSearch" class="form-control" placeholder="Rechercher un bien par code postal...">
+                    <input type="text" name="priceSearch" class="form-control" placeholder="prix max">
+                </div>
+                <button class="btn btn-success pull-right">Chercher</button>
+            </form>
+        </div>
+    </div>
+</div>
