@@ -2,37 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/knp_paginator.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/liip_imagine.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/routes/liip_imagine.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/home.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/lyon-2382879_960_720.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/panoLyon.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/placeholder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/placeholder2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/placeholder3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/BienSearch.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/partials/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bienHermes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bienHermes.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/routing.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/BienController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BienController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/partials/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/partials/_form.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -262,6 +234,7 @@
       <workItem from="1571814413868" duration="15265000" />
       <workItem from="1571834708350" duration="8283000" />
       <workItem from="1571843021699" duration="21412000" />
+      <workItem from="1571932553757" duration="695000" />
     </task>
     <servers />
   </component>

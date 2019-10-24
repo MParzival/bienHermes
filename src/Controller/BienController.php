@@ -39,6 +39,7 @@ class BienController extends AbstractController
             $resultNom = $repository->findAllVisible();
         }
 
+
         $resultCodePostal = null;
         $codePostalSearch = $request->get('codePostalSearch');
         if ($codePostalSearch) {
