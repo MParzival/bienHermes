@@ -14,20 +14,20 @@ class BienSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           /* ->add('maxPrice', IntegerType::class, [
+            ->add('maxPrice', IntegerType::class, [
                 'required' => false,
                 'label'=> false,
                 'attr' => [
                     'placeholder' => 'Prix maximal'
                 ]
-            ])*/
-            ->add('minSurface', IntegerType::class, [
-                'required' => false,
-                'label'=> false,
-                'attr' => [
-                    'placeholder' => 'Surface minimal'
-                ]
             ])
+//            ->add('minSurface', IntegerType::class, [
+//                'required' => false,
+//                'label'=> false,
+//                'attr' => [
+//                    'placeholder' => 'Surface minimal'
+//                ]
+//            ])
             /*->add('nom', TextType::class, [
                  'required' => false,
                  'label'=> false,

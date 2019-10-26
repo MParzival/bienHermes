@@ -4,7 +4,10 @@
 
 {% block body %}
     <div class="container mt-4">
-
+        {{ form_start(form) }}
+            {{ form_row(form.maxPrice) }}
+            <button class="btn btn-primary">Rechercher</button>
+        {{ form_end(form) }}
         <h2>les derniers biens</h2>
         <div class="row flex">
             {% for bien in biens %}

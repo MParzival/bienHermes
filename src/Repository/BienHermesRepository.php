@@ -23,22 +23,41 @@ class BienHermesRepository extends ServiceEntityRepository
         parent::__construct($registry, BienHermes::class);
     }
 
-
     /**
-     * @param $value
-     * @return array
+     * @return Query
      */
-    public function findByNumero($value) : array
+    public function findAllVisibleQuery(BienSearch $search) : Query
+    {
+        $query = $this->findVisibleQuery();
+        if ($search->getMaxPrice()){
+            $query = $query
+                ->where('r.prixpublic <= :maxprice')
+                ->setParameter('maxprice',$search->getMaxPrice());
+        }
+        return $query->getQuery();
+    }
+
+    public function findAllVisible()
+    {
+        return $this->findVisibleQuery()
+            ->where('r.prixpublic <= 200000')
+            ->getQuery()
+            ->getResult();
+    }
+
+    private function findVisibleQuery() : QueryBuilder
     {
         return $this->createQueryBuilder('r')
-            ->where('r.numero = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.numero', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-            ;
+            ->where('r.statut = false');
     }
+
+
+
+
+
+
+
+
 
 
     public function findLatest() : array
@@ -48,35 +67,6 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-    /**
-     * @param BienSearch $search
-     * @return Query
-     */
-   /* public function findAllVisibleQuery(BienSearch $search) : Query
-    {
-        $query = $this->findVisibleQuery();
-        if ($search->getPrixMax()){
-            $query = $query
-                ->andWhere('r.prixpublic <= :prixMax')
-                ->setParameter('prixMax', $search->getPrixMax());
-        }
-        if($search->getSurfaceMin()){
-            $query = $query
-                ->andWhere('r.surfacetotale >= :surfaceMin')
-                ->setParameter('surfaceMin', $search->getSurfaceMin());
-        }
-            return $query->getQuery();
-    }*/
-
-    public function findAllVisible(): array
-    {
-        return $this->findVisibleQuery()
-            ->getQuery()
-            ->getResult();
-    }
-
-
 
     public function findByTitle($nomSearch)
     {
@@ -117,60 +107,23 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByTitleAndPostalCodeAndPrice(string $value, string $code, int $price)
-    {
-        $query = $this->findVisibleQuery();
-        if ($value){
-            $query = $query
-                ->andWhere('r.titreannonce LIKE :val')
-                ->setParameter('val','%'.$value.'%');
-        }
-        if ($code){
-            $query = $query
-                ->andWhere('r.codepostal LIKE :val')
-                ->setParameter('val', '%'.$code.'%');
-        }
-        if ($price){
-            $query = $query
-                ->andWhere('r.prixpublic <= :val')
-                ->setParameter('val', '%'.$price.'%');
-        }
-        return $query->getQuery();
-    }
-
-    public function findAllVisibleQuery(\App\Entity\BienSearch $search): Query
-    {
-        $query = $this->findVisibleQuery();
-
-        /*if ($search->getMaxPrice()){
-            $query = $query
-                ->andWhere('r. <= :maxprice')
-                ->setParameter('maxprice', $search->getMaxPrice());
-        }*/
-        if($search->getMinSurface()){
-            $query = $query
-                ->andWhere('r.surfacetotale >= :minsurface')
-                ->setParameter('minsurface', $search->getMinSurface());
-        }
-        /* if($search->getNom()){
-             $query = $query
-                 ->andWhere('r.titreannonce LIKE :nom')
-                 ->setParameter('nom', '%'.$search->getNom().'%');
-         }
-         if($search->getCodePostal()){
-             $query = $query
-                 ->andWhere('r.codepostal = :codePostal')
-                 ->setParameter('codePostal', $search->getCodePostal());
-         }*/
-
-        return $query->getQuery();
-    }
-
-    private function findVisibleQuery() : QueryBuilder
+    /**
+     * @param $value
+     * @return array
+     */
+    public function findByNumero($value) : array
     {
         return $this->createQueryBuilder('r')
-            ->where('r.statut = false');
+            ->where('r.numero = :val')
+            ->setParameter('val', $value)
+            ->orderBy('r.numero', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
     }
+
+
 
 
 
