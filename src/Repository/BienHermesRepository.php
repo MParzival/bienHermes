@@ -145,27 +145,31 @@ class BienHermesRepository extends ServiceEntityRepository
      * @param int|null $priceSearch
      * @return array
      */
-    public function findByCriteria(string $nameSearch, string $postalCodeSearch, int $priceSearch = null): array
+    public function findByCriteria(string $nameSearch = null, string $postalCodeSearch = null, int $priceSearch = null): array
     {
         $query = $this->createQueryBuilder('q');
         if($nameSearch){
             $query
                 ->andWhere('q.titreannonce LIKE :val')
                 ->setParameter('val', '%'.$nameSearch.'%');
+
         }
         if ($postalCodeSearch) {
             $query
                 ->andWhere('q.codepostal = :val')
                 ->setParameter('val', $postalCodeSearch);
         }
+
         if ($priceSearch){
             $query
                 ->andWhere('q.prixpublic <= :val')
                 ->setParameter('val', $priceSearch);
         }
+        dd($query->getQuery());
         return $query
             ->getQuery()
             ->getResult();
+
     }
 
 

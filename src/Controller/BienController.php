@@ -62,16 +62,19 @@ class BienController extends AbstractController
      */
     public function index(Request $request, BienHermesRepository $repository) :Response
     {
-        $nameSearch = $request->request->get('nameSearch');
-        $codePostalSearch = $request->request->get('codePostalSearch');
-        $priceSearch = $request->request->get((int)('priceSearch'));
         if ($request->isMethod('POST')){
-            $result = $repository->findByCriteria($nameSearch, $codePostalSearch, $priceSearch);
-        }else {
-            $result = $repository->findAllVisible();
+            $nameSearch = $request->request->get('nameSearch');
+            $codePostalSearch = $request->request->get('codePostalSearch');
+            $priceSearch = intval($request->request->get('priceSearch'));
+            if ($nameSearch !== null && $codePostalSearch !== null && $priceSearch !== null) {
+                $result = $repository->findByCriteria($nameSearch, $codePostalSearch, $priceSearch);
+            }else {
+                $result = $repository->findAllVisible();
+            }
+            dd($result);
         }
         return $this->render('bien/index.html.twig', [
-            'biens' => $result,
+            'biens' => $result ?? null,
         ]);
     }
 
