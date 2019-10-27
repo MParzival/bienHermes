@@ -2,41 +2,17 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * BienHermes
  *
- * @ORM\Table(name="bien_hermes", indexes={@ORM\Index(name="LoyerAnnuel", columns={"LoyerAnnuel"}), @ORM\Index(name="Categorie", columns={"Categorie"}), @ORM\Index(name="VisitCounter", columns={"VisitCounter"}), @ORM\Index(name="TypeTransact", columns={"TypeTransact"}), @ORM\Index(name="TypeBien", columns={"TypeBien"}), @ORM\Index(name="CodePostal", columns={"CodePostal"}), @ORM\Index(name="PrixPublic", columns={"PrixPublic"}), @ORM\Index(name="SurfaceTotale", columns={"SurfaceTotale"}), @ORM\Index(name="NbPiecesLogement", columns={"NbPiecesLogement"}), @ORM\Index(name="Top", columns={"Top"}), @ORM\Index(name="Statut", columns={"Statut"}), @ORM\Index(name="bNaxos", columns={"bNaxos"}), @ORM\Index(name="Activite", columns={"Activite"})})
- * @ORM\Entity(repositoryClass="App\Repository\BienHermesRepository")
+ * @ORM\Table(name="bien_hermes", indexes={@ORM\Index(name="Categorie", columns={"Categorie"}), @ORM\Index(name="VisitCounter", columns={"VisitCounter"}), @ORM\Index(name="TypeTransact", columns={"TypeTransact"}), @ORM\Index(name="TypeBien", columns={"TypeBien"}), @ORM\Index(name="CodePostal", columns={"CodePostal"}), @ORM\Index(name="LoyerAnnuel", columns={"LoyerAnnuel"}), @ORM\Index(name="SurfaceTotale", columns={"SurfaceTotale"}), @ORM\Index(name="NbPiecesLogement", columns={"NbPiecesLogement"}), @ORM\Index(name="Top", columns={"Top"}), @ORM\Index(name="Statut", columns={"Statut"}), @ORM\Index(name="bNaxos", columns={"bNaxos"}), @ORM\Index(name="Activite", columns={"Activite"}), @ORM\Index(name="PrixPublic", columns={"PrixPublic"})})
+ * @ORM\Entity
  */
 class BienHermes
 {
-    /**
-     * type de transaction
-     */
-    const TYPETRANSACTION = [
-        1 => 'Vente fonds de commerce',
-        2 => 'Gérance',
-        3 => 'Vente location immobilier d\'entreprise',
-        4 => 'Location',
-        5 => 'DAB'
-    ];
-
-    const TYPEBIEN = [
-      1 => 'Murs ou local commercial',
-      2 => 'Immobilier d\'entreprise',
-      10 => 'Café-Bar-Brasserie-Restaurant-Tabac',
-      20 => 'Hôtel-Auberge-Camping',
-      30 => 'Boulangerie-Pâtisserie-Confiserie-Terminal de cuisson',
-      40 => 'Beauté & soins du corps',
-      41 => 'Equipement de la maison',
-      42 => 'Equipement de la personne',
-      43 => 'Métiers de bouche',
-      50 => 'Divers'
-    ];
-
     /**
      * @var int
      *
@@ -65,11 +41,11 @@ class BienHermes
     private $numero = '0';
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="DateEntree", type="date", nullable=false, options={"default"="0000-00-00"})
+     * @ORM\Column(name="DateEntree", type="date", nullable=true)
      */
-    private $dateentree = '0000-00-00';
+    private $dateentree;
 
     /**
      * @var \DateTime|null
@@ -114,9 +90,9 @@ class BienHermes
     private $top = '0';
 
     /**
-     * @var int|null
+     * @var bool
      *
-     * @ORM\Column(name="TypeTransact", type="smallint", nullable=true)
+     * @ORM\Column(name="TypeTransact", type="boolean", nullable=false)
      */
     private $typetransact = '0';
 
@@ -1327,42 +1303,42 @@ class BienHermes
     /**
      * @var string
      *
-     * @ORM\Column(name="PictFilename3", type="string", length=35, nullable=true)
+     * @ORM\Column(name="PictFilename3", type="string", length=35, nullable=false)
      */
     private $pictfilename3;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="PictFilename4", type="string", length=35, nullable=true)
+     * @ORM\Column(name="PictFilename4", type="string", length=35, nullable=false)
      */
     private $pictfilename4;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="PictFilename5", type="string", length=35, nullable=true)
+     * @ORM\Column(name="PictFilename5", type="string", length=35, nullable=false)
      */
     private $pictfilename5;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="PictFilename6", type="string", length=35, nullable=true)
+     * @ORM\Column(name="PictFilename6", type="string", length=35, nullable=false)
      */
     private $pictfilename6;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="PlanFilename", type="string", length=35, nullable=true)
+     * @ORM\Column(name="PlanFilename", type="string", length=35, nullable=false)
      */
     private $planfilename;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="PlanFilename2", type="string", length=35, nullable=true)
+     * @ORM\Column(name="PlanFilename2", type="string", length=35, nullable=false)
      */
     private $planfilename2;
 
@@ -1448,9 +1424,40 @@ class BienHermes
         return $this;
     }
 
-    public function getId()
+    /**
+     * @return \DateTime|null
+     */
+    public function getDateentree(): ?\DateTime
     {
-        return $this->getCodeagence() . $this->getNumero();
+        return $this->dateentree;
+    }
+
+    /**
+     * @param \DateTime|null $dateentree
+     * @return BienHermes
+     */
+    public function setDateentree(?\DateTime $dateentree): BienHermes
+    {
+        $this->dateentree = $dateentree;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getDateupdate(): ?\DateTime
+    {
+        return $this->dateupdate;
+    }
+
+    /**
+     * @param \DateTime|null $dateupdate
+     * @return BienHermes
+     */
+    public function setDateupdate(?\DateTime $dateupdate): BienHermes
+    {
+        $this->dateupdate = $dateupdate;
+        return $this;
     }
 
     /**
@@ -1472,6 +1479,24 @@ class BienHermes
     }
 
     /**
+     * @return \DateTime|null
+     */
+    public function getDateretrait(): ?\DateTime
+    {
+        return $this->dateretrait;
+    }
+
+    /**
+     * @param \DateTime|null $dateretrait
+     * @return BienHermes
+     */
+    public function setDateretrait(?\DateTime $dateretrait): BienHermes
+    {
+        $this->dateretrait = $dateretrait;
+        return $this;
+    }
+
+    /**
      * @return string|null
      */
     public function getTitreannonce(): ?string
@@ -1487,11 +1512,6 @@ class BienHermes
     {
         $this->titreannonce = $titreannonce;
         return $this;
-    }
-
-    public function getSlug(): string
-    {
-        return (new Slugify())->slugify($this->titreannonce);
     }
 
     /**
@@ -1548,11 +1568,6 @@ class BienHermes
         return $this;
     }
 
-    public function getTransactionType () : string
-    {
-        return self::TYPETRANSACTION[$this->typetransact];
-    }
-
     /**
      * @return int|null
      */
@@ -1569,11 +1584,6 @@ class BienHermes
     {
         $this->typebien = $typebien;
         return $this;
-    }
-
-    public function getBienType() : string
-    {
-        return self::TYPEBIEN[$this->typebien];
     }
 
     /**
@@ -1882,11 +1892,6 @@ class BienHermes
         return $this;
     }
 
-    public function getFormattedPrice(): string
-    {
-        return number_format($this->prixpublic, 0, '', ' ');
-    }
-
     /**
      * @return bool|null
      */
@@ -1956,6 +1961,24 @@ class BienHermes
     public function setTypebail(?string $typebail): BienHermes
     {
         $this->typebail = $typebail;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getDatefinbail(): ?\DateTime
+    {
+        return $this->datefinbail;
+    }
+
+    /**
+     * @param \DateTime|null $datefinbail
+     * @return BienHermes
+     */
+    public function setDatefinbail(?\DateTime $datefinbail): BienHermes
+    {
+        $this->datefinbail = $datefinbail;
         return $this;
     }
 
@@ -3868,6 +3891,24 @@ class BienHermes
     }
 
     /**
+     * @return \DateTime|null
+     */
+    public function getDateliberation(): ?\DateTime
+    {
+        return $this->dateliberation;
+    }
+
+    /**
+     * @param \DateTime|null $dateliberation
+     * @return BienHermes
+     */
+    public function setDateliberation(?\DateTime $dateliberation): BienHermes
+    {
+        $this->dateliberation = $dateliberation;
+        return $this;
+    }
+
+    /**
      * @return int|null
      */
     public function getTaxefonciere(): ?int
@@ -4156,6 +4197,24 @@ class BienHermes
     }
 
     /**
+     * @return \DateTime|null
+     */
+    public function getDatedpe(): ?\DateTime
+    {
+        return $this->datedpe;
+    }
+
+    /**
+     * @param \DateTime|null $datedpe
+     * @return BienHermes
+     */
+    public function setDatedpe(?\DateTime $datedpe): BienHermes
+    {
+        $this->datedpe = $datedpe;
+        return $this;
+    }
+
+    /**
      * @return string|null
      */
     public function getLettreges(): ?string
@@ -4188,6 +4247,24 @@ class BienHermes
     public function setValeurges(?int $valeurges): BienHermes
     {
         $this->valeurges = $valeurges;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getDateges(): ?\DateTime
+    {
+        return $this->dateges;
+    }
+
+    /**
+     * @param \DateTime|null $dateges
+     * @return BienHermes
+     */
+    public function setDateges(?\DateTime $dateges): BienHermes
+    {
+        $this->dateges = $dateges;
         return $this;
     }
 
@@ -4314,6 +4391,42 @@ class BienHermes
     public function setNumeromandat(?string $numeromandat): BienHermes
     {
         $this->numeromandat = $numeromandat;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getDatedebutmandat(): ?\DateTime
+    {
+        return $this->datedebutmandat;
+    }
+
+    /**
+     * @param \DateTime|null $datedebutmandat
+     * @return BienHermes
+     */
+    public function setDatedebutmandat(?\DateTime $datedebutmandat): BienHermes
+    {
+        $this->datedebutmandat = $datedebutmandat;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getDatefinmandat(): ?\DateTime
+    {
+        return $this->datefinmandat;
+    }
+
+    /**
+     * @param \DateTime|null $datefinmandat
+     * @return BienHermes
+     */
+    public function setDatefinmandat(?\DateTime $datefinmandat): BienHermes
+    {
+        $this->datefinmandat = $datefinmandat;
         return $this;
     }
 
@@ -4731,6 +4844,18 @@ class BienHermes
         return $this;
     }
 
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->titreannonce);
+    }
 
+    /**
+     * Make twig extension or use an existing one !!
+     * @return string
+     */
+    public function getFormattedPrice(): string
+    {
+        return number_format($this->prixpublic, 0, '', ' ');
+    }
 
 }
