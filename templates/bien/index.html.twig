@@ -4,10 +4,12 @@
 
 {% block body %}
     <div class="container mt-4">
-        {{ form_start(form) }}
-            {{ form_row(form.maxPrice) }}
-            <button class="btn btn-primary">Rechercher</button>
-        {{ form_end(form) }}
+{#        {{ form_start(form) }}#}
+{#            {{ form_row(form.maxPrice) }}#}
+{#            {{ form_row(form.minSurface) }}#}
+{#            <button class="btn btn-primary">Rechercher</button>#}
+{#        {{ form_end(form) }}#}
+        {% include 'home/partials/_form.html.twig' %}
         <h2>les derniers biens</h2>
         <div class="row flex">
             {% if biens != null and biens|length > 0 %}
@@ -21,7 +23,7 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="{{ path('bien_show', { codeagence: bien.CodeAgence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                    <a href="{{ path('bien_show', { codeagence: bien.codeagence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
                                 </h5>
                                 <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
                                 <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
