@@ -4,10 +4,12 @@
 
 {% block body %}
     <div class="container mt-4">
-        {{ form_start(form) }}
-            {{ form_row(form.maxPrice) }}
-            <button class="btn btn-primary">Rechercher</button>
-        {{ form_end(form) }}
+{#        {{ form_start(form) }}#}
+{#            {{ form_row(form.maxPrice) }}#}
+{#            {{ form_row(form.minSurface) }}#}
+{#            <button class="btn btn-primary">Rechercher</button>#}
+{#        {{ form_end(form) }}#}
+                {% include 'home/partials/_form.html.twig' %}
         <h2>les derniers biens</h2>
         <div class="row flex">
             {% for bien in biens %}

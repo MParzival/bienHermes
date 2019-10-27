@@ -7,7 +7,7 @@
       <change beforePath="$PROJECT_DIR$/src/Form/BienSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BienSearchType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/bien/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/partials/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/partials/_form.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -238,7 +238,8 @@
       <workItem from="1571834708350" duration="8283000" />
       <workItem from="1571843021699" duration="21412000" />
       <workItem from="1571932553757" duration="2554000" />
-      <workItem from="1572074698519" duration="5547000" />
+      <workItem from="1572074698519" duration="6440000" />
+      <workItem from="1572170898111" duration="13062000" />
     </task>
     <servers />
   </component>

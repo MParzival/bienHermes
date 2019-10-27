@@ -21,13 +21,13 @@ class BienSearchType extends AbstractType
                     'placeholder' => 'Prix maximal'
                 ]
             ])
-//            ->add('minSurface', IntegerType::class, [
-//                'required' => false,
-//                'label'=> false,
-//                'attr' => [
-//                    'placeholder' => 'Surface minimal'
-//                ]
-//            ])
+            ->add('minSurface', IntegerType::class, [
+                'required' => false,
+                'label'=> false,
+                'attr' => [
+                    'placeholder' => 'Surface minimal'
+                ]
+            ])
             /*->add('nom', TextType::class, [
                  'required' => false,
                  'label'=> false,
