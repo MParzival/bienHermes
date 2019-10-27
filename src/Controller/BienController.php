@@ -3,11 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\BienHermes;
-use App\Entity\BienSearch;
-use App\Form\BienSearchType;
 use App\Repository\BienHermesRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
