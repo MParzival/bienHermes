@@ -10,8 +10,9 @@
         {{ form_end(form) }}
         <h2>les derniers biens</h2>
         <div class="row flex">
-            {% for bien in biens %}
-                <div class="col-md-4 mt-4">
+            {% if biens != null and biens|length > 0 %}
+                {% for bien in biens %}
+                    <div class="col-md-4 mt-4">
                         <div class="card">
                             {% if bien.pictfilename1 is not empty %}
                                 <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
@@ -20,7 +21,7 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="{{ path('bien_show', {codeagence: bien.codeagence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                    <a href="{{ path('bien_show', { codeagence: bien.CodeAgence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
                                 </h5>
                                 <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
                                 <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
@@ -33,8 +34,9 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-            {% endfor %}
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

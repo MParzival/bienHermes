@@ -26,45 +26,60 @@ class BienController extends AbstractController
         $this->em = $em;
     }
 
-    /**
-     * @Route("/biens", name="app_bien", methods={"GET", "POST"})
-     */
-    public function index(Request $request, BienHermesRepository $repository)
-    {
-//        $resultNom = null;
+//    public function index(Request $request, BienHermesRepository $repository) :Response
+//    {
+//        $result = null;
 //        $nomSearch = $request->request->get('nomSearch');
-//        if ($nomSearch) {
-//            $resultNom = $repository->findByTitle($nomSearch);
-//        } else {
-//            $resultNom = $repository->findAllVisible();
-//        }
-//        $resultCodePostal = null;
-//        $codePostalSearch = $request->get('codePostalSearch');
-//        if ($codePostalSearch) {
-//            $resultCodePostal = $repository->findByPostalCode($codePostalSearch);
-//        } else {
-//            $resultCodePostal = $repository->findAllVisible();
-//        }
-//        $resultPrice = null;
+//        $codePostalSearch = $request->request->get('codePostalSearch');
 //        $priceSearch = $request->request->get('priceSearch');
-//        if ($priceSearch) {
-//            $resultPrice = $repository->findByPrice($priceSearch);
-//        }else{
-//            $resultPrice = $repository->findAllVisible();
+//        if ($nomSearch && $codePostalSearch && $priceSearch) {
+//            $result = $repository->findByAllSearch($nomSearch, $codePostalSearch, $priceSearch);
+//        }elseif ($nomSearch && $codePostalSearch) {
+//            $result = $repository->findByNameAndPostalCode($nomSearch, $codePostalSearch);
+//        }elseif ($nomSearch && $priceSearch) {
+//            $result = $repository->findByNameAndMaxPrice($nomSearch, $priceSearch);
+//        }elseif ($codePostalSearch && $priceSearch){
+//            $result = $repository->findByPostalCodeAndMaxPrice($codePostalSearch, $priceSearch);
+//        }elseif ($nomSearch){
+//            $result = $repository->findByTitle($nomSearch);
+//        }elseif ($codePostalSearch){
+//            $result = $repository->findByPostalCode($codePostalSearch);
+//        }elseif ($priceSearch){
+//            $result = $repository->findByPrice($priceSearch);
+//        }else {
+//            $result = $repository->findAllVisible();
 //        }
-        $search = new BienSearch();
-        $form = $this->createForm(BienSearchType::class, $search);
-        $form->handleRequest($request);
-        $biens = $repository->findAllVisibleQuery($search);
-        dd($biens);
+//        return $this->render('bien/index.html.twig', [
+//            'biens' => $result,
+//        ]);
+//    }
+
+    /**
+     * @Route("/biens", name="app_bien", methods={"GET","POST"})
+     * @param Request $request
+     * @param BienHermesRepository $repository
+     * @return Response
+     */
+    public function index(Request $request, BienHermesRepository $repository) :Response
+    {
+        if ($request->isMethod('POST')) {
+            $nameSearch = $request->request->get('nameSearch');
+            $codePostalSearch = $request->request->get('codePostalSearch');
+            $priceSearch = intval($request->request->get('priceSearch'));
+            if ($nameSearch !== null && $codePostalSearch !== null && $priceSearch !== null) {
+                $result = $repository->findByCriteria($nameSearch, $codePostalSearch, $priceSearch);
+            } else {
+                $result = $repository->findAllVisible();
+            }
+            dump($result);
+        }
         return $this->render('bien/index.html.twig', [
-            'biens' => $biens,
-            'form' => $form->createView()
+            'biens' => $repository->findAll() ?? null,
         ]);
     }
 
     /**
-     * @Route("/biens/{slug}-{codeagence}.{numero}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/biens/{slug}-{codeagence}.{numero}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"}, methods={"GET"})
      * @param string $slug
      * @param BienHermes $bienHermes
      * @return Response

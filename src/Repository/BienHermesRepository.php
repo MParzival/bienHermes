@@ -24,17 +24,26 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param BienSearch $search
      * @return Query
      */
     public function findAllVisibleQuery(BienSearch $search) : Query
     {
         $query = $this->findVisibleQuery();
+
         if ($search->getMaxPrice()){
             $query = $query
                 ->where('r.prixpublic <= :maxprice')
                 ->setParameter('maxprice',$search->getMaxPrice());
         }
-        return $query->getQuery();
+        if ($search->getMinSurface()){
+            $query = $query
+                ->andWhere('r.surfacetotale >= :minsurface')
+                ->setParameter('minsurface', $search->getMinSurface());
+        }
+
+         return $query->getQuery();
+
     }
 
     public function findAllVisible()
@@ -51,10 +60,119 @@ class BienHermesRepository extends ServiceEntityRepository
             ->where('r.statut = false');
     }
 
+    /**
+     * @param string $value1
+     * @param string $value2
+     * @param int $value3
+     * @return array
+     */
+    public function findByAllSearch(string $value1, string $value2 , int $value3): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.titreannonce LIKE :val1')
+            ->andWhere('r.codepostal = :val2')
+            ->andWhere('r.prixpublic <= :val3')
+            ->setParameters([
+                'val1' => '%'.$value1.'%',
+                'val2' => $value2,
+                'val3' => $value3
+            ])
+            ->orderBy('r.titreannonce', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
+    /**
+     * @param string $value1
+     * @param string $value2
+     * @return array
+     */
+    public function findByNameAndPostalCode(string $value1, string $value2): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.titreannonce LIKE :val1')
+            ->andWhere('r.codepostal = :val2')
+            ->setParameters([
+                'val1' => '%'.$value1.'%',
+                'val2' => $value2
+            ])
+            ->orderBy('r.titreannonce', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
+    /**
+     * @param string $value1
+     * @param int $value2
+     * @return array
+     */
+    public function findByNameAndMaxPrice(string $value1, int $value2): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.titreannonce LIKE :val1')
+            ->andWhere('r.prixpublic <= :val2')
+            ->setParameters([
+                'val1' => '%'.$value1.'%',
+                'val2' => $value2
+            ])
+            ->orderBy('r.titreannonce', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
+    /**
+     * @param string $value1
+     * @param int $value2
+     * @return mixed
+     */
+    public function findByPostalCodeAndMaxPrice(string $value1, int $value2)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.codepostal = :val1')
+            ->andWhere('r.prixpublic <= :val2')
+            ->setParameters([
+                'val1' => $value1,
+                'val2' => $value2,
+            ])
+            ->orderBy('r.titreannonce', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
+    /**
+     * @param string|null $nameSearch
+     * @param string|null $postalCodeSearch
+     * @param int|null $priceSearch
+     * @return array
+     */
+    public function findByCriteria(string $nameSearch = null, string $postalCodeSearch = null, int $priceSearch = null): array
+    {
+        $query = $this->createQueryBuilder('q');
+        if ($postalCodeSearch) {
+            dump($postalCodeSearch);
+            $query
+                ->andWhere('q.codepostal = :val')
+                ->setParameter('val', $postalCodeSearch);
+        }
+        if($nameSearch){
+            dump($nameSearch);
+            $query
+                ->where('q.titreannonce LIKE :val')
+                ->distinct(true)
+                ->setParameter('val', '%'.$nameSearch.'%');
+        }
+        if ($priceSearch){
+            dump($priceSearch);
+            $query
+                ->andWhere('q.prixpublic <= :val')
+                ->setParameter('val', $priceSearch)
+                ->orWhere('q.loyerannuel <= :value')
+                ->setParameter('value', $priceSearch);
+        }
+        return $query
+            ->getQuery()
+            ->getArrayResult();
+    }
 
 
 
@@ -122,7 +240,6 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
-
 
 
 
