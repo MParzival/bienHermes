@@ -3,11 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\BienHermes;
-use App\Entity\BienSearch;
-use App\Form\BienSearchType;
 use App\Repository\BienHermesRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,15 +76,16 @@ class BienController extends AbstractController
             $nameSearch = $request->request->get('nameSearch');
             $codePostalSearch = $request->request->get('codePostalSearch');
             $priceSearch = intval($request->request->get('priceSearch'));
-            if ($nameSearch !== null && $codePostalSearch !== null && $priceSearch !== null) {
-                $result = $repository->findByCriteria($nameSearch, $codePostalSearch, $priceSearch);
+            $rentSearch = intval($request->request->get('loyerSearch'));
+            if ($nameSearch !== null && $codePostalSearch !== null && $priceSearch !== null && $rentSearch !== null) {
+                $result = $repository->findByCriteria($nameSearch, $codePostalSearch, $priceSearch, $rentSearch);
             } else {
                 $result = $repository->findAllVisible();
             }
             dump($result);
         }
         return $this->render('bien/index.html.twig', [
-            'biens' => $repository->findAll() ?? null,
+            'biens' => $repository->findAllVisible() ?? null,
         ]);
     }
 
