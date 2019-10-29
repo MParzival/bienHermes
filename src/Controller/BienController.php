@@ -26,26 +26,39 @@ class BienController extends AbstractController
         $this->em = $em;
     }
 
+    /**
+     * @Route("/biens", name="app_bien", methods={"GET","POST"})
+     * @param Request $request
+     * @param BienHermesRepository $repository
+     * @return Response
+     */
 //    public function index(Request $request, BienHermesRepository $repository) :Response
 //    {
 //        $result = null;
-//        $nomSearch = $request->request->get('nomSearch');
+//        $nameSearch = $request->request->get('nameSearch');
 //        $codePostalSearch = $request->request->get('codePostalSearch');
 //        $priceSearch = $request->request->get('priceSearch');
-//        if ($nomSearch && $codePostalSearch && $priceSearch) {
-//            $result = $repository->findByAllSearch($nomSearch, $codePostalSearch, $priceSearch);
-//        }elseif ($nomSearch && $codePostalSearch) {
-//            $result = $repository->findByNameAndPostalCode($nomSearch, $codePostalSearch);
-//        }elseif ($nomSearch && $priceSearch) {
-//            $result = $repository->findByNameAndMaxPrice($nomSearch, $priceSearch);
+//        if ($nameSearch && $codePostalSearch && $priceSearch) {
+//            $result = $repository->findByAllSearch($nameSearch, $codePostalSearch, $priceSearch);
+//            //dd($result);
+//        }elseif ($nameSearch && $codePostalSearch) {
+//            $result = $repository->findByNameAndPostalCode($nameSearch, $codePostalSearch);
+//            //dd($result);
+//        }elseif ($nameSearch && $priceSearch) {
+//            $result = $repository->findByNameAndMaxPrice($nameSearch, $priceSearch);
+//            //dd($result);
 //        }elseif ($codePostalSearch && $priceSearch){
 //            $result = $repository->findByPostalCodeAndMaxPrice($codePostalSearch, $priceSearch);
-//        }elseif ($nomSearch){
-//            $result = $repository->findByTitle($nomSearch);
+//            //dd($result);
+//        }elseif ($nameSearch){
+//            $result = $repository->findByTitle($nameSearch);
+//            //dd($result);
 //        }elseif ($codePostalSearch){
 //            $result = $repository->findByPostalCode($codePostalSearch);
+//            //dd($result);
 //        }elseif ($priceSearch){
 //            $result = $repository->findByPrice($priceSearch);
+//            //dd($result);
 //        }else {
 //            $result = $repository->findAllVisible();
 //        }
