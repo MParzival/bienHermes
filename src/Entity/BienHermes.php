@@ -4873,12 +4873,13 @@ class BienHermes
     }
 
     /**
-     * Make twig extension or use an existing one !!
      * @return string
      */
     public function getFormattedPrice(): string
     {
         return number_format($this->prixpublic, 0, '', ' ');
     }
+
+
 
 }

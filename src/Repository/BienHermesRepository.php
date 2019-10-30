@@ -146,39 +146,40 @@ class BienHermesRepository extends ServiceEntityRepository
      * @param int|null $rentSearch
      * @return array
      */
+
     public function findByCriteria(string $nameSearch = null, string $postalCodeSearch = null, int $priceSearch = null, int $rentSearch = null): array
     {
         $query = $this->createQueryBuilder('q');
         if($nameSearch){
-            dump($nameSearch);
+            //dump($nameSearch);
             $query
                 ->where('q.titreannonce LIKE :titreannonce')
                 ->distinct(true)
                 ->setParameter('titreannonce', '%'.$nameSearch.'%');
         }
         if ($postalCodeSearch) {
-            dump($postalCodeSearch);
+            //dump($postalCodeSearch);
             $query
                 ->andWhere('q.codepostal = :codepostal')
                 ->setParameter('codepostal', $postalCodeSearch);
         }
         if ($priceSearch){
-            dump($priceSearch);
+            //dump($priceSearch);
             $query
                 ->andWhere('q.prixpublic <= :prixpublic')
                 ->setParameter('prixpublic', $priceSearch);
         }
         if ($rentSearch){
-            dump($rentSearch);
+            //dump($rentSearch);
             $query
                 ->andWhere('q.loyerannuel <= :loyerannuel')
                 ->setParameter('loyerannuel', $rentSearch);
         }
 
-        dump($query->getQuery());
+        //dump($query->getQuery());
         return $query
             ->getQuery()
-            ->getArrayResult();
+            ->getResult();
     }
 
     public function findLatest() : array

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form action="{{ path('app_bien') }}" method="POST">
+            <form action="{{ path('app_bien') }}" method="post">
                 <div class="row">
                     <div class="col form-group">
                         <input type="text" name="nameSearch" class="form-control" placeholder="Rechercher par nom...">
@@ -10,7 +10,10 @@
                         <input type="text" name="codePostalSearch" class="form-control" placeholder="Rechercher par code postal...">
                     </div>
                     <div class="col form-group">
-                        <input type="text" name="priceSearch" class="form-control" placeholder="Budget maximal">
+                        <input type="number" name="priceSearch" class="form-control" placeholder="Budget maximal">
+                    </div>
+                    <div class="col form-group">
+                        <input type="number" name="rentSearch" class="form-control" placeholder="loyer maximal">
                     </div>
                     <button type="submit" class="btn btn-success pull-right">Chercher</button>
                 </div>

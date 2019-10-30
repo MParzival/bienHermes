@@ -7,7 +7,6 @@
         <h2>CABINET HERMES</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequatur corporis dolorem doloribus
             earum ex excepturi ipsa libero neque nisi officiis omnis perspiciatis quisquam, ratione rem rerum tempora velit voluptates.</p>
-{#        {% include 'home/partials/_form.html.twig' %}#}
     </div>
 
     <div class="container mt-4">
@@ -46,7 +45,7 @@
     <div class="container mt-4">
     <h2>les derniers biens</h2>
         <div class="row flex">
-            {% for bien in biens %}
+            {% for bien in biensLatest %}
                 <div class="col-md-4 mt-4">
                     <a href="{{ path('bien_show', {codeagence: bien.codeagence, numero: bien.numero, slug: bien.slug}) }}">
                         <div class="card">

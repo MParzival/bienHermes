@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/bienHermes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bienHermes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BienController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BienController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/BienHermes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BienHermes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bien/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/partials/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/partials/_form.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -154,6 +162,8 @@
       <path value="$PROJECT_DIR$/vendor/liip/imagine-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
   <component name="ProjectId" id="1SQ8ADRm6nRBYkLtlR9wzP8H0Op" />
@@ -236,6 +246,7 @@
       <workItem from="1571932553757" duration="2554000" />
       <workItem from="1572074698519" duration="6440000" />
       <workItem from="1572170898111" duration="20836000" />
+      <workItem from="1572430344703" duration="3471000" />
     </task>
     <servers />
   </component>
