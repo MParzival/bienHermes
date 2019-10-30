@@ -4,12 +4,29 @@
 
 {% block body %}
     <div class="container mt-4">
-{#        {{ form_start(form) }}#}
-{#            {{ form_row(form.maxPrice) }}#}
-{#            {{ form_row(form.minSurface) }}#}
-{#            <button class="btn btn-primary">Rechercher</button>#}
-{#        {{ form_end(form) }}#}
-        {% include 'home/partials/_form.html.twig' %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="{{ path('app_bien') }}" method="post">
+                        <div class="row">
+                            <div class="col form-group">
+                                <input type="text" name="nameSearch" class="form-control" placeholder="Rechercher par nom...">
+                            </div>
+                            <div class="col form-group">
+                                <input type="text" name="codePostalSearch" class="form-control" placeholder="Rechercher par code postal...">
+                            </div>
+                            <div class="col form-group">
+                                <input type="number" name="priceSearch" class="form-control" placeholder="Budget maximal">
+                            </div>
+                            <div class="col form-group">
+                                <input type="number" name="rentSearch" class="form-control" placeholder="loyer maximal">
+                            </div>
+                            <button type="submit" class="btn btn-success pull-right">Chercher</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <h2>les derniers biens</h2>
         <div class="row flex">
             {% if biens != null and biens|length > 0 %}
@@ -30,6 +47,8 @@
                                 <div class="btn btn-danger pull-right prixAnnonce">
                                     {% if bien.prixpublic != 0 %}
                                         {{ bien.formattedPrice }} € FAI*
+                                    {% elseif bien.prixpublic != 0 and bien.loyerannuel > 0 %}
+                                        {{ bien.formattedPrice }} € FAI* - {{ bien.loyerannuel }} € HT / AN
                                     {% else %}
                                         {{ bien.loyerannuel }} € HT / AN
                                     {% endif %}
