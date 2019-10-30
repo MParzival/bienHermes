@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BienController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BienController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -238,6 +235,14 @@
       <workItem from="1571932553757" duration="2554000" />
       <workItem from="1572074698519" duration="5547000" />
     </task>
+    <task id="LOCAL-00001" summary="mise à jour BienController&#10;mise à jour BienHermesRepository&#10;mise a jour bien/index.html.twig">
+      <created>1572363849181</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1572363849181</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,5 +260,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mise à jour BienController&#10;mise à jour BienHermesRepository&#10;mise a jour bien/index.html.twig" />
+    <option name="LAST_COMMIT_MESSAGE" value="mise à jour BienController&#10;mise à jour BienHermesRepository&#10;mise a jour bien/index.html.twig" />
   </component>
 </project>
