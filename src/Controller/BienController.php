@@ -56,9 +56,9 @@ class BienController extends AbstractController
 
         }
         return $this->render('bien/index.html.twig', [
-            'biens' => $resultNom,
-            /*'biens'=> $resultCodePostal,
-            'biens'=> $resultPrice,*/
+            /*'biens' => $resultNom,*/
+            'biens'=> $resultCodePostal,
+            /*'biens'=> $resultPrice,*/
         ]);
     }
 
