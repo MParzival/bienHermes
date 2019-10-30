@@ -58,8 +58,8 @@
 
         <h2>les biens : </h2>
         <div class="row flex">
-            {% if biens != null and biens|length > 0 %}
-                {% for bien in biens %}
+            {% if bienRef is not empty %}
+                {% for bien in bienRef %}
                     <div class="col-md-4 mt-4">
                         <div class="card">
                             {% if bien.pictfilename1 is not empty %}
@@ -86,6 +86,36 @@
                         </div>
                     </div>
                 {% endfor %}
+            {% else %}
+                {% if biens != null and biens|length > 0 %}
+                    {% for bien in biens %}
+                        <div class="col-md-4 mt-4">
+                            <div class="card">
+                                {% if bien.pictfilename1 is not empty %}
+                                    <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                                {% else %}
+                                    <img src="{{ asset ('assets/image/placeholder.png')}}" alt="min_placeholder" class="empty">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="{{ path('bien_show', { codeagence: bien.codeagence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                    </h5>
+                                    <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
+                                    <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
+                                    <div class="btn btn-danger pull-right prixAnnonce">
+                                        {% if bien.prixpublic != 0 %}
+                                            {{ bien.prixpublic | number_format(0,',', ' ') }} € FAI*
+                                        {% elseif bien.prixpublic != 0 and bien.loyerannuel > 0 %}
+                                            {{ bien.prixpublic| number_format(0, ',', ' ') }} € FAI* - {{ bien.loyerannuel }} € HT / AN
+                                        {% else %}
+                                            {{ bien.loyerannuel }} € HT / AN
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             {% endif %}
         </div>
     </div>
