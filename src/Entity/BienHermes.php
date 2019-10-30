@@ -14,6 +14,29 @@ use Doctrine\ORM\Mapping as ORM;
 class BienHermes
 {
     /**
+     * type de transaction
+     */
+    const TYPETRANSACTION = [
+        1 => 'Vente fonds de commerce',
+        2 => 'Gérance',
+        3 => 'Vente location immobilier d\'entreprise',
+        4 => 'Location',
+        5 => 'DAB'
+    ];
+    const TYPEBIEN = [
+        1 => 'Murs ou local commercial',
+        2 => 'Immobilier d\'entreprise',
+        10 => 'Café-Bar-Brasserie-Restaurant-Tabac',
+        20 => 'Hôtel-Auberge-Camping',
+        30 => 'Boulangerie-Pâtisserie-Confiserie-Terminal de cuisson',
+        40 => 'Beauté & soins du corps',
+        41 => 'Equipement de la maison',
+        42 => 'Equipement de la personne',
+        43 => 'Métiers de bouche',
+        50 => 'Divers'
+    ];
+
+    /**
      * @var int
      *
      * @ORM\Column(name="CodeReseau", type="smallint", nullable=false, options={"default"="000","unsigned"=true})
@@ -43,7 +66,7 @@ class BienHermes
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DateEntree", type="date", nullable=true)
+     * * @ORM\Column(name="DateEntree", type="date", nullable=false, options={"default"="0000-00-00"})
      */
     private $dateentree;
 
