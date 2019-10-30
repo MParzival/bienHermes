@@ -3,8 +3,59 @@
 {% block title %}Les biens{% endblock %}
 
 {% block body %}
+
+
+        <div class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        {{ form_start(form) }}
+                        <div class="form-row align-items-end">
+                            <div class="col">
+                                {{ form_row(form.title) }}
+                                {{ form_row(form.postalCode) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(form.maxPrice) }}
+                                {{ form_row(form.rentMax) }}
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <button class="btn btn-primary">Rechercher</button>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+
+
+                    <div class="col-md-4">
+                        {{ form_start(formRef) }}
+                        <div class="form-row align-items-end">
+                            <div class="col">
+                                {{ form_row(formRef.numero) }}
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <button class="btn btn-primary">Rechercher</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{ form_end(formRef) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
     <div class="container mt-4">
-        {% include 'home/partials/_form.html.twig' %}
+
+
         <h2>les biens : </h2>
         <div class="row flex">
             {% if biens != null and biens|length > 0 %}

@@ -17,6 +17,21 @@ class BienSearch
     private $minSurface;
 
     /**
+     * @var string|null
+     */
+    private $title;
+
+    /**
+     * @var int|null
+     */
+    private $rentMax;
+
+    /**
+     * @var string|null
+     */
+    private $postalCode;
+
+    /**
      * @return int|null
      */
     public function getMaxPrice(): ?int
@@ -52,7 +67,59 @@ class BienSearch
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
 
+    /**
+     * @param string|null $title
+     * @return BienSearch
+     */
+    public function setTitle(string $title): BienSearch
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRentMax(): ?int
+    {
+        return $this->rentMax;
+    }
+
+    /**
+     * @param int|null $rentMax
+     * @return BienSearch
+     */
+    public function setRentMax(int $rentMax): BienSearch
+    {
+        $this->rentMax = $rentMax;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param string|null $postalCode
+     * @return BienSearch
+     */
+    public function setPostalCode(string $postalCode): BienSearch
+    {
+        $this->postalCode = $postalCode;
+        return $this;
+    }
 
 
 
