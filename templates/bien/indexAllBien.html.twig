@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les biens{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>les biens : </h2>
+        {{ knp_pagination_sortable(biens, 'prix', 'bien_hermes.prixpublic') }}
+        <div class="row flex">
+
+                {% for bien in biens %}
+                    <div class="col-md-4 mt-4">
+                        <div class="card">
+                            {% if bien.pictfilename1 is not empty %}
+                                <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                            {% else %}
+                                <img src="{{ asset ('assets/image/placeholder.png')}}" alt="min_placeholder" class="empty">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ path('bien_show', { codeagence: bien.codeagence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                </h5>
+                                <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
+                                <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
+                                <div class="btn btn-danger pull-right prixAnnonce">
+                                    {% if bien.prixpublic != 0 %}
+                                        {{ bien.prixpublic | number_format(0,',', ' ') }} € FAI*
+                                    {% elseif bien.prixpublic != 0 and bien.loyerannuel > 0 %}
+                                        {{ bien.prixpublic| number_format(0, ',', ' ') }} € FAI* - {{ bien.loyerannuel }} € HT / AN
+                                    {% else %}
+                                        {{ bien.loyerannuel }} € HT / AN
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+        <div class="pagination">
+            {{ knp_pagination_render(biens) }}
+        </div>
+    </div>
+{% endblock %}

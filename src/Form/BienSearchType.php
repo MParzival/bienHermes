@@ -15,18 +15,18 @@ class BienSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
+            /*->add('title', TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Rechercher par nom...'
                 ]
-            ])
+            ])*/
             ->add('postalCode', TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Rechercher par code postal...'
+                    'placeholder' => 'par code postal...'
                 ]
             ])
             ->add('maxPrice', MoneyType::class, [
@@ -37,12 +37,26 @@ class BienSearchType extends AbstractType
                     'placeholder' => 'Prix maximal'
                 ]
             ])
-            ->add('rentMax', MoneyType::class, [
+            /*->add('rentMax', MoneyType::class, [
                 'required' => false,
                 'label'=> false,
                 'currency' => 'EUR',
                 'attr' => [
                     'placeholder' => 'loyer maximal'
+                ]
+            ])*/
+            ->add('activite', TextType::class, [
+                'required' => false,
+                'label'=> false,
+                'attr' => [
+                    'placeholder' => 'Par activitée...'
+                ]
+            ])
+            ->add('minSurface', IntegerType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Surface minimal...'
                 ]
             ])
             ;

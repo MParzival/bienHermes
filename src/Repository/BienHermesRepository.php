@@ -52,19 +52,10 @@ class BienHermesRepository extends ServiceEntityRepository
      */
     public function findAllVisible() : array
     {
-        return $this->findVisibleQuery()
-            ->where('r.prixpublic <= 200000')
+        return $this->createQueryBuilder('r')
+            ->where('r.loyerannuel = 0')
             ->getQuery()
             ->getResult();
-    }
-
-    /**
-     * @return QueryBuilder
-     */
-    private function findVisibleQuery() : QueryBuilder
-    {
-        return $this->createQueryBuilder('r')
-            ->where('r.statut = false');
     }
 
     /**
@@ -305,17 +296,56 @@ class BienHermesRepository extends ServiceEntityRepository
         if($bienSearch->getMaxPrice()){
             $query = $query
                 ->andWhere('p.prixpublic <= :maxprice')
-                ->setParameter('maxprice', $bienSearch->getMaxPrice());
+                ->setParameter('maxprice', $bienSearch->getMaxPrice())
+                ->andWhere('p.loyerannuel <= :loyerannuel')
+                ->setParameter('loyerannuel', $bienSearch->getMaxPrice());
         }
-        if($bienSearch->getRentMax()){
+        /*if($bienSearch->getRentMax()){
             $query = $query
                 ->andWhere('p.loyerannuel <= :loyerannuel')
                 ->setParameter('loyerannuel', $bienSearch->getRentMax());
+        }*/
+        if ($bienSearch->getActivite()){
+            $query = $query
+                ->andWhere('p.activite LIKE :activite')
+                ->setParameter('activite','%'.$bienSearch->getActivite().'%');
+        }
+        if ($bienSearch->getMinSurface()){
+            $query = $query
+                ->andWhere('p.surfacetotale >= :surfacetotale')
+                ->setParameter('surfacetotale',$bienSearch->getMinSurface());
         }
         return $query
             ->getQuery()
             ->getResult();
     }
+
+
+    public function getNb()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+    public function prixCroissant()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.prixpublic', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function prixDecroissant()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.prixpublic', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
 
 }

@@ -32,6 +32,11 @@ class BienSearch
     private $postalCode;
 
     /**
+     * @var string|null
+     */
+    private $activite;
+
+    /**
      * @return int|null
      */
     public function getMaxPrice(): ?int
@@ -120,6 +125,26 @@ class BienSearch
         $this->postalCode = $postalCode;
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getActivite(): ?string
+    {
+        return $this->activite;
+    }
+
+    /**
+     * @param string|null $activite
+     * @return BienSearch
+     */
+    public function setActivite(string $activite): BienSearch
+    {
+        $this->activite = $activite;
+        return $this;
+    }
+
+
 
 
 
