@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\BienHermes;
+use App\Entity\BienRefSearch;
+use App\Entity\BienSearch;
+use App\Form\BienRefSearchType;
+use App\Form\BienSearchType;
 use App\Repository\BienHermesRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -72,21 +76,24 @@ class BienController extends AbstractController
      */
     public function index(Request $request, BienHermesRepository $repository) :Response
     {
-        /*if ($request->isMethod('POST')) {*/
-            $result = null;
-            $nameSearch = $request->request->get('nameSearch');
-            $codePostalSearch = $request->request->get('codePostalSearch');
-            $priceSearch = intval($request->request->get('priceSearch'));
-            $rentSearch = intval($request->request->get('loyerSearch'));
-            if ($nameSearch !== null && $codePostalSearch !== null && $priceSearch !== null && $rentSearch !== null) {
-                $result = $repository->findByCriteria($nameSearch, $codePostalSearch, $priceSearch, $rentSearch);
-            } else {
-                $result = $repository->findAllVisible();
-            }
-            //dump($result);
-        /*}*/
+        $bienSearch = new BienSearch();
+        $form = $this->createForm(BienSearchType::class, $bienSearch);
+        $form->handleRequest($request);
+
+        $bienRefSearch = new BienRefSearch();
+        $formRef = $this->createForm(BienRefSearchType::class, $bienRefSearch);
+        $formRef->handleRequest($request);
+
+        $result = $repository->findSearchByCriteriaForm($bienSearch);
+
+
+        $resultRef = $repository->findByNumero($bienRefSearch);
+
         return $this->render('bien/index.html.twig', [
-            'biens' => $result
+            'biens' => $result,
+            'bienRef' => $resultRef,
+            'form' => $form->createView(),
+            'formRef' => $formRef->createView()
         ]);
     }
 

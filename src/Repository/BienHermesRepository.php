@@ -4,6 +4,7 @@
 namespace App\Repository;
 
 use App\Entity\BienHermes;
+use App\Entity\BienRefSearch;
 use App\Entity\BienSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -46,7 +47,10 @@ class BienHermesRepository extends ServiceEntityRepository
 
     }
 
-    public function findAllVisible()
+    /**
+     * @return array
+     */
+    public function findAllVisible() : array
     {
         return $this->findVisibleQuery()
             ->where('r.prixpublic <= 200000')
@@ -54,6 +58,9 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return QueryBuilder
+     */
     private function findVisibleQuery() : QueryBuilder
     {
         return $this->createQueryBuilder('r')
@@ -146,7 +153,6 @@ class BienHermesRepository extends ServiceEntityRepository
      * @param int|null $rentSearch
      * @return array
      */
-
     public function findByCriteria(string $nameSearch = null, string $postalCodeSearch = null, int $priceSearch = null, int $rentSearch = null): array
     {
         $query = $this->createQueryBuilder('q');
@@ -182,6 +188,9 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return array
+     */
     public function findLatest() : array
     {
         return $this->findVisibleQuery()
@@ -190,7 +199,11 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByTitle($nomSearch)
+    /**
+     * @param $nomSearch
+     * @return array
+     */
+    public function findByTitle($nomSearch) : array
     {
         return $this->createQueryBuilder('r')
             ->where('r.titreannonce LIKE :val')
@@ -200,7 +213,11 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByPostalCode($codePostalSearch)
+    /**
+     * @param $codePostalSearch
+     * @return array
+     */
+    public function findByPostalCode($codePostalSearch) : array
     {
         return $this->createQueryBuilder('r')
             ->where('r.codepostal = :val')
@@ -210,7 +227,11 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByPrice($priceSearch)
+    /**
+     * @param $priceSearch
+     * @return array
+     */
+    public function findByPrice($priceSearch) : array
     {
 
         return $this->createQueryBuilder('r')
@@ -221,7 +242,11 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByRentPrice($loyerSearch)
+    /**
+     * @param $loyerSearch
+     * @return array
+     */
+    public function findByRentPrice($loyerSearch) : array
     {
         return $this->createQueryBuilder('r')
             ->where('r.loyerannuel < :val')
@@ -231,7 +256,10 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findTopVisible()
+    /**
+     * @return array
+     */
+    public function findTopVisible() : array
     {
         return $this->createQueryBuilder('r')
             ->where('r.top = true')
@@ -241,21 +269,53 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $value
+     * @param BienRefSearch $bienRefSearch
      * @return array
      */
-    public function findByNumero($value) : array
+    public function findByNumero(BienRefSearch $bienRefSearch) :array
     {
-        return $this->createQueryBuilder('r')
-            ->where('r.numero = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.numero', 'ASC')
-            ->setMaxResults(10)
+        $query = $this->createQueryBuilder('r');
+        $query = $query
+            ->andWhere('r.numero = :numero')
+            ->setParameter('numero', $bienRefSearch->getNumero());
+        return $query
             ->getQuery()
             ->getResult();
+
     }
 
 
+    /**
+     * @param BienSearch $bienSearch
+     * @return array
+     */
+    public function findSearchByCriteriaForm(BienSearch $bienSearch) : array
+    {
+        $query = $this->createQueryBuilder('p');
+        if($bienSearch->getTitle()){
+            $query = $query
+                ->andWhere('p.titreannonce LIKE :titreannonce')
+                ->setParameter('titreannonce', '%'.$bienSearch->getTitle().'%');
+        }
+        if($bienSearch->getPostalCode()){
+            $query = $query
+                ->andWhere('p.codepostal = :codepostal')
+                ->setParameter('codepostal', $bienSearch->getPostalCode());
+        }
+        if($bienSearch->getMaxPrice()){
+            $query = $query
+                ->andWhere('p.prixpublic <= :maxprice')
+                ->setParameter('maxprice', $bienSearch->getMaxPrice());
+        }
+        if($bienSearch->getRentMax()){
+            $query = $query
+                ->andWhere('p.loyerannuel <= :loyerannuel')
+                ->setParameter('loyerannuel', $bienSearch->getRentMax());
+        }
+        return $query
+            ->getQuery()
+            ->getResult();
+    }
 
 
 }
