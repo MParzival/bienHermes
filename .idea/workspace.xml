@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
+    <list default="true" id="9760c28c-f8eb-4924-8fd7-943524f8f335" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -225,7 +224,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="" />
+      <changelist id="9760c28c-f8eb-4924-8fd7-943524f8f335" name="Default Changelist" comment="" />
       <created>1571484313968</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -239,6 +238,7 @@
       <workItem from="1572074698519" duration="6440000" />
       <workItem from="1572170898111" duration="20836000" />
       <workItem from="1572430344703" duration="17102000" />
+      <workItem from="1572517594361" duration="815000" />
     </task>
     <servers />
   </component>
