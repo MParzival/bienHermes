@@ -2,22 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/Title-background-1920x600-Kontakt-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/Title-background-1920x600-News.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/image/lyon1920-552.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/bien/indexAllBien.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/translations/KnpPaginatorBundle.fr.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/knp_paginator.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/knp_paginator.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/BienController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BienController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/BienSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BienSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/BienSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BienSearchType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/BienHermes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BienHermes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/bien/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bien/indexAllBien.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/indexAllBien.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bien/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +172,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.lang.actions.generation.PhpGenerateFieldAccessorHandlerBase$MyMemberChooser.fluent.setters.last.selected" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/image" />
+    <property name="last_opened_file_path" value="C:/wamp64/www/mobile22102019" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -253,7 +247,7 @@
       <workItem from="1572074698519" duration="6440000" />
       <workItem from="1572170898111" duration="20836000" />
       <workItem from="1572430344703" duration="17102000" />
-      <workItem from="1572517639183" duration="11725000" />
+      <workItem from="1572517639183" duration="27443000" />
     </task>
     <servers />
   </component>

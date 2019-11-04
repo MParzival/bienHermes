@@ -25,35 +25,12 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param BienSearch $search
-     * @return Query
-     */
-    public function findAllVisibleQuery(BienSearch $search) : Query
-    {
-        $query = $this->findVisibleQuery();
-
-        if ($search->getMaxPrice()){
-            $query = $query
-                ->where('r.prixpublic <= :maxprice')
-                ->setParameter('maxprice',$search->getMaxPrice());
-        }
-        if ($search->getMinSurface()){
-            $query = $query
-                ->andWhere('r.surfacetotale >= :minsurface')
-                ->setParameter('minsurface', $search->getMinSurface());
-        }
-
-         return $query->getQuery();
-
-    }
-
-    /**
      * @return array
      */
     public function findAllVisible() : array
     {
         return $this->createQueryBuilder('r')
-            ->where('r.loyerannuel = 0')
+            ->orderBy('r.numero', 'desc')
             ->getQuery()
             ->getResult();
     }
@@ -184,7 +161,8 @@ class BienHermesRepository extends ServiceEntityRepository
      */
     public function findLatest() : array
     {
-        return $this->findVisibleQuery()
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.dateentree', 'ASC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
@@ -319,33 +297,4 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
-    public function getNb()
-    {
-        return $this->createQueryBuilder('p')
-            ->select('COUNT(p)')
-            ->getQuery()
-            ->getSingleResult();
-    }
-
-    public function prixCroissant()
-    {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.prixpublic', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function prixDecroissant()
-    {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.prixpublic', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-
-
-
 }

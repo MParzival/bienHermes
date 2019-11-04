@@ -1,124 +1,132 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ bien.titreannonce }}{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
-    <div class="jumbotron">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="product-slider">
-                        <div id="carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                {% if bien.pictfilename1 is not empty %}
-                                <div class="carousel-item active">
-                                    <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" class="d-block w-100" alt="{{ bien.pictfilename1 }}" style="width: 800px; height: 400px"></a>
-                                </div>
-                                {% else %}
-                                    <img src="{{ asset('assets/image/placeholder.png') }}" style="width: 600px; height: 400px" alt="placeholder">
-                                {% endif %}
 
-                                {% if bien.pictfilename2 and bien.pictfilename3 is not empty %}
-                                <div class="carousel-item">
-                                    <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename2 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename2 }}" class="d-block w-100" alt="{{ bien.pictfilename2 }}"></a>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename3 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename3 }}" class="d-block w-100" alt="{{ bien.pictfilename3}}"></a>
-                                </div>
-                                {% endif %}
-                            </div>
-                            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-
-
-                        <div class="clearfix">
-                            <div id="thumbcarousel" class="carousel slide" data-interval="false">
+        <div class="jumbotron">
+            <div class="container">
+                {% for bien in bienRef  %}
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="product-slider">
+                            <div id="carousel" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="item active">
+                                    {% if bien.pictfilename1 is not empty %}
+                                    <div class="carousel-item active">
+                                        <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" class="d-block w-100" alt="{{ bien.pictfilename1 }}" style="width: 800px; height: 400px"></a>
+                                    </div>
+                                    {% else %}
+                                        <img src="{{ asset('assets/image/placeholder.png') }}" style="width: 600px; height: 400px" alt="placeholder">
+                                    {% endif %}
 
-                                        <div data-target="#carousel" data-slide-to="0" class="thumb">
-                                            {% if bien.pictfilename1 is not empty %}
-                                                <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
-                                            {% else %}
-                                            <img src="{{ asset ('assets/image/placeholder.png') }}" alt="min_placeholder">
-                                            {% endif %}
-                                        </div>
-                                        {% if bien.pictfilename2 and bien.pictfilename3 is not empty %}
-                                        <div data-target="#carousel" data-slide-to="1" class="thumb">
-                                            <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename2 }}" alt="min_{{ bien.pictfilename1 }}">
-                                        </div>
-
-                                        <div data-target="#carousel" data-slide-to="2" class="thumb">
-                                            <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename3 }}" alt="min_{{ bien.pictfilename1 }}">
-                                        </div>
-                                        {% endif %}
+                                    {% if bien.pictfilename2 and bien.pictfilename3 is not empty %}
+                                    <div class="carousel-item">
+                                        <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename2 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename2 }}" class="d-block w-100" alt="{{ bien.pictfilename2 }}" style="width: 800px; height: 400px"></a>
                                     </div>
 
+                                    <div class="carousel-item">
+                                        <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename3 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename3 }}" class="d-block w-100" alt="{{ bien.pictfilename3}}" style="width: 800px; height: 400px"></a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+
+                            <div class="clearfix">
+                                <div id="thumbcarousel" class="carousel slide" data-interval="false">
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+
+                                            <div data-target="#carousel" data-slide-to="0" class="thumb">
+                                                {% if bien.pictfilename1 is not empty %}
+                                                    <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                                                {% else %}
+                                                <img src="{{ asset ('assets/image/placeholder.png') }}" alt="min_placeholder">
+                                                {% endif %}
+                                            </div>
+                                            {% if bien.pictfilename2 and bien.pictfilename3 is not empty %}
+                                            <div data-target="#carousel" data-slide-to="1" class="thumb">
+                                                <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename2 }}" alt="min_{{ bien.pictfilename1 }}">
+                                            </div>
+
+                                            <div data-target="#carousel" data-slide-to="2" class="thumb">
+                                                <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename3 }}" alt="min_{{ bien.pictfilename1 }}">
+                                            </div>
+                                            {% endif %}
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                      </div>
+                    <div class="col-md-5 ml-auto">
+                        <h1>{{ bien.titreannonce }}</h1>
+                        <p>Référence : {{ bien.numero }}</p>
+
+                        <div class="text-success" style="font-weight: bold; font-size: 1.5rem;">
+                            {% if bien.prixpublic != 0 %}
+                                {{ bien.formattedPrice }} € FAI*
+                            {% else %}
+                                {{ bien.loyerannuel }} € HT / AN
+                            {% endif %}
+                        </div>
+
+                        <a href="#" class="btn btn-primary">Contacter l'agence</a>
                     </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
-                  </div>
-                <div class="col-md-5 ml-auto">
-                    <h1>{{ bien.titreannonce }}</h1>
-                    <p>Référence : {{ bien.numero }}</p>
+        <div class="container mt-4">
+            {% for bien in bienRef  %}
 
-                    <div class="text-success" style="font-weight: bold; font-size: 1.5rem;">
-                        {% if bien.prixpublic != 0 %}
-                            {{ bien.formattedPrice }} € FAI*
-                        {% else %}
-                            {{ bien.loyerannuel }} € HT / AN
-                        {% endif %}
-                    </div>
 
-                    <a href="#" class="btn btn-primary">Contacter l'agence</a>
+            <p class="mt-4">{{ bien.annonce | nl2br }}</p>
+            <div class="row">
+                <div class="col-md-7">
+                    <h2>Caractéristiques</h2>
+                    <table class="table table-stripped">
+                        <tr>
+                            <td>Surface commerciale</td>
+                            <td>{{ bien.surfacetotale }} m²</td>
+                        </tr>
+                        <tr>
+                            <td>Situation géographique</td>
+                            <td>{{ bien.quartier }}</td>
+                        </tr>
+                        <tr>
+                            <td>Fermeture Hebdo.</td>
+                            <td>{{ bien.fermeturehebdo }}</td>
+                        </tr>
+                        <tr>
+                            <td>Horaires</td>
+                            <td>{{ bien.horaires }}</td>
+                        </tr>
+                        <tr>
+                            <td>Loyer annuel</td>
+                            <td>{{ bien.loyerannuel }} €</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-5">
+                    <h2>Spécificités</h2>
                 </div>
             </div>
+            {% endfor %}
         </div>
-    </div>
-    <div class="container mt-4">
 
-        <p class="mt-4">{{ bien.annonce | nl2br }}</p>
-        <div class="row">
-            <div class="col-md-7">
-                <h2>Caractéristiques</h2>
-                <table class="table table-stripped">
-                    <tr>
-                        <td>Surface commerciale</td>
-                        <td>{{ bien.surfacetotale }} m²</td>
-                    </tr>
-                    <tr>
-                        <td>Situation géographique</td>
-                        <td>{{ bien.quartier }}</td>
-                    </tr>
-                    <tr>
-                        <td>Fermeture Hebdo.</td>
-                        <td>{{ bien.fermeturehebdo }}</td>
-                    </tr>
-                    <tr>
-                        <td>Horaires</td>
-                        <td>{{ bien.horaires }}</td>
-                    </tr>
-                    <tr>
-                        <td>Loyer annuel</td>
-                        <td>{{ bien.loyerannuel }} €</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-md-5">
-                <h2>Spécificités</h2>
-            </div>
-        </div>
-    </div>
 {% endblock %}
 
 
