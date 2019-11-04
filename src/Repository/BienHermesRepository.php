@@ -53,7 +53,7 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findAllVisible() : array
     {
         return $this->createQueryBuilder('r')
-            ->where('r.loyerannuel = 0')
+//            ->where('r.loyerannuel = 0')
             ->getQuery()
             ->getResult();
     }
@@ -184,7 +184,8 @@ class BienHermesRepository extends ServiceEntityRepository
      */
     public function findLatest() : array
     {
-        return $this->findVisibleQuery()
+        return $this->createQueryBuilder('r')
+            ->where('r.statut = false')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
@@ -321,29 +322,29 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
 
-    public function getNb()
-    {
-        return $this->createQueryBuilder('p')
-            ->select('COUNT(p)')
-            ->getQuery()
-            ->getSingleResult();
-    }
+//    public function getNb()
+//    {
+//        return $this->createQueryBuilder('p')
+//            ->select('COUNT(p)')
+//            ->getQuery()
+//            ->getSingleResult();
+//    }
 
-    public function prixCroissant()
-    {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.prixpublic', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
+//    public function prixCroissant()
+//    {
+//        return $this->createQueryBuilder('p')
+//            ->orderBy('p.prixpublic', 'ASC')
+//            ->getQuery()
+//            ->getResult();
+//    }
 
-    public function prixDecroissant()
-    {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.prixpublic', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
+//    public function prixDecroissant()
+//    {
+//        return $this->createQueryBuilder('p')
+//            ->orderBy('p.prixpublic', 'DESC')
+//            ->getQuery()
+//            ->getResult();
+//    }
 
 
 

@@ -5,7 +5,8 @@
 {% block body %}
     <div class="container mt-4">
         <h2>les biens : </h2>
-        {{ knp_pagination_sortable(biens, 'prix', 'bien_hermes.prixpublic') }}
+        {{ knp_pagination_sortable(biens, 'prix', 'bh.prixpublic') }}
+
         <div class="row flex">
 
                 {% for bien in biens %}
