@@ -13,17 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BienController extends AbstractController
 {
-    /**
-     * @var ObjectManager
-     */
-    private $em;
-
-    public function __construct(ObjectManager $em)
-    {
-
-        $this->em = $em;
-    }
-
 
     /**
      * @Route("/biens", name="app_bien", methods={"GET","POST"})
@@ -33,17 +22,20 @@ class BienController extends AbstractController
      */
     public function index(Request $request, BienHermesRepository $repository, PaginatorInterface $paginator) :Response
     {
-        
-        $result = $paginator->paginate(
-            $repository->findAllVisible(),
-        $request->query->getInt('page', '1'),
-        12
-        );
 
+        /*$result = $repository->findAllVisible();*/
+
+        $result = $paginator->paginate(
+        $repository->findAllVisible(),
+        $request->query->getInt('page', 1),
+            1801
+        );
         return $this->render('bien/indexAllBien.html.twig', [
            'biens' => $result,
         ]);
     }
+
+
 
     /**
      * @Route("/biens/{slug}-{codeagence}.{numero}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"}, methods={"GET"})
@@ -61,7 +53,7 @@ class BienController extends AbstractController
             ], 301);
         }
         return $this->render('bien/show.html.twig',[
-            'bien' => $bienHermes
+            'bienRef' => $bienHermes
         ]);
     }
 

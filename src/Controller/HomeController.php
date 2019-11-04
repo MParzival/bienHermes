@@ -8,6 +8,7 @@ use App\Entity\BienSearch;
 use App\Form\BienRefSearchType;
 use App\Form\BienSearchType;
 use App\Repository\BienHermesRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -33,15 +34,18 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         $formRef = $this->createForm(BienRefSearchType::class, $bienRefSearch);
         $formRef->handleRequest($request);
-        if (($form->isSubmitted() && $form->isValid()) | ($formRef->isSubmitted() && $formRef->isValid())){
+        if ($form->isSubmitted() && $form->isValid()){
             $result = $repository->findSearchByCriteriaForm($bienSearch);
-            $resultRef = $repository->findByNumero($bienRefSearch);
             return $this->render('bien/index.html.twig', [
                'biens' => $result,
+            ]);
+        } elseif ($formRef->isSubmitted() && $formRef->isValid()){
+            $resultRef = $repository->findByNumero($bienRefSearch);
+            return $this->render('bien/show.html.twig', [
                 'bienRef' => $resultRef
             ]);
-        }
 
+        }
         return $this->render('home/home.html.twig', [
             'biensLatest' => $biensLatest,
             'bienTops' => $bienTops,
@@ -49,8 +53,5 @@ class HomeController extends AbstractController
             'formRef' => $formRef->createView(),
         ]);
     }
-
-
-
 }
 
