@@ -6,8 +6,18 @@
     <div class="container mt-4">
         <h2>les biens : </h2>
         <div class="count">
-            {{ biens.getTotalItemCount }}
+            Vous avez {{ biens.getTotalItemCount }} biens qui correspondent à votre recherche !
         </div>
+        <div class="sortable" style="display: inline-block">
+            {{ knp_pagination_sortable(biens,'prix', 'p.prixpublic') }}
+        </div>
+        <div class="sortable" style="display: inline-block">
+            {{ knp_pagination_sortable(biens,'surface', 'p.surfacetotale') }}
+        </div>
+        <div class="sortable" style="display: inline-block">
+            {{ knp_pagination_sortable(biens,'loyer', 'p.loyerannuel') }}
+        </div>
+
         <div class="row flex">
 
                 {% for bien in biens %}

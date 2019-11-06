@@ -23,12 +23,11 @@ class BienController extends AbstractController
     public function index(Request $request, BienHermesRepository $repository, PaginatorInterface $paginator) :Response
     {
 
-        /*$result = $repository->findAllVisible();*/
 
         $result = $paginator->paginate(
-        $repository->findAllVisible(),
+        $repository->findVisibleWithPaginate(),
         $request->query->getInt('page', 1),
-            1801
+            12
         );
         return $this->render('bien/indexAllBien.html.twig', [
            'biens' => $result,
@@ -53,7 +52,7 @@ class BienController extends AbstractController
             ], 301);
         }
         return $this->render('bien/show.html.twig',[
-            'bienRef' => $bienHermes
+            'bien' => $bienHermes
         ]);
     }
 

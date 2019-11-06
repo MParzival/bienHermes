@@ -36,6 +36,16 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
+     * @return Query
+     */
+    public function findVisibleWithPaginate() : Query
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.loyerannuel = 0')
+            ->getQuery();
+    }
+
+    /**
      * @param string $value1
      * @param string $value2
      * @param int $value3
