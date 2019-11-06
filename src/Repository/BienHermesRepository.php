@@ -35,6 +35,15 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findVisiblePaginate()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.prixpublic <= 50000')
+            ->andWhere('p.surfacetotale <= 300')
+            ->orderBy('p.numero', 'desc')
+            ->getQuery();
+
+    }
     /**
      * @return Query
      */
@@ -172,6 +181,8 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findLatest() : array
     {
         return $this->createQueryBuilder('r')
+
+            ->where('r.statut = false')
             ->orderBy('r.dateentree', 'ASC')
             ->setMaxResults(3)
             ->getQuery()
@@ -271,17 +282,17 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findSearchByCriteriaForm(BienSearch $bienSearch) : array
     {
         $query = $this->createQueryBuilder('p');
-        if($bienSearch->getTitle()){
+        if ($bienSearch->getTitle()) {
             $query = $query
                 ->andWhere('p.titreannonce LIKE :titreannonce')
-                ->setParameter('titreannonce', '%'.$bienSearch->getTitle().'%');
+                ->setParameter('titreannonce', '%' . $bienSearch->getTitle() . '%');
         }
-        if($bienSearch->getPostalCode()){
+        if ($bienSearch->getPostalCode()) {
             $query = $query
                 ->andWhere('p.codepostal = :codepostal')
                 ->setParameter('codepostal', $bienSearch->getPostalCode());
         }
-        if($bienSearch->getMaxPrice()){
+        if ($bienSearch->getMaxPrice()) {
             $query = $query
                 ->andWhere('p.prixpublic <= :maxprice')
                 ->setParameter('maxprice', $bienSearch->getMaxPrice())
@@ -293,15 +304,15 @@ class BienHermesRepository extends ServiceEntityRepository
                 ->andWhere('p.loyerannuel <= :loyerannuel')
                 ->setParameter('loyerannuel', $bienSearch->getRentMax());
         }*/
-        if ($bienSearch->getActivite()){
+        if ($bienSearch->getActivite()) {
             $query = $query
                 ->andWhere('p.activite LIKE :activite')
-                ->setParameter('activite','%'.$bienSearch->getActivite().'%');
+                ->setParameter('activite', '%' . $bienSearch->getActivite() . '%');
         }
-        if ($bienSearch->getMinSurface()){
+        if ($bienSearch->getMinSurface()) {
             $query = $query
                 ->andWhere('p.surfacetotale >= :surfacetotale')
-                ->setParameter('surfacetotale',$bienSearch->getMinSurface());
+                ->setParameter('surfacetotale', $bienSearch->getMinSurface());
         }
         return $query
             ->getQuery()
