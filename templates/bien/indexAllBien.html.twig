@@ -5,9 +5,9 @@
 {% block body %}
     <div class="container mt-4">
         <h2>les biens : </h2>
-        <div class="count">
+        {#<div class="count">
             Vous avez {{ biens.getTotalItemCount }} biens qui correspondent à votre recherche !
-        </div>
+        </div>#}
         <div class="sortable" style="display: inline-block">
             {{ knp_pagination_sortable(biens,'prix', 'p.prixpublic') }}
         </div>
@@ -36,14 +36,19 @@
                                 <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
                                 <p class="card-text">Surface : {{ bien.surfacetotale }}</p>
                                 <p class="card-text">Ref : {{ bien.numero }}</p>
+                                <p class="card-text">loyer annuel : {{ bien.loyerannuel }}</p>
+                                <p class="card-text">prix public : {{ bien.prixpublic }}</p>
                                 <div class="btn btn-danger pull-right prixAnnonce">
-                                    {% if bien.prixpublic != 0 %}
+
+                                    {{ bien.prixpublic }}  € FAI* - ({{ bien.loyerannuel }} € HT / AN)
+
+                                   {# {% if bien.prixpublic != 0 %}
                                         {{ bien.prixpublic | number_format(0,',', ' ') }} € FAI*
-                                    {% elseif bien.prixpublic != 0 and bien.loyerannuel > 0 %}
+                                    {% elseif bien.prixpublic > 0 and bien.loyerannuel > 0 %}
                                         {{ bien.prixpublic| number_format(0, ',', ' ') }} € FAI* - {{ bien.loyerannuel }} € HT / AN
                                     {% else %}
                                         {{ bien.loyerannuel }} € HT / AN
-                                    {% endif %}
+                                    {% endif %}#}
                                 </div>
                             </div>
                         </div>

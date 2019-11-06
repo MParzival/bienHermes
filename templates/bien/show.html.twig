@@ -38,8 +38,6 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-
-
                             <div class="clearfix">
                                 <div id="thumbcarousel" class="carousel slide" data-interval="false">
                                     <div class="carousel-inner">
@@ -72,51 +70,119 @@
                     <div class="col-md-5 ml-auto">
                         <h1>{{ bien.titreannonce }}</h1>
                         <p>Référence : {{ bien.numero }}</p>
-
-                        <div class="text-success" style="font-weight: bold; font-size: 1.5rem;">
+                        <p>Activité : {{ bien.activite }}</p>
+                        <div class="btn btn-success text-white" style="font-weight: bold; font-size: 1.5rem;">
                             {% if bien.prixpublic != 0 %}
                                 {{ bien.formattedPrice }} € FAI*
                             {% else %}
                                 {{ bien.loyerannuel }} € HT / AN
                             {% endif %}
                         </div>
-
-                        <a href="#" class="btn btn-primary">Contacter l'agence</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="container mt-4">
-            <p class="mt-4">{{ bien.annonce | nl2br }}</p>
             <div class="row">
                 <div class="col-md-7">
-                    <h2>Caractéristiques</h2>
+                    <h2 class="borderBottom">Description</h2>
+                    {{ bien.annonce }}
+                </div>
+                <div class="col-md-5">
+                    <h2 class="borderBottom">Chiffre</h2>
+                    <table class="table table-stripped">
+                        {% if bien.typebail is not empty %}
+                            <tr>
+                                <td>Types de bail</td>
+                                <td>{{ bien.typebail }}</td>
+                            </tr>
+                        {% elseif bien.typebail is empty%}
+                            <tr>
+                                <td>Types de bail</td>
+                                <td>n.c.</td>
+                            </tr>
+                        {% endif %}
+                        {% if bien.loyerannuel > 0 %}
+                            <tr>
+                                <td>Loyer annuel</td>
+                                <td>{{ bien.loyerannuel | number_format(0, ',', ' ') }} €</td>
+                            </tr>
+                            <t
+                        {% elseif bien.loyerannuel == 0%}
+                            <tr>
+                                <td>Loyer annuel</td>
+                                <td>n.c.</td>
+                            </tr>
+                        {% endif %}
+                        {% if bien.caht > 0 %}
+                            <tr>
+                                <td>C.A HT total</td>
+                                <td>{{ bien.caht| number_format(0, ',', ' ') }} €</td>
+                            </tr>
+                        {% elseif bien.caht == 0%}
+                            <tr>
+                                <td>C.A HT total</td>
+                                <td>n.c.</td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <h2 class="borderBottom">Caractéristiques</h2>
+                    <table class="table table-stripped">
+                        <tbody style="border-top: none">
+                            <tr>
+                                <td>Surface commerciale</td>
+                                <td>{{ bien.surfacetotale }} m²</td>
+                            </tr>
+                            {% if bien.lineairefacade > 0 %}
+                            <tr>
+                                <td>Longueur vitrine</td>
+                                <td>{{ bien.lineairefacade }} m</td>
+                            </tr>
+                            {% elseif bien.lineairefacade == 0 %}
+                            <tr>
+                                <td>Longueur vitrine</td>
+                                <td>n.c.</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td>Affaire d'angle</td>
+                                <td>{{ bien.bienangle ? 'oui':'non' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5">
+                    <h2 class="borderBottom">Spécificités</h2>
+                    <div class="borderLeft">
+                        <strong>Situation géographique</strong><br>
+                        {{ bien.quartier }}
+                    </div>
+
                     <table class="table table-stripped">
                         <tr>
-                            <td>Surface commerciale</td>
-                            <td>{{ bien.surfacetotale }} m²</td>
-                        </tr>
-                        <tr>
-                            <td>Situation géographique</td>
-                            <td>{{ bien.quartier }}</td>
+                            <td>Emplacement N°</td>
+                            <td>{{ bien.typeemplacement }}</td>
                         </tr>
                         <tr>
                             <td>Fermeture Hebdo.</td>
-                            <td>{{ bien.fermeturehebdo }}</td>
+                            <td>{{ bien.fermeturehebdo | lower }}</td>
                         </tr>
                         <tr>
                             <td>Horaires</td>
                             <td>{{ bien.horaires }}</td>
                         </tr>
-                        <tr>
-                            <td>Loyer annuel</td>
-                            <td>{{ bien.loyerannuel }} €</td>
-                        </tr>
                     </table>
                 </div>
-                <div class="col-md-5">
-                    <h2>Spécificités</h2>
+                <div class="col-12">
+                    <div class="borderLeftNego">
+                        <strong>Commentaire négociateur</strong><br>
+                        {{ bien.notesnego }}
+                    </div>
                 </div>
             </div>
         </div>

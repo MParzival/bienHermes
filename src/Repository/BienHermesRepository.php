@@ -9,7 +9,6 @@ use App\Entity\BienSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method BienHermes|null find($id, $lockMode = null, $lockVersion = null)
@@ -41,7 +40,6 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findVisibleWithPaginate() : Query
     {
         return $this->createQueryBuilder('p')
-            ->where('p.loyerannuel = 0')
             ->getQuery();
     }
 

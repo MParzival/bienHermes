@@ -1,0 +1,30 @@
+.borderLeft{
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 20px;
+    padding: 10px;
+    border-left: 4px solid #494949;
+    background-color: #e6edf7;
+    border-radius: 10px;
+}
+
+.borderBottom{
+    margin-top: 15px;
+    border-bottom: 4px solid #494949;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: none;
+}
+
+.borderLeftNego{
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 10px;
+    border-left: 4px solid #494949;
+    background-color: #e6edf7;
+    border-radius: 10px;
+    font-size: 15px;
+}
