@@ -25,46 +25,24 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param BienSearch $search
-     * @return Query
-     */
-    public function findAllVisibleQuery(BienSearch $search) : Query
-    {
-        $query = $this->findVisibleQuery();
-
-        if ($search->getMaxPrice()){
-            $query = $query
-                ->where('r.prixpublic <= :maxprice')
-                ->setParameter('maxprice',$search->getMaxPrice());
-        }
-        if ($search->getMinSurface()){
-            $query = $query
-                ->andWhere('r.surfacetotale >= :minsurface')
-                ->setParameter('minsurface', $search->getMinSurface());
-        }
-
-         return $query->getQuery();
-
-    }
-
-    /**
      * @return array
      */
     public function findAllVisible() : array
     {
-        return $this->findVisibleQuery()
-            ->where('r.prixpublic <= 200000')
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.numero', 'desc')
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * @return QueryBuilder
+     * @return Query
      */
-    private function findVisibleQuery() : QueryBuilder
+    public function findVisibleWithPaginate() : Query
     {
-        return $this->createQueryBuilder('r')
-            ->where('r.statut = false');
+        return $this->createQueryBuilder('p')
+            ->where('p.loyerannuel = 0')
+            ->getQuery();
     }
 
     /**
@@ -89,7 +67,7 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /**
+    /**git pull
      * @param string $value1
      * @param string $value2
      * @return array
@@ -193,7 +171,8 @@ class BienHermesRepository extends ServiceEntityRepository
      */
     public function findLatest() : array
     {
-        return $this->findVisibleQuery()
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.dateentree', 'ASC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
@@ -305,17 +284,27 @@ class BienHermesRepository extends ServiceEntityRepository
         if($bienSearch->getMaxPrice()){
             $query = $query
                 ->andWhere('p.prixpublic <= :maxprice')
-                ->setParameter('maxprice', $bienSearch->getMaxPrice());
+                ->setParameter('maxprice', $bienSearch->getMaxPrice())
+                ->andWhere('p.loyerannuel <= :loyerannuel')
+                ->setParameter('loyerannuel', $bienSearch->getMaxPrice());
         }
-        if($bienSearch->getRentMax()){
+        /*if($bienSearch->getRentMax()){
             $query = $query
                 ->andWhere('p.loyerannuel <= :loyerannuel')
                 ->setParameter('loyerannuel', $bienSearch->getRentMax());
+        }*/
+        if ($bienSearch->getActivite()){
+            $query = $query
+                ->andWhere('p.activite LIKE :activite')
+                ->setParameter('activite','%'.$bienSearch->getActivite().'%');
+        }
+        if ($bienSearch->getMinSurface()){
+            $query = $query
+                ->andWhere('p.surfacetotale >= :surfacetotale')
+                ->setParameter('surfacetotale',$bienSearch->getMinSurface());
         }
         return $query
             ->getQuery()
             ->getResult();
     }
-
-
 }

@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * BienHermes
  *
  * @ORM\Table(name="bien_hermes", indexes={@ORM\Index(name="Categorie", columns={"Categorie"}), @ORM\Index(name="VisitCounter", columns={"VisitCounter"}), @ORM\Index(name="TypeTransact", columns={"TypeTransact"}), @ORM\Index(name="TypeBien", columns={"TypeBien"}), @ORM\Index(name="CodePostal", columns={"CodePostal"}), @ORM\Index(name="LoyerAnnuel", columns={"LoyerAnnuel"}), @ORM\Index(name="SurfaceTotale", columns={"SurfaceTotale"}), @ORM\Index(name="NbPiecesLogement", columns={"NbPiecesLogement"}), @ORM\Index(name="Top", columns={"Top"}), @ORM\Index(name="Statut", columns={"Statut"}), @ORM\Index(name="bNaxos", columns={"bNaxos"}), @ORM\Index(name="Activite", columns={"Activite"}), @ORM\Index(name="PrixPublic", columns={"PrixPublic"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\BienHermesRepository")
  */
 class BienHermes
 {
@@ -40,8 +41,6 @@ class BienHermes
      * @var int
      *
      * @ORM\Column(name="CodeReseau", type="smallint", nullable=false, options={"default"="000","unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $codereseau = '000';
 
@@ -49,8 +48,6 @@ class BienHermes
      * @var int
      *
      * @ORM\Column(name="CodeAgence", type="smallint", nullable=false, options={"default"="0000","unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $codeagence = '0000';
 
@@ -64,14 +61,14 @@ class BienHermes
     private $numero = '0';
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * * @ORM\Column(name="DateEntree", type="date", nullable=false, options={"default"="0000-00-00"})
      */
     private $dateentree;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateUpdate", type="date", nullable=true)
      */
@@ -85,7 +82,7 @@ class BienHermes
     private $statut = '0';
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateRetrait", type="date", nullable=true)
      */
@@ -274,7 +271,7 @@ class BienHermes
     private $typebail;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateFinBail", type="date", nullable=true)
      */
@@ -939,7 +936,7 @@ class BienHermes
     private $bnaxos = '0';
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="TenuDepuis", type="date", nullable=true)
      */
@@ -1023,7 +1020,7 @@ class BienHermes
     private $nbportequai;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateLiberation", type="date", nullable=true)
      */
@@ -1142,7 +1139,7 @@ class BienHermes
     private $valeurdpe;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateDPE", type="date", nullable=true)
      */
@@ -1163,7 +1160,7 @@ class BienHermes
     private $valeurges;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateGES", type="date", nullable=true)
      */
@@ -1219,14 +1216,14 @@ class BienHermes
     private $numeromandat;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateDebutMandat", type="date", nullable=true)
      */
     private $datedebutmandat;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="DateFinMandat", type="date", nullable=true)
      */
@@ -1448,36 +1445,36 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDateentree(): ?\DateTime
+    public function getDateentree(): ?DateTime
     {
         return $this->dateentree;
     }
 
     /**
-     * @param \DateTime|null $dateentree
+     * @param DateTime|null $dateentree
      * @return BienHermes
      */
-    public function setDateentree(?\DateTime $dateentree): BienHermes
+    public function setDateentree(?DateTime $dateentree): BienHermes
     {
         $this->dateentree = $dateentree;
         return $this;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDateupdate(): ?\DateTime
+    public function getDateupdate(): ?DateTime
     {
         return $this->dateupdate;
     }
 
     /**
-     * @param \DateTime|null $dateupdate
+     * @param DateTime|null $dateupdate
      * @return BienHermes
      */
-    public function setDateupdate(?\DateTime $dateupdate): BienHermes
+    public function setDateupdate(?DateTime $dateupdate): BienHermes
     {
         $this->dateupdate = $dateupdate;
         return $this;
@@ -1502,18 +1499,18 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDateretrait(): ?\DateTime
+    public function getDateretrait(): ?DateTime
     {
         return $this->dateretrait;
     }
 
     /**
-     * @param \DateTime|null $dateretrait
+     * @param DateTime|null $dateretrait
      * @return BienHermes
      */
-    public function setDateretrait(?\DateTime $dateretrait): BienHermes
+    public function setDateretrait(?DateTime $dateretrait): BienHermes
     {
         $this->dateretrait = $dateretrait;
         return $this;
@@ -1988,18 +1985,18 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDatefinbail(): ?\DateTime
+    public function getDatefinbail(): ?DateTime
     {
         return $this->datefinbail;
     }
 
     /**
-     * @param \DateTime|null $datefinbail
+     * @param DateTime|null $datefinbail
      * @return BienHermes
      */
-    public function setDatefinbail(?\DateTime $datefinbail): BienHermes
+    public function setDatefinbail(?DateTime $datefinbail): BienHermes
     {
         $this->datefinbail = $datefinbail;
         return $this;
@@ -3698,18 +3695,18 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getTenudepuis(): ?\DateTime
+    public function getTenudepuis(): ?DateTime
     {
         return $this->tenudepuis;
     }
 
     /**
-     * @param \DateTime|null $tenudepuis
+     * @param DateTime|null $tenudepuis
      * @return BienHermes
      */
-    public function setTenudepuis(?\DateTime $tenudepuis): BienHermes
+    public function setTenudepuis(?DateTime $tenudepuis): BienHermes
     {
         $this->tenudepuis = $tenudepuis;
         return $this;
@@ -3914,18 +3911,18 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDateliberation(): ?\DateTime
+    public function getDateliberation(): ?DateTime
     {
         return $this->dateliberation;
     }
 
     /**
-     * @param \DateTime|null $dateliberation
+     * @param DateTime|null $dateliberation
      * @return BienHermes
      */
-    public function setDateliberation(?\DateTime $dateliberation): BienHermes
+    public function setDateliberation(?DateTime $dateliberation): BienHermes
     {
         $this->dateliberation = $dateliberation;
         return $this;
@@ -4220,18 +4217,18 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDatedpe(): ?\DateTime
+    public function getDatedpe(): ?DateTime
     {
         return $this->datedpe;
     }
 
     /**
-     * @param \DateTime|null $datedpe
+     * @param DateTime|null $datedpe
      * @return BienHermes
      */
-    public function setDatedpe(?\DateTime $datedpe): BienHermes
+    public function setDatedpe(?DateTime $datedpe): BienHermes
     {
         $this->datedpe = $datedpe;
         return $this;
@@ -4274,18 +4271,18 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDateges(): ?\DateTime
+    public function getDateges(): ?DateTime
     {
         return $this->dateges;
     }
 
     /**
-     * @param \DateTime|null $dateges
+     * @param DateTime|null $dateges
      * @return BienHermes
      */
-    public function setDateges(?\DateTime $dateges): BienHermes
+    public function setDateges(?DateTime $dateges): BienHermes
     {
         $this->dateges = $dateges;
         return $this;
@@ -4418,36 +4415,36 @@ class BienHermes
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDatedebutmandat(): ?\DateTime
+    public function getDatedebutmandat(): ?DateTime
     {
         return $this->datedebutmandat;
     }
 
     /**
-     * @param \DateTime|null $datedebutmandat
+     * @param DateTime|null $datedebutmandat
      * @return BienHermes
      */
-    public function setDatedebutmandat(?\DateTime $datedebutmandat): BienHermes
+    public function setDatedebutmandat(?DateTime $datedebutmandat): BienHermes
     {
         $this->datedebutmandat = $datedebutmandat;
         return $this;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getDatefinmandat(): ?\DateTime
+    public function getDatefinmandat(): ?DateTime
     {
         return $this->datefinmandat;
     }
 
     /**
-     * @param \DateTime|null $datefinmandat
+     * @param DateTime|null $datefinmandat
      * @return BienHermes
      */
-    public function setDatefinmandat(?\DateTime $datefinmandat): BienHermes
+    public function setDatefinmandat(?DateTime $datefinmandat): BienHermes
     {
         $this->datefinmandat = $datefinmandat;
         return $this;

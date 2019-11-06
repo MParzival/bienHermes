@@ -12,9 +12,15 @@ img {
     border-bottom: 1px solid black;
 }
 
-.bandeau{
-    background-image: url("../../assets/image/panoLyon.jpg");
-    background-size: cover;
-    min-height: 400px;
+hr{
+    background-color: white;
+    height: 100px;
+    width: 2px;
+    margin-top: auto;
+}
 
+.biens_a_la_une{
+    background-image: url("../../assets/image/Title-background-1920x600-News.jpg");
+    background-size: cover;
+    min-height: 600px;
 }
