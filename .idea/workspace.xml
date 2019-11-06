@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="" />
+    <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/templates/bien/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/index.html.twig" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +239,7 @@
       <workItem from="1572074698519" duration="6440000" />
       <workItem from="1572170898111" duration="20836000" />
       <workItem from="1572430344703" duration="17102000" />
-      <workItem from="1572517639183" duration="34255000" />
+      <workItem from="1572517639183" duration="34606000" />
     </task>
     <task id="LOCAL-00001" summary="feat searchbar into bienController &amp; move form from home ok">
       <created>1573029274759</created>
