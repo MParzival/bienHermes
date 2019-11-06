@@ -30,15 +30,20 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findAllVisible() : array
     {
         return $this->createQueryBuilder('r')
-<<<<<<< HEAD
-//            ->where('r.loyerannuel = 0')
-=======
             ->orderBy('r.numero', 'desc')
->>>>>>> 4e9dff1e32dd5a3c720e1eef11b9184963344373
             ->getQuery()
             ->getResult();
     }
 
+    public function findVisiblePaginate()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.prixpublic <= 50000')
+            ->andWhere('p.surfacetotale <= 300')
+            ->orderBy('p.numero', 'desc')
+            ->getQuery();
+
+    }
     /**
      * @param string $value1
      * @param string $value2
@@ -166,11 +171,9 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findLatest() : array
     {
         return $this->createQueryBuilder('r')
-<<<<<<< HEAD
+
             ->where('r.statut = false')
-=======
             ->orderBy('r.dateentree', 'ASC')
->>>>>>> 4e9dff1e32dd5a3c720e1eef11b9184963344373
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
@@ -269,17 +272,17 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findSearchByCriteriaForm(BienSearch $bienSearch) : array
     {
         $query = $this->createQueryBuilder('p');
-        if($bienSearch->getTitle()){
+        if ($bienSearch->getTitle()) {
             $query = $query
                 ->andWhere('p.titreannonce LIKE :titreannonce')
-                ->setParameter('titreannonce', '%'.$bienSearch->getTitle().'%');
+                ->setParameter('titreannonce', '%' . $bienSearch->getTitle() . '%');
         }
-        if($bienSearch->getPostalCode()){
+        if ($bienSearch->getPostalCode()) {
             $query = $query
                 ->andWhere('p.codepostal = :codepostal')
                 ->setParameter('codepostal', $bienSearch->getPostalCode());
         }
-        if($bienSearch->getMaxPrice()){
+        if ($bienSearch->getMaxPrice()) {
             $query = $query
                 ->andWhere('p.prixpublic <= :maxprice')
                 ->setParameter('maxprice', $bienSearch->getMaxPrice())
@@ -291,50 +294,18 @@ class BienHermesRepository extends ServiceEntityRepository
                 ->andWhere('p.loyerannuel <= :loyerannuel')
                 ->setParameter('loyerannuel', $bienSearch->getRentMax());
         }*/
-        if ($bienSearch->getActivite()){
+        if ($bienSearch->getActivite()) {
             $query = $query
                 ->andWhere('p.activite LIKE :activite')
-                ->setParameter('activite','%'.$bienSearch->getActivite().'%');
+                ->setParameter('activite', '%' . $bienSearch->getActivite() . '%');
         }
-        if ($bienSearch->getMinSurface()){
+        if ($bienSearch->getMinSurface()) {
             $query = $query
                 ->andWhere('p.surfacetotale >= :surfacetotale')
-                ->setParameter('surfacetotale',$bienSearch->getMinSurface());
+                ->setParameter('surfacetotale', $bienSearch->getMinSurface());
         }
         return $query
             ->getQuery()
             ->getResult();
     }
-<<<<<<< HEAD
-
-
-//    public function getNb()
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->select('COUNT(p)')
-//            ->getQuery()
-//            ->getSingleResult();
-//    }
-
-//    public function prixCroissant()
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->orderBy('p.prixpublic', 'ASC')
-//            ->getQuery()
-//            ->getResult();
-//    }
-
-//    public function prixDecroissant()
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->orderBy('p.prixpublic', 'DESC')
-//            ->getQuery()
-//            ->getResult();
-//    }
-
-
-
-
-=======
->>>>>>> 4e9dff1e32dd5a3c720e1eef11b9184963344373
 }

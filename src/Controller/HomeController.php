@@ -41,7 +41,7 @@ class HomeController extends AbstractController
             ]);
         } elseif ($formRef->isSubmitted() && $formRef->isValid()){
             $resultRef = $repository->findByNumero($bienRefSearch);
-            return $this->render('bien/show.html.twig', [
+            return $this->render('bien/showRef.html.twig', [
                 'bienRef' => $resultRef
             ]);
 

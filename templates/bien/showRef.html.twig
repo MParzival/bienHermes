@@ -6,6 +6,7 @@
 
         <div class="jumbotron">
             <div class="container">
+                {% for bien in bienRef  %}
                 <div class="row">
                     <div class="col-md-7">
                         <div class="product-slider">
@@ -84,10 +85,14 @@
                         <a href="#" class="btn btn-primary">Contacter l'agence</a>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
 
         <div class="container mt-4">
+            {% for bien in bienRef  %}
+
+
             <p class="mt-4">{{ bien.annonce | nl2br }}</p>
             <div class="row">
                 <div class="col-md-7">
@@ -119,6 +124,7 @@
                     <h2>Spécificités</h2>
                 </div>
             </div>
+            {% endfor %}
         </div>
 
 {% endblock %}

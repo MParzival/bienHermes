@@ -5,14 +5,15 @@
 {% block body %}
     <div class="container mt-4">
         <h2>les biens : </h2>
-<<<<<<< HEAD
-        {{ knp_pagination_sortable(biens, 'prix', 'bh.prixpublic') }}
-
-=======
         <div class="count">
             {{ biens.getTotalItemCount }}
         </div>
->>>>>>> 4e9dff1e32dd5a3c720e1eef11b9184963344373
+        <div class="sortable" style="display: inline-block">
+            {{ knp_pagination_sortable(biens, 'surface', 'p.surfacetotale') }}
+        </div>
+        <div class="sortable" style="display: inline-block">
+            {{ knp_pagination_sortable(biens, 'prix', 'p.prixpublic') }}
+        </div>
         <div class="row flex">
 
                 {% for bien in biens %}

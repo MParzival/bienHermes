@@ -41,8 +41,6 @@ class BienHermes
      * @var int
      *
      * @ORM\Column(name="CodeReseau", type="smallint", nullable=false, options={"default"="000","unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $codereseau = '000';
 
@@ -50,8 +48,6 @@ class BienHermes
      * @var int
      *
      * @ORM\Column(name="CodeAgence", type="smallint", nullable=false, options={"default"="0000","unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $codeagence = '0000';
 
