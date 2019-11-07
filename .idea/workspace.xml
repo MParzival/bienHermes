@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/show.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20191027174841.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20191027174841.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/indexAllBien.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/indexAllBien.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -248,6 +247,7 @@
       <workItem from="1572170898111" duration="20836000" />
       <workItem from="1572430344703" duration="17102000" />
       <workItem from="1572517639183" duration="34606000" />
+      <workItem from="1573114139877" duration="9291000" />
     </task>
     <task id="LOCAL-00001" summary="feat searchbar into bienController &amp; move form from home ok">
       <created>1573029274759</created>
@@ -256,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573029274759</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: show.css&#10;update front bien/show.html.twig">
+      <created>1573056472293</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1573056472293</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +284,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat searchbar into bienController &amp; move form from home ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat searchbar into bienController &amp; move form from home ok" />
+    <MESSAGE value="feat: show.css&#10;update front bien/show.html.twig" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: show.css&#10;update front bien/show.html.twig" />
   </component>
 </project>
