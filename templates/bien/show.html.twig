@@ -78,7 +78,22 @@
                                 {{ bien.loyerannuel }} € HT / AN
                             {% endif %}
                         </div>
+
+                        {% if app.user %}
+                            {% set userLikeProperty = false %}
+                            {% for listPropertyByUser in bien.properties if listPropertyByUser.user.id == app.user.id %}
+                                {% set userLikeProperty = true %}
+                            {% endfor %}
+
+                            {% if userLikeProperty %}
+                                <a class="btn btn-warning" href="{{ path('property_notlike', {bienHermes : bien.id, user: app.user.id}) }}">retirer de ma list</a>
+                            {% else %}
+                                <a class="btn btn-primary" href="{{ path('property_like', {bienHermes : bien.id, user: app.user.id}) }}">mettre dans ma list</a>
+                            {% endif %}
+
+                        {% endif %}
                     </div>
+
                 </div>
             </div>
         </div>

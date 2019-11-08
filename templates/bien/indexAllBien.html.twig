@@ -30,7 +30,7 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="{{ path('bien_show', { codeagence: bien.codeagence, numero: bien.numero, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                    <a href="{{ path('bien_show', { id: bien.id, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
                                 </h5>
                                 <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
                                 <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>

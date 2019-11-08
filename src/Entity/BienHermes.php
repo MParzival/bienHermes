@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
-use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * BienHermes
  *
- * @ORM\Table(name="bien_hermes", indexes={@ORM\Index(name="Categorie", columns={"Categorie"}), @ORM\Index(name="VisitCounter", columns={"VisitCounter"}), @ORM\Index(name="TypeTransact", columns={"TypeTransact"}), @ORM\Index(name="TypeBien", columns={"TypeBien"}), @ORM\Index(name="CodePostal", columns={"CodePostal"}), @ORM\Index(name="LoyerAnnuel", columns={"LoyerAnnuel"}), @ORM\Index(name="SurfaceTotale", columns={"SurfaceTotale"}), @ORM\Index(name="NbPiecesLogement", columns={"NbPiecesLogement"}), @ORM\Index(name="Top", columns={"Top"}), @ORM\Index(name="Statut", columns={"Statut"}), @ORM\Index(name="bNaxos", columns={"bNaxos"}), @ORM\Index(name="Activite", columns={"Activite"}), @ORM\Index(name="PrixPublic", columns={"PrixPublic"})})
+ * @ORM\Table(name="bien_hermes", indexes={@ORM\Index(name="CodePostal", columns={"CodePostal"}), @ORM\Index(name="LoyerAnnuel", columns={"LoyerAnnuel"}), @ORM\Index(name="Categorie", columns={"Categorie"}), @ORM\Index(name="VisitCounter", columns={"VisitCounter"}), @ORM\Index(name="TypeTransact", columns={"TypeTransact"}), @ORM\Index(name="TypeBien", columns={"TypeBien"}), @ORM\Index(name="Activite", columns={"Activite"}), @ORM\Index(name="PrixPublic", columns={"PrixPublic"}), @ORM\Index(name="SurfaceTotale", columns={"SurfaceTotale"}), @ORM\Index(name="NbPiecesLogement", columns={"NbPiecesLogement"}), @ORM\Index(name="Top", columns={"Top"}), @ORM\Index(name="Statut", columns={"Statut"}), @ORM\Index(name="bNaxos", columns={"bNaxos"})})
  * @ORM\Entity(repositoryClass="App\Repository\BienHermesRepository")
  */
 class BienHermes
@@ -37,10 +38,20 @@ class BienHermes
         50 => 'Divers'
     ];
 
+
     /**
      * @var int
      *
-     * @ORM\Column(name="CodeReseau", type="smallint", nullable=false, options={"default"="000","unsigned"=true})
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="CodeReseau", type="smallint", nullable=true, options={"default"="000","unsigned"=true})
      */
     private $codereseau = '000';
 
@@ -55,22 +66,20 @@ class BienHermes
      * @var int
      *
      * @ORM\Column(name="Numero", type="integer", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $numero = '0';
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * * @ORM\Column(name="DateEntree", type="date", nullable=false, options={"default"="0000-00-00"})
+     * @ORM\Column(name="DateEntree", type="string", length=10, nullable=true)
      */
     private $dateentree;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateUpdate", type="date", nullable=true)
+     * @ORM\Column(name="DateUpdate", type="string", length=10, nullable=true)
      */
     private $dateupdate;
 
@@ -82,9 +91,9 @@ class BienHermes
     private $statut = '0';
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateRetrait", type="date", nullable=true)
+     * @ORM\Column(name="DateRetrait", type="string", length=10, nullable=true)
      */
     private $dateretrait;
 
@@ -271,9 +280,9 @@ class BienHermes
     private $typebail;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateFinBail", type="date", nullable=true)
+     * @ORM\Column(name="DateFinBail", type="string", length=10, nullable=true)
      */
     private $datefinbail;
 
@@ -936,9 +945,9 @@ class BienHermes
     private $bnaxos = '0';
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="TenuDepuis", type="date", nullable=true)
+     * @ORM\Column(name="TenuDepuis", type="string", length=10, nullable=true)
      */
     private $tenudepuis;
 
@@ -1020,9 +1029,9 @@ class BienHermes
     private $nbportequai;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateLiberation", type="date", nullable=true)
+     * @ORM\Column(name="DateLiberation", type="string", length=10, nullable=true)
      */
     private $dateliberation;
 
@@ -1139,9 +1148,9 @@ class BienHermes
     private $valeurdpe;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateDPE", type="date", nullable=true)
+     * @ORM\Column(name="DateDPE", type="string", length=10, nullable=true)
      */
     private $datedpe;
 
@@ -1160,9 +1169,9 @@ class BienHermes
     private $valeurges;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateGES", type="date", nullable=true)
+     * @ORM\Column(name="DateGES", type="string", length=10, nullable=true)
      */
     private $dateges;
 
@@ -1216,16 +1225,16 @@ class BienHermes
     private $numeromandat;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateDebutMandat", type="date", nullable=true)
+     * @ORM\Column(name="DateDebutMandat", type="string", length=10, nullable=true)
      */
     private $datedebutmandat;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="DateFinMandat", type="date", nullable=true)
+     * @ORM\Column(name="DateFinMandat", type="string", length=10, nullable=true)
      */
     private $datefinmandat;
 
@@ -1391,6 +1400,36 @@ class BienHermes
     private $codepostalpub;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ListPropertyByUser", mappedBy="bien")
+     */
+    private $properties;
+
+    public function __construct()
+    {
+        $this->properties = new ArrayCollection();
+    }
+
+
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return BienHermes
+     */
+    public function setId(int $id): BienHermes
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getCodereseau(): int
@@ -1445,36 +1484,36 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDateentree(): ?DateTime
+    public function getDateentree(): ?string
     {
         return $this->dateentree;
     }
 
     /**
-     * @param DateTime|null $dateentree
+     * @param string|null $dateentree
      * @return BienHermes
      */
-    public function setDateentree(?DateTime $dateentree): BienHermes
+    public function setDateentree(?string $dateentree): BienHermes
     {
         $this->dateentree = $dateentree;
         return $this;
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDateupdate(): ?DateTime
+    public function getDateupdate(): ?string
     {
         return $this->dateupdate;
     }
 
     /**
-     * @param DateTime|null $dateupdate
+     * @param string|null $dateupdate
      * @return BienHermes
      */
-    public function setDateupdate(?DateTime $dateupdate): BienHermes
+    public function setDateupdate(?string $dateupdate): BienHermes
     {
         $this->dateupdate = $dateupdate;
         return $this;
@@ -1499,18 +1538,18 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDateretrait(): ?DateTime
+    public function getDateretrait(): ?string
     {
         return $this->dateretrait;
     }
 
     /**
-     * @param DateTime|null $dateretrait
+     * @param string|null $dateretrait
      * @return BienHermes
      */
-    public function setDateretrait(?DateTime $dateretrait): BienHermes
+    public function setDateretrait(?string $dateretrait): BienHermes
     {
         $this->dateretrait = $dateretrait;
         return $this;
@@ -1985,18 +2024,18 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDatefinbail(): ?DateTime
+    public function getDatefinbail(): ?string
     {
         return $this->datefinbail;
     }
 
     /**
-     * @param DateTime|null $datefinbail
+     * @param string|null $datefinbail
      * @return BienHermes
      */
-    public function setDatefinbail(?DateTime $datefinbail): BienHermes
+    public function setDatefinbail(?string $datefinbail): BienHermes
     {
         $this->datefinbail = $datefinbail;
         return $this;
@@ -3695,18 +3734,18 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getTenudepuis(): ?DateTime
+    public function getTenudepuis(): ?string
     {
         return $this->tenudepuis;
     }
 
     /**
-     * @param DateTime|null $tenudepuis
+     * @param string|null $tenudepuis
      * @return BienHermes
      */
-    public function setTenudepuis(?DateTime $tenudepuis): BienHermes
+    public function setTenudepuis(?string $tenudepuis): BienHermes
     {
         $this->tenudepuis = $tenudepuis;
         return $this;
@@ -3911,18 +3950,18 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDateliberation(): ?DateTime
+    public function getDateliberation(): ?string
     {
         return $this->dateliberation;
     }
 
     /**
-     * @param DateTime|null $dateliberation
+     * @param string|null $dateliberation
      * @return BienHermes
      */
-    public function setDateliberation(?DateTime $dateliberation): BienHermes
+    public function setDateliberation(?string $dateliberation): BienHermes
     {
         $this->dateliberation = $dateliberation;
         return $this;
@@ -4217,18 +4256,18 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDatedpe(): ?DateTime
+    public function getDatedpe(): ?string
     {
         return $this->datedpe;
     }
 
     /**
-     * @param DateTime|null $datedpe
+     * @param string|null $datedpe
      * @return BienHermes
      */
-    public function setDatedpe(?DateTime $datedpe): BienHermes
+    public function setDatedpe(?string $datedpe): BienHermes
     {
         $this->datedpe = $datedpe;
         return $this;
@@ -4271,18 +4310,18 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDateges(): ?DateTime
+    public function getDateges(): ?string
     {
         return $this->dateges;
     }
 
     /**
-     * @param DateTime|null $dateges
+     * @param string|null $dateges
      * @return BienHermes
      */
-    public function setDateges(?DateTime $dateges): BienHermes
+    public function setDateges(?string $dateges): BienHermes
     {
         $this->dateges = $dateges;
         return $this;
@@ -4415,36 +4454,36 @@ class BienHermes
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDatedebutmandat(): ?DateTime
+    public function getDatedebutmandat(): ?string
     {
         return $this->datedebutmandat;
     }
 
     /**
-     * @param DateTime|null $datedebutmandat
+     * @param string|null $datedebutmandat
      * @return BienHermes
      */
-    public function setDatedebutmandat(?DateTime $datedebutmandat): BienHermes
+    public function setDatedebutmandat(?string $datedebutmandat): BienHermes
     {
         $this->datedebutmandat = $datedebutmandat;
         return $this;
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDatefinmandat(): ?DateTime
+    public function getDatefinmandat(): ?string
     {
         return $this->datefinmandat;
     }
 
     /**
-     * @param DateTime|null $datefinmandat
+     * @param string|null $datefinmandat
      * @return BienHermes
      */
-    public function setDatefinmandat(?DateTime $datefinmandat): BienHermes
+    public function setDatefinmandat(?string $datefinmandat): BienHermes
     {
         $this->datefinmandat = $datefinmandat;
         return $this;
@@ -4877,6 +4916,35 @@ class BienHermes
         return number_format($this->prixpublic, 0, '', ' ');
     }
 
+    /**
+     * @return Collection|ListPropertyByUser[]
+     */
+    public function getProperties(): Collection
+    {
+        return $this->properties;
+    }
 
+    public function addProperty(ListPropertyByUser $property): self
+    {
+        if (!$this->properties->contains($property)) {
+            $this->properties[] = $property;
+            $property->setBien($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProperty(ListPropertyByUser $property): self
+    {
+        if ($this->properties->contains($property)) {
+            $this->properties->removeElement($property);
+            // set the owning side to null (unless already changed)
+            if ($property->getBien() === $this) {
+                $property->setBien(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

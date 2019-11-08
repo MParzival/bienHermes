@@ -17,6 +17,12 @@
                     <td>Email</td>
                     <td>{{user.Email}}</td>
                 </tr>
+                <tr>
+                    <td>Biens Ajouté</td>
+                    {% for listProperty in user.properties %}
+                    <td>{{ listProperty.bien.titreannonce }}</td>
+                    {% endfor %}
+                </tr>
             </tbody>
         </table>
 

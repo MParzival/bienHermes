@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,6 +41,18 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ListPropertyByUser", mappedBy="user")
+     */
+    private $properties;
+
+    public function __construct()
+    {
+        $this->properties = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -131,5 +145,35 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|ListPropertyByUser[]
+     */
+    public function getProperties(): Collection
+    {
+        return $this->properties;
+    }
+
+    public function addProperty(ListPropertyByUser $property): self
+    {
+        if (!$this->properties->contains($property)) {
+            $this->properties[] = $property;
+            $property->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProperty(ListPropertyByUser $property): self
+    {
+        if ($this->properties->contains($property)) {
+            $this->properties->removeElement($property);
+            // set the owning side to null (unless already changed)
+            if ($property->getUser() === $this) {
+                $property->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

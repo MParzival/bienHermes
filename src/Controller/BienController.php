@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\BienHermes;
+use App\Entity\WishListProperties;
 use App\Repository\BienHermesRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -37,17 +38,27 @@ class BienController extends AbstractController
 
 
     /**
-     * @Route("/biens/{slug}-{codeagence}.{numero}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"}, methods={"GET"})
+     * @Route("/biens/{slug}-{id}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"}, methods={"GET", "POST"})
      * @param string $slug
      * @param BienHermes $bienHermes
      * @return Response
      */
     public function show(string $slug, BienHermes $bienHermes): Response
     {
+
+        /*$userId = $this->getUser()->getId();
+        $wishList = $bienHermes->getWishListProperties()->filter(
+          function($wishList) use ($userId){
+              return ($wishList->getUser()->getId() === $userId);
+          }
+        )->first();
+        if (!$wishList)
+        {
+            $wishList = new WishListProperties();
+        }*/
         if($bienHermes->getSlug() !== $slug){
            return $this->redirectToRoute('bien_show', [
-               'codeagence' => $bienHermes->getCodeagence(),
-                'numero' => $bienHermes->getNumero(),
+               'id' => $bienHermes->getId(),
                 'slug' => $bienHermes->getSlug()
             ], 301);
         }
