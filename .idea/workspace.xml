@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a501ca-eabb-4c00-ac1c-079a91790443" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/show.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BienHermesRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/indexAllBien.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/indexAllBien.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bien/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bien/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -181,14 +175,14 @@
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\public\assets\image" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\templates\bien" />
       <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\public\assets\image" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\public\assets\image" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -217,12 +211,7 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1c98507a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
