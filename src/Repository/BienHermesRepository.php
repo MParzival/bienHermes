@@ -286,11 +286,6 @@ class BienHermesRepository extends ServiceEntityRepository
                 ->andWhere('p.loyerannuel <= :loyerannuel')
                 ->setParameter('loyerannuel', $bienSearch->getMaxPrice());
         }
-        /*if($bienSearch->getRentMax()){
-            $query = $query
-                ->andWhere('p.loyerannuel <= :loyerannuel')
-                ->setParameter('loyerannuel', $bienSearch->getRentMax());
-        }*/
         if ($bienSearch->getActivite()){
             $query = $query
                 ->andWhere('p.activite LIKE :activite')
