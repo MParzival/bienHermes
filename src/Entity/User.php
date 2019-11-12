@@ -47,9 +47,15 @@ class User implements UserInterface
      */
     private $properties;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Goods", mappedBy="users", orphanRemoval=true)
+     */
+    private $goods;
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
+        $this->goods = new ArrayCollection();
     }
 
 
@@ -170,6 +176,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($property->getUser() === $this) {
                 $property->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Goods[]
+     */
+    public function getGoods(): Collection
+    {
+        return $this->goods;
+    }
+
+    public function addGood(Goods $good): self
+    {
+        if (!$this->goods->contains($good)) {
+            $this->goods[] = $good;
+            $good->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGood(Goods $good): self
+    {
+        if ($this->goods->contains($good)) {
+            $this->goods->removeElement($good);
+            // set the owning side to null (unless already changed)
+            if ($good->getUsers() === $this) {
+                $good->setUsers(null);
             }
         }
 

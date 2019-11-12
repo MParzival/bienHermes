@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Goods index{% endblock %}
+
+{% block body %}
+    <h1>Goods index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Content</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Featured_image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for good in goods %}
+            <tr>
+                <td>{{ good.id }}</td>
+                <td>{{ good.title }}</td>
+                <td>{{ good.slug }}</td>
+                <td>{{ good.content }}</td>
+                <td>{{ good.createdAt ? good.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ good.updatedAt ? good.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ good.featuredImage }}</td>
+                <td>
+                    <a href="{{ path('goods_show', {'id': good.id}) }}">show</a>
+                    <a href="{{ path('goods_edit', {'id': good.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('goods_new') }}">Create new</a>
+{% endblock %}

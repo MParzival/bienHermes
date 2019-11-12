@@ -8,7 +8,6 @@ use App\Entity\BienSearch;
 use App\Form\BienRefSearchType;
 use App\Form\BienSearchType;
 use App\Repository\BienHermesRepository;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +25,7 @@ class HomeController extends AbstractController
     {
         $biensLatest = $repository->findLatest();
         $bienTops = $repository->findTopVisible();
+
 
 
         $bienSearch = new BienSearch();
