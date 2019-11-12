@@ -72,7 +72,7 @@ class ListPropertyByUserController extends AbstractController
             ]);
 
             //si la liste n'existe pas en base on la créée
-            if (!$listPropertyByUser)
+            if ($listPropertyByUser)
             {
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($listPropertyByUser);
