@@ -53,5 +53,15 @@ class HomeController extends AbstractController
             'formRef' => $formRef->createView(),
         ]);
     }
+
+
+    /**
+     * @Route("/mentions-legales", name="mentions-legales")
+     */
+    public function mentionsLegales()
+    {
+        // Nous générons la vue de la page des mentions légales
+        return $this->render('main/mentions-legales.html.twig');
+    }
 }
 

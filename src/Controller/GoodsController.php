@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaires;
 use App\Entity\Goods;
+use App\Form\CommentairesType;
 use App\Form\GoodsType;
 use App\Repository\GoodsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -90,5 +92,45 @@ class GoodsController extends AbstractController
         }
 
         return $this->redirectToRoute('goods_index');
+    }
+
+    /**
+     * @Route("/{slug}", name="goods_app")
+     */
+    public function article($slug, Request $request){
+        // On récupère l'article correspondant au slug
+        $article = $this->getDoctrine()->getRepository(Goods::class)->findOneBy(['slug' => $slug]);
+        $commentaires = $this->getDoctrine()->getRepository(Commentaires::class)->findBy([
+            'articles' => $article,
+            'actif' => 1
+        ],['created_at' => 'desc']);
+        if(!$article){
+            // Si aucun article n'est trouvé, nous créons une exception
+            throw $this->createNotFoundException('L\'article n\'existe pas');
+        }
+        // Nous créons l'instance de "Commentaires"
+        $commentaire = new Commentaires();
+        // Nous créons le formulaire en utilisant "CommentairesType" et on lui passe l'instance
+        $form = $this->createForm(CommentairesType::class, $commentaire);
+        // Nous récupérons les données
+        $form->handleRequest($request);
+        // Nous vérifions si le formulaire a été soumis et si les données sont valides
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Hydrate notre commentaire avec l'article
+            $commentaire->setGoods($article);
+            // Hydrate notre commentaire avec la date et l'heure courants
+            $commentaire->setCreatedAt(new \DateTime('now'));
+            $doctrine = $this->getDoctrine()->getManager();
+            // On hydrate notre instance $commentaire
+            $doctrine->persist($commentaire);
+            // On écrit en base de données
+            $doctrine->flush();
+        }
+        // Si l'article existe nous envoyons les données à la vue
+        return $this->render('goods/article.html.twig', [
+            'form' => $form->createView(),
+            'article' => $article,
+            'commentaires' => $commentaires,
+        ]);
     }
 }
