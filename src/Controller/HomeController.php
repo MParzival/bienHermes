@@ -44,7 +44,6 @@ class HomeController extends AbstractController
             return $this->render('bien/showRef.html.twig', [
                 'bienRef' => $resultRef
             ]);
-
         }
         return $this->render('home/home.html.twig', [
             'biensLatest' => $biensLatest,

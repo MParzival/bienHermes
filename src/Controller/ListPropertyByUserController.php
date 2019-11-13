@@ -71,7 +71,6 @@ class ListPropertyByUserController extends AbstractController
                 'bien' => $bienHermes
             ]);
 
-            //si la liste n'existe pas en base on la créée
             if ($listPropertyByUser)
             {
                 $em = $this->getDoctrine()->getManager();

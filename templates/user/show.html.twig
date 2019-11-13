@@ -6,29 +6,21 @@
 
 {% block body %}
     <div class="container">
-        <h1>Bienvenu sur votre compte {{ user.username }}</h1>
-        <table class="table table-stripped">
-            <tbody>
-                <tr>
-                    <td>Pseudo</td>
-                    <td>{{ user.username }}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{{user.Email}}</td>
-                </tr>
-                <tr>
-                    <td>Biens Ajouté</td>
+        <h2>Bienvenu sur votre compte {{ user.username }}</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Biens ajoutés</h4>
+                <ul>
                     {% for listProperty in user.properties %}
-                    <td>{{ listProperty.bien.titreannonce }}</td>
+                        <a href="{{ path('bien_show', { id: listProperty.bien.id, slug : listProperty.bien.slug}) }}"><li>{{ listProperty.bien.titreannonce }}</li></a>
                     {% endfor %}
-                </tr>
-            </tbody>
-        </table>
-
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Nom du compte</h4>
+                <p>{{ user.username }}</p>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
-
-
-
