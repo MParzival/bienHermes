@@ -8,6 +8,7 @@ use App\Entity\BienSearch;
 use App\Form\BienRefSearchType;
 use App\Form\BienSearchType;
 use App\Repository\BienHermesRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -50,6 +51,27 @@ class HomeController extends AbstractController
             'bienTops' => $bienTops,
             'form' => $form->createView(),
             'formRef' => $formRef->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/ckeditor", name="ckeditor_app")
+     * @return Response
+     */
+    public function ckeditor()
+    {
+        $form = $this->createFormBuilder()
+            ->add('content', CKEditorType::class,[
+                'config' =>[
+                    'uiColor' => '#e2e2e2',
+                    'toolbar' => 'full',
+                    'required' => true
+                ]
+            ])
+            ->getForm();
+
+        return $this->render('home/ckeditor.html.twig', [
+            'form' =>$form->createView()
         ]);
     }
 }
