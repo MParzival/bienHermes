@@ -171,7 +171,7 @@ class BienHermesRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
             ->orderBy('r.dateentree', 'ASC')
-            ->setMaxResults(3)
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }
@@ -240,7 +240,7 @@ class BienHermesRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
             ->where('r.top = true')
-            ->setMaxResults(3)
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }

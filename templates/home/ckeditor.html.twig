@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.content, {'attr': {'placeholder': 'content of the article', 'rows':'12', 'col': '100'}}) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+
+
