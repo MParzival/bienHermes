@@ -25,27 +25,39 @@ class HomeController extends AbstractController
      */
     public function index(BienHermesRepository $repository, Request $request): Response
     {
+        /**
+         * methode permettant d'afficher les derniers bien ajoutés et les bien qui ont été mis en top
+         */
         $biensLatest = $repository->findLatest();
         $bienTops = $repository->findTopVisible();
 
-
+        /**
+         * methode permettant la recherche d'un bien grâce une liste de de critères "$bienSearch"
+         * soit directement par la référence du bien "$bienRefSearch"
+         */
         $bienSearch = new BienSearch();
-        $bienRefSearch = new BienRefSearch();
         $form = $this->createForm(BienSearchType::class, $bienSearch);
         $form->handleRequest($request);
-        $formRef = $this->createForm(BienRefSearchType::class, $bienRefSearch);
-        $formRef->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $result = $repository->findSearchByCriteriaForm($bienSearch);
             return $this->render('bien/index.html.twig', [
-               'biens' => $result,
-            ]);
-        } elseif ($formRef->isSubmitted() && $formRef->isValid()){
-            $resultRef = $repository->findByNumero($bienRefSearch);
-            return $this->render('bien/showRef.html.twig', [
-                'bienRef' => $resultRef
+                'biens' => $result,
             ]);
         }
+
+        /**
+         * methode permettant la recherche d'un bien directement par la référence du bien "$bienRefSearch"
+         */
+        $bienRefSearch = new BienRefSearch();
+        $formRef = $this->createForm(BienRefSearchType::class, $bienRefSearch);
+        $formRef->handleRequest($request);
+        if($formRef->isSubmitted() && $formRef->isValid()){
+            $resultRef = $repository->findByNumero($bienRefSearch);
+            return $this->render('bien/showRef.html.twig', [
+                'biens' => $resultRef,
+            ]);
+        }
+
         return $this->render('home/home.html.twig', [
             'biensLatest' => $biensLatest,
             'bienTops' => $bienTops,
@@ -53,6 +65,7 @@ class HomeController extends AbstractController
             'formRef' => $formRef->createView(),
         ]);
     }
+
 
     /**
      * @Route("/ckeditor", name="ckeditor_app")

@@ -45,17 +45,6 @@ class BienController extends AbstractController
      */
     public function show(string $slug, BienHermes $bienHermes): Response
     {
-
-        /*$userId = $this->getUser()->getId();
-        $wishList = $bienHermes->getWishListProperties()->filter(
-          function($wishList) use ($userId){
-              return ($wishList->getUser()->getId() === $userId);
-          }
-        )->first();
-        if (!$wishList)
-        {
-            $wishList = new WishListProperties();
-        }*/
         if($bienHermes->getSlug() !== $slug){
            return $this->redirectToRoute('bien_show', [
                'id' => $bienHermes->getId(),
