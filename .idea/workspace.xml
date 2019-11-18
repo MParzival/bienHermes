@@ -168,6 +168,11 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
       <path value="$PROJECT_DIR$/vendor/liip/imagine-bundle" />
+<<<<<<< .merge_file_a03948
+=======
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+>>>>>>> .merge_file_a01328
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
     </include_path>
@@ -189,14 +194,14 @@
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\public\assets\image" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\templates\bien" />
       <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\public\assets\image" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mickael AUBIN\dossierPhpStorm\bienHermes\public\assets\image" />
     </key>
   </component>
   <component name="RunDashboard">
