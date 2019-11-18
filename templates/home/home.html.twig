@@ -3,149 +3,153 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div class="jumbotron">
-        <div class="text-center">
-            <h2 class="pt-4 title">CABINET HERMES</h2>
-            <p class="para-title">Expert immobilier d'entreprise en Auvergne-Rhône-Alpes,
-                le Cabinet Hermès vous accompagne dans l'achat et la vente de fonds de commerce ou d’investissement immobilier.
-            </p>
-        </div>
+<!-- début header -->
+<div class="jumbotron">
+    <div class="text-center">
+        <h2 class="pt-4 title">CABINET HERMES</h2>
+        <p class="para-title">Expert immobilier d'entreprise en Auvergne-Rhône-Alpes,
+            le Cabinet Hermès vous accompagne dans l'achat et la vente de fonds de commerce ou d’investissement immobilier.
+        </p>
+    </div>
 
-        <div class="container pt-2">
-            <div class="row">
-                <div class="col-md-8">
-                    {{ form_start(form) }}
-                    <div class="form-row align-items-end">
-                        <div class="col">
-                            {{ form_row(form.activite) }}
-                            {{ form_row(form.postalCode) }}
-                        </div>
-                        <div class="col">
-                            {{ form_row(form.maxPrice) }}
-                            {{ form_row(form.minSurface) }}
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group pull-right">
-                                <button class="btn btn-primary">Rechercher</button>
-                            </div>
+    <!-- debut formulaire de recherche -->
+    <div class="container pt-2">
+        <div class="row">
+            <div class="col-md-8">
+                {{ form_start(form) }}
+                <div class="form-row align-items-end">
+                    <div class="col">
+                        {{ form_row(form.activite) }}
+                        {{ form_row(form.postalCode) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.maxPrice) }}
+                        {{ form_row(form.minSurface) }}
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group pull-right">
+                            <button class="btn btn-primary">Rechercher</button>
                         </div>
                     </div>
-                    {{ form_end(form) }}
                 </div>
-                <div class="col-md-1">
-                    <hr>
-                </div>
-                <div class="col-md-3">
-                    {{ form_start(formRef) }}
-                    <div class="form-row align-items-end">
-                        <div class="col">
-                            {{ form_row(formRef.numero) }}
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group text-center">
-                                <button class="btn btn-primary">Rechercher</button>
-                            </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-1">
+                <hr>
+            </div>
+            <div class="col-md-3">
+                {{ form_start(formRef) }}
+                <div class="form-row align-items-end">
+                    <div class="col">
+                        {{ form_row(formRef.numero) }}
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary">Rechercher</button>
                         </div>
                     </div>
-                    {{ form_end(formRef) }}
                 </div>
+                {{ form_end(formRef) }}
             </div>
         </div>
     </div>
+    <!-- fin  -->
+</div>
+<!-- fin header -->
 
-    <div class="biens_a_la_une pt-2 pb-2">
-        <div class="container mt-4">
-            <h2><i class="fa fa-star mr-2"></i>Les biens à la une !</h2>
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="row flex">
-                        {% for bien in bienTops %}
-                            <div class="col-md-6 mt-4">
-                                <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
-                                    <div class="card image-header">
+<!-- début bien à la une -->
+<div class="biens_a_la_une pt-2 pb-2">
+    <div class="container mt-4">
+        <h2><i class="fa fa-star mr-2"></i>Les biens à la une !</h2>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row flex">
+                    {% for bien in bienTops %}
+                        <div class="col-md-6 mt-4 p-4">
+                            <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
+                                <div class="card image-header">
 
-                                        {% if bien.pictfilename1 is not empty %}
-                                            <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
-                                        {% else %}
-                                            <img src="{{ asset('assets/image/placeholder.png') }}" alt="min_placeholder" class="empty">
-                                        {% endif %}
+                                    {% if bien.pictfilename1 is not empty %}
+                                        <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                                    {% else %}
+                                        <img src="{{ asset('assets/image/placeholder.png') }}" alt="min_placeholder" class="empty">
+                                    {% endif %}
 
-                                        <div class="card-body p-0">
-                                            <h6 class="card-title text-center">
-                                                <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
-                                            </h6>
-                                            <div class="card-text">
-                                                <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
-                                            </div>
-                                            <div class="card-text">
-                                                <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
-                                            </div>
-                                            <div class="prixAnnonce text-center">
-                                                {% if bien.prixpublic != 0 %}
-                                                    {{ bien.formattedPrice }} € FAI*
-                                                {% else %}
-                                                    {{ bien.loyerannuel }} € HT / AN
-                                                {% endif %}
-                                            </div>
+                                    <div class="card-body p-0">
+                                        <h6 class="card-title text-center">
+                                            <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                        </h6>
+                                        <div class="card-text">
+                                            <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
                                         </div>
-
+                                        <div class="card-text">
+                                            <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
+                                        </div>
+                                        <div class="prixAnnonce text-center">
+                                            {% if bien.prixpublic != 0 %}
+                                                {{ bien.formattedPrice }} € FAI*
+                                            {% else %}
+                                                {{ bien.loyerannuel }} € HT / AN
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <div class="backgroundSidebare">
-                        {% include 'home/partials/sidebare.html.twig' %}
-                    </div>
-                    <div class="col-md-12 p-0">
-                        <a href="" class="button-vendre form-control text-center">Vendre un bien</a>
-                    </div>
-                </div>
 
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-3 mt-4">
+                <div class="backgroundSidebare">
+                    {% include 'home/partials/sidebare.html.twig' %}
+                </div>
+                <div class="col-md-12 p-0">
+                    <a href="" class="button-vendre form-control text-center">Vendre un bien</a>
+                </div>
             </div>
 
         </div>
+
     </div>
+</div>
+<!-- fin bien à la une -->
 
-
-    <div class="dernier_bien_ajoute">
-        <div class="container mt-4">
-            <h2><i class="fa fa-history mr-2"></i>les derniers biens ajoutés !</h2>
-            <div class="row flex">
-                {% for bien in biensLatest %}
-                    <div class="col-md-3 mt-4">
-                        <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
-                            <div class="card">
-                                {% if bien.pictfilename1 is not empty %}
-                                    <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
-                                {% else %}
-                                    <img src="{{ asset('assets/image/placeholder.png') }}" alt="min_placeholder" class="empty">
-                                {% endif %}
-                                <div class="card-body p-0">
-                                    <p class="card-title text-center">
-                                        <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
-                                    </p>
-                                    <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)</p>
-                                    <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
-                                    <div class="prixAnnonce text-center">
-                                        {% if bien.prixpublic != 0 %}
-                                            {{ bien.formattedPrice }} € FAI*
-                                        {% else %}
-                                            {{ bien.loyerannuel }} € HT / AN
-                                        {% endif %}
-                                    </div>
+<!-- début dernier biens ajoutés -->
+<div class="dernier_bien_ajoute mt-4 pt-2 pb-2">
+    <div class="container mt-4">
+        <h2><i class="fa fa-history mr-2"></i>les derniers biens ajoutés !</h2>
+        <div class="row flex">
+            {% for bien in biensLatest %}
+                <div class="col-md-3 mt-4">
+                    <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
+                        <div class="card">
+                            {% if bien.pictfilename1 is not empty %}
+                                <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                            {% else %}
+                                <img src="{{ asset('assets/image/placeholder.png') }}" alt="min_placeholder" class="empty">
+                            {% endif %}
+                            <div class="card-body p-0">
+                                <p class="card-title text-center">
+                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                </p>
+                                <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)</p>
+                                <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
+                                <div class="prixAnnonce text-center">
+                                    {% if bien.prixpublic != 0 %}
+                                        {{ bien.formattedPrice }} € FAI*
+                                    {% else %}
+                                        {{ bien.loyerannuel }} € HT / AN
+                                    {% endif %}
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </div>
-
-
-
+</div>
+<!-- fin dernier biens ajouté -->
 
 {% endblock %}

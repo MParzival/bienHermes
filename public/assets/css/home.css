@@ -10,7 +10,6 @@
     color: white;
     font-weight: bold;
     background-color: #868686;
-;
 }
 
 .place{
@@ -51,13 +50,15 @@ hr{
     background-image: url("../../assets/image/Title-background-1920x600-News.jpg");
     background-size: cover;
     min-height: 600px;
+    color: #868686;
 }
 
 .backgroundSidebare{
     background-color: #868686;
+    color: white;
 }
 .listMarginTop{
-    margin-top: 60px;
+    margin-top: 40px;
     list-style: none;
 }
 
