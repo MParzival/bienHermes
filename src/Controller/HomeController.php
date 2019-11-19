@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 
+use App\Entity\BienHermes;
 use App\Entity\BienRefSearch;
 use App\Entity\BienSearch;
+use App\Entity\Contact;
 use App\Form\BienRefSearchType;
 use App\Form\BienSearchType;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
 use App\Repository\BienHermesRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Knp\Component\Pager\PaginatorInterface;
@@ -23,7 +27,7 @@ class HomeController extends AbstractController
      * @param BienHermesRepository $repository
      * @return Response
      */
-    public function index(BienHermesRepository $repository, Request $request): Response
+    public function index(BienHermesRepository $repository, Request $request, ContactNotification $contactNotification): Response
     {
         /**
          * methode permettant d'afficher les derniers bien ajoutés et les bien qui ont été mis en top
@@ -58,11 +62,23 @@ class HomeController extends AbstractController
             ]);
         }
 
+        /**
+         * methode permettant d'envoyer un mail de contact
+         */
+        $contact = new Contact();
+        $formContact = $this->createForm(ContactType::class, $contact);
+        $formContact->handleRequest($request);
+        if($formContact->isSubmitted() && $formContact->isValid()){
+            $contactNotification->notify($contact);
+            $this->addFlash('success', 'Votre email a bien été envoyé');
+            return $this->render('home/home.html.twig');
+        }
         return $this->render('home/home.html.twig', [
             'biensLatest' => $biensLatest,
             'bienTops' => $bienTops,
             'form' => $form->createView(),
             'formRef' => $formRef->createView(),
+            'formContact' => $formContact->createView()
         ]);
     }
 

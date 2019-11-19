@@ -1,0 +1,6 @@
+{{ contact.firstname }}
+{{ contact.lastname }}
+{{ contact.email }}
+<p>Une nouvelle personne souhaiterais obtenir plus d'information à propos du bien
+    <a href="{{ url('bien_show', {id: contact.bien.id, slug: contact.bien.slug}) }}">{{ contact.bien.titreannonce }}</a>
+</p>

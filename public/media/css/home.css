@@ -1,0 +1,13 @@
+.home{
+    background-image: url("../image/bandeau-histoire-1920px.jpg");
+    background-size: cover;
+    min-height: 445px;
+    color: white;
+}
+
+.biens_a_la_une, .dernier_bien_ajoute{
+    background-image: url("../image/Title-background-1920x600-News.jpg");
+    background-size: cover;
+    min-height: 600px;
+    color: #868686;
+}

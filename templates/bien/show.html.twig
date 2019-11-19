@@ -8,6 +8,17 @@
             <div class="col-md-9">
                 <div class="jumbotron">
                     <div class="container">
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <!-- Si le formulaire n'a pas été remplis correctement -->
+                        {% if not form.vars.valid %}
+                            <div class="alert alert-danger">
+                                Veuillez remplir correctement le formulaire
+                            </div>
+                        {% endif %}
                         <div class="row">
                             <div class="col-md-7 ml-auto">
                                 <h4>{{ bien.titreannonce }}</h4>
@@ -37,6 +48,25 @@
 
                                         {% endif %}
                                     </span>
+                                    <div class="col-md-12 p-0">
+                                        <a href="#" class="button-vendre form-control text-center" id="contactButton" {% if form.vars.submitted %}style="display: none;"{% endif %}>Contactez Hermes</a>
+                                        <div id="contactForm" class="mt-4" {% if not form.vars.submitted %}style="display: none;" {% endif %}>
+                                            {{ form_start(form) }}
+                                            <div class="row">
+                                                <div class="col">{{ form_row(form.firstname) }}</div>
+                                                <div class="col">{{ form_row(form.lastname) }}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">{{ form_row(form.phone) }}</div>
+                                                <div class="col">{{ form_row(form.email) }}</div>
+                                            </div>
+                                            {{ form_rest(form) }}
+                                            <div class="form-group">
+                                                <button class="btn btn-primary">Envoyer</button>
+                                            </div>
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -50,7 +80,7 @@
                                                     <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" class="d-block w-100" alt="{{ bien.pictfilename1 }}" style="width: 800px; height: 400px"></a>
                                                 </div>
                                             {% else %}
-                                                <img src="{{ asset('assets/image/placeholder.png') }}" style="width: 600px; height: 400px" alt="placeholder">
+                                                <img src="{{ asset('media/image/placeholder.png') }}" style="width: 600px; height: 400px" alt="placeholder">
                                             {% endif %}
 
                                             {% if bien.pictfilename2 and bien.pictfilename3 is not empty %}
@@ -81,7 +111,7 @@
                                                         {% if bien.pictfilename1 is not empty %}
                                                             <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
                                                         {% else %}
-                                                            <img src="{{ asset ('assets/image/placeholder.png') }}" alt="min_placeholder">
+                                                            <img src="{{ asset ('media/image/placeholder.png') }}" alt="min_placeholder">
                                                         {% endif %}
                                                     </div>
                                                     {% if bien.pictfilename2 and bien.pictfilename3 is not empty %}

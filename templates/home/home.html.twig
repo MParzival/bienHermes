@@ -72,7 +72,7 @@
                                     {% if bien.pictfilename1 is not empty %}
                                         <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
                                     {% else %}
-                                        <img src="{{ asset('assets/image/placeholder.png') }}" alt="min_placeholder" class="empty">
+                                        <img src="{{ asset('media/image/placeholder.png') }}" alt="min_placeholder" class="empty">
                                     {% endif %}
 
                                     <div class="card-body p-0">
@@ -111,9 +111,7 @@
                 <div class="backgroundSidebare">
                     {% include 'home/partials/sidebare.html.twig' %}
                 </div>
-                <div class="col-md-12 p-0">
-                    <a href="" class="button-vendre form-control text-center">Vendre un bien</a>
-                </div>
+
             </div>
 
         </div>
@@ -134,7 +132,7 @@
                             {% if bien.pictfilename1 is not empty %}
                                 <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
                             {% else %}
-                                <img src="{{ asset('assets/image/placeholder.png') }}" alt="min_placeholder" class="empty">
+                                <img src="{{ asset('media/image/placeholder.png') }}" alt="min_placeholder" class="empty">
                             {% endif %}
                             <div class="card-body p-0">
                                 <p class="card-title text-center">
