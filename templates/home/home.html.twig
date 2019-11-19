@@ -4,7 +4,7 @@
 
 {% block body %}
 <!-- début header -->
-<div class="jumbotron">
+<div class="jumbotron home">
     <div class="text-center">
         <h2 class="pt-4 title">CABINET HERMES</h2>
         <p class="para-title">Expert immobilier d'entreprise en Auvergne-Rhône-Alpes,
@@ -77,7 +77,14 @@
 
                                     <div class="card-body p-0">
                                         <h6 class="card-title text-center">
-                                            <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
+                                            <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+                                                {% if bien.titreannonce is not empty %}
+                                                    {{ bien.titreannonce }}
+                                                    {% else %}
+                                                    Contactez-nous !
+                                                {% endif %}
+
+                                            </a>
                                         </h6>
                                         <div class="card-text">
                                             <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
