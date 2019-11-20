@@ -55,6 +55,9 @@ class BienController extends AbstractController
             ], 301);
         }
 
+        /**
+         * methode permettant d'envoyer un mail de demande de renseignement
+         */
         $contact = new Contact();
         $contact->setBien($bienHermes);
         $formContact = $this->createForm(ContactType::class, $contact);

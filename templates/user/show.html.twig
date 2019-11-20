@@ -6,8 +6,8 @@
 
 {% block body %}
     <div class="container">
-        <h2>Bienvenu sur votre compte {{ user.username }}</h2>
-        <div class="row">
+        <h2>Bienvenu sur votre compte :</h2>
+        <div class="row mt-4">
             <div class="col-md-8">
                 <h4>Biens ajoutés</h4>
                 <ul>
@@ -19,6 +19,22 @@
             <div class="col-md-4">
                 <h4>Nom du compte</h4>
                 <p>{{ user.username }}</p>
+                {% if app.user %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="{{ path('criteria_user_index', { id : user.id}) }}">Vos alertes</a>
+                            </div>
+                            <div class="col-12">
+                                <a href="{{ path('criteria_user_new', { id : user.id}) }}">Créer une nouvelle alerte</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                {% endif %}
+
             </div>
         </div>
     </div>

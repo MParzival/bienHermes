@@ -47,9 +47,15 @@ class User implements UserInterface
      */
     private $properties;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CriteriaUser", mappedBy="user")
+     */
+    private $criteriaList;
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
+        $this->criteriaList = new ArrayCollection();
     }
 
 
@@ -170,6 +176,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($property->getUser() === $this) {
                 $property->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CriteriaUser[]
+     */
+    public function getCriteriaList(): Collection
+    {
+        return $this->criteriaList;
+    }
+
+    public function addCriteriaList(CriteriaUser $criteriaList): self
+    {
+        if (!$this->criteriaList->contains($criteriaList)) {
+            $this->criteriaList[] = $criteriaList;
+            $criteriaList->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCriteriaList(CriteriaUser $criteriaList): self
+    {
+        if ($this->criteriaList->contains($criteriaList)) {
+            $this->criteriaList->removeElement($criteriaList);
+            // set the owning side to null (unless already changed)
+            if ($criteriaList->getUser() === $this) {
+                $criteriaList->setUser(null);
             }
         }
 
