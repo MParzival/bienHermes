@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Activity;
-use App\Entity\CriteriaUser;
+use App\Entity\Alert;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -45,7 +45,7 @@ class CriteriaUserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CriteriaUser::class,
+            'data_class' => Alert::class,
         ]);
     }
 }

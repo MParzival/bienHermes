@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\CriteriaUser;
+use App\Entity\Alert;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method CriteriaUser|null find($id, $lockMode = null, $lockVersion = null)
- * @method CriteriaUser|null findOneBy(array $criteria, array $orderBy = null)
- * @method CriteriaUser[]    findAll()
- * @method CriteriaUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Alert|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Alert|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Alert[]    findAll()
+ * @method Alert[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CriteriaUsersRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CriteriaUser::class);
+        parent::__construct($registry, Alert::class);
     }
 
     

@@ -48,7 +48,7 @@ class User implements UserInterface
     private $properties;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CriteriaUser", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Alert.php", mappedBy="user")
      */
     private $criteriaList;
 
@@ -183,14 +183,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|CriteriaUser[]
+     * @return Collection|Alert[]
      */
     public function getCriteriaList(): Collection
     {
         return $this->criteriaList;
     }
 
-    public function addCriteriaList(CriteriaUser $criteriaList): self
+    public function addCriteriaList(Alert $criteriaList): self
     {
         if (!$this->criteriaList->contains($criteriaList)) {
             $this->criteriaList[] = $criteriaList;
@@ -200,7 +200,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeCriteriaList(CriteriaUser $criteriaList): self
+    public function removeCriteriaList(Alert $criteriaList): self
     {
         if ($this->criteriaList->contains($criteriaList)) {
             $this->criteriaList->removeElement($criteriaList);

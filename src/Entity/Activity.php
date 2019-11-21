@@ -24,7 +24,7 @@ class Activity
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CriteriaUser", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="Alert.php", mappedBy="activity")
      */
     private $Critere;
 
@@ -53,14 +53,14 @@ class Activity
     }
 
     /**
-     * @return Collection|CriteriaUser[]
+     * @return Collection|Alert[]
      */
     public function getCritere(): Collection
     {
         return $this->Critere;
     }
 
-    public function addCritere(CriteriaUser $critere): self
+    public function addCritere(Alert $critere): self
     {
         if (!$this->Critere->contains($critere)) {
             $this->Critere[] = $critere;
@@ -70,7 +70,7 @@ class Activity
         return $this;
     }
 
-    public function removeCritere(CriteriaUser $critere): self
+    public function removeCritere(Alert $critere): self
     {
         if ($this->Critere->contains($critere)) {
             $this->Critere->removeElement($critere);

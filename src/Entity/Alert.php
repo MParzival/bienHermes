@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CriteriaUsersRepository")
  */
-class CriteriaUser
+class Alert
 {
     /**
      * @ORM\Id()

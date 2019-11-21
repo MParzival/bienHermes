@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\CriteriaUser;
+use App\Entity\Alert;
 use App\Entity\User;
 use App\Form\CriteriaUserType;
 use App\Repository\CriteriaUsersRepository;
@@ -31,7 +31,7 @@ class CriteriaUserController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $criteriaUser = new CriteriaUser();
+        $criteriaUser = new Alert();
         $form = $this->createForm(CriteriaUserType::class, $criteriaUser);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +51,7 @@ class CriteriaUserController extends AbstractController
     /**
      * @Route("/{id}", name="criteria_user_show", methods={"GET"})
      */
-    public function show(CriteriaUser $criteriaUser): Response
+    public function show(Alert $criteriaUser): Response
     {
         return $this->render('criteria_user/show.html.twig', [
             'criteria_user' => $criteriaUser,
@@ -61,7 +61,7 @@ class CriteriaUserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="criteria_user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, CriteriaUser $criteriaUser): Response
+    public function edit(Request $request, Alert $criteriaUser): Response
     {
         $form = $this->createForm(CriteriaUserType::class, $criteriaUser);
         $form->handleRequest($request);
@@ -81,7 +81,7 @@ class CriteriaUserController extends AbstractController
     /**
      * @Route("/{id}", name="criteria_user_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, CriteriaUser $criteriaUser): Response
+    public function delete(Request $request, Alert $criteriaUser): Response
     {
         if ($this->isCsrfTokenValid('delete'.$criteriaUser->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
