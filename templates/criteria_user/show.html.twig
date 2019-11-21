@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CriteriaUser{% endblock %}
+
+{% block body %}
+    <h1>Vos listes de critères</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ criteria_user.id }}</td>
+            </tr>
+            <tr>
+                <th>MaxPrice</th>
+                <td>{{ criteria_user.maxPrice }}</td>
+            </tr>
+            <tr>
+                <th>PostalCode</th>
+                <td>{{ criteria_user.postalCode }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('criteria_user_index') }}">back to list</a>
+
+    <a href="{{ path('criteria_user_edit', {'id': criteria_user.id}) }}">edit</a>
+
+
+{% endblock %}

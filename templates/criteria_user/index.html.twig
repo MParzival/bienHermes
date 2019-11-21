@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CriteriaUser index{% endblock %}
+
+{% block body %}
+    <h1>Vos alertes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Budget max</th>
+                <th>Activité</th>
+                <th>Code postale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for criteria_user in criteria_users %}
+            <tr>
+                <td>{{ criteria_user.maxPrice }}</td>
+                <td>{{ criteria_user.activity.name }}</td>
+                <td>{{ criteria_user.postalCode }}</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="{{ path('criteria_user_edit', {'id': criteria_user.id}) }}">edit</a>
+                    {{ include('criteria_user/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('criteria_user_new') }}">Nouvelle alerte</a>
+{% endblock %}
