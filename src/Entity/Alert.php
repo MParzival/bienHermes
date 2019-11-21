@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="AlertRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\AlertRepository")
  */
 class Alert
 {

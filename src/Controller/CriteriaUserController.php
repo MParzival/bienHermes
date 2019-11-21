@@ -21,7 +21,7 @@ class CriteriaUserController extends AbstractController
      */
     public function index(AlertRepository $criteriaUsersRepository): Response
     {
-        return $this->render('criteria_user/index.html.twig', [
+        return $this->render('alert/index.html.twig', [
             'criteria_users' => $criteriaUsersRepository->findAll(),
         ]);
     }
@@ -41,7 +41,7 @@ class CriteriaUserController extends AbstractController
 
             return $this->redirectToRoute('criteria_user_index');
         }
-        return $this->render('criteria_user/new.html.twig', [
+        return $this->render('alert/new.html.twig', [
             'alert' => $criteriaUser,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class CriteriaUserController extends AbstractController
      */
     public function show(Alert $criteriaUser): Response
     {
-        return $this->render('criteria_user/show.html.twig', [
+        return $this->render('alert/show.html.twig', [
             'alert' => $criteriaUser,
         ]);
     }
@@ -72,7 +72,7 @@ class CriteriaUserController extends AbstractController
             return $this->redirectToRoute('criteria_user_index');
         }
 
-        return $this->render('criteria_user/edit.html.twig', [
+        return $this->render('alert/edit.html.twig', [
             'alert' => $criteriaUser,
             'form' => $form->createView(),
         ]);
