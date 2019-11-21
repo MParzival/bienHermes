@@ -33,7 +33,7 @@ final class Version20191120131355 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE activity ADD criteria_user_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE activity ADD CONSTRAINT FK_AC74095ACC7FD890 FOREIGN KEY (criteria_user_id) REFERENCES criteria_user (id)');
+        $this->addSql('ALTER TABLE activity ADD CONSTRAINT FK_AC74095ACC7FD890 FOREIGN KEY (criteria_user_id) REFERENCES alert (id)');
         $this->addSql('CREATE INDEX IDX_AC74095ACC7FD890 ON activity (criteria_user_id)');
     }
 }

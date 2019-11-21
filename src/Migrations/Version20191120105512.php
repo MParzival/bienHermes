@@ -22,7 +22,7 @@ final class Version20191120105512 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE criteria_user ADD activity VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE alert ADD activity VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +30,6 @@ final class Version20191120105512 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE criteria_user DROP activity');
+        $this->addSql('ALTER TABLE alert DROP activity');
     }
 }

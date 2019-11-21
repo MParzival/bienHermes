@@ -3,28 +3,28 @@
 namespace App\Controller;
 
 use App\Entity\BienHermes;
-use App\Entity\ListPropertyByUser;
+use App\Entity\WishList;
 use App\Entity\User;
-use App\Repository\ListPropertyByUserRepository;
+use App\Repository\WishListRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ListPropertyByUserController extends AbstractController
+class WishListController extends AbstractController
 {
     /**
-     * @Route("/list/property/by/user", name="list_property_by_user")
+     * @Route("/list/property/by/user", name="wishList")
      */
     public function index()
     {
         return $this->render('list_property_by_user/index.html.twig', [
-            'controller_name' => 'ListPropertyByUserController',
+            'controller_name' => 'WishListController',
         ]);
     }
 
     /**
      * @Route("/user/{user}/bienHermes/{bienHermes}", name="property_like")
      */
-    public function likeProperty(ListPropertyByUserRepository $repository, ?BienHermes $bienHermes, ?User $user)
+    public function likeProperty(WishListRepository $repository, ?BienHermes $bienHermes, ?User $user)
     {
         //$this fait référence à l'abstractController
         //on verifie qu'il s'agit bien du user connecté
@@ -41,7 +41,7 @@ class ListPropertyByUserController extends AbstractController
             //si la liste n'existe pas en base on la créée
             if (!$listPropertyByUser)
             {
-                $listProperty = new ListPropertyByUser();
+                $listProperty = new WishList();
                 $listProperty->setUser($user);
                 $listProperty->setBien($bienHermes);
 
@@ -57,7 +57,7 @@ class ListPropertyByUserController extends AbstractController
     /**
      * @Route("/user/{user}/bienHermes/{bienHermes}/notlike", name="property_notlike")
      */
-    public function notLikeProperty(ListPropertyByUserRepository $repository, ?BienHermes $bienHermes, ?User $user)
+    public function notLikeProperty(WishListRepository $repository, ?BienHermes $bienHermes, ?User $user)
     {
         //$this fait référence à l'abstractController
         //on verifie qu'il s'agit bien du user connecté

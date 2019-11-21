@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\AlertRepository;
 use App\Repository\BienHermesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,14 +26,16 @@ class UserController extends AbstractController
      * @param User|null $user
      * @return Response
      */
-    public function show(?User $user, BienHermesRepository $repository) : Response
+    public function show(?User $user, BienHermesRepository $repository, AlertRepository $alertRepository) : Response
     {
         if ($this->getUser() === $user)
         {
+            $alerts = $alertRepository->findAll();
             $bien = $repository->findAllVisible();
             return $this->render('user/show.html.twig',[
                 'user' => $user,
-                'bien' => $bien
+                'bien' => $bien,
+                'alerts' => $alertRepository
             ]);
         }
     }

@@ -24,7 +24,7 @@ class Activity
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Alert.php", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="Alert", mappedBy="activity")
      */
     private $Critere;
 

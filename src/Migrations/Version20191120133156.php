@@ -22,9 +22,9 @@ final class Version20191120133156 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE criteria_user ADD activity_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE criteria_user ADD CONSTRAINT FK_9394B4A681C06096 FOREIGN KEY (activity_id) REFERENCES activity (id)');
-        $this->addSql('CREATE INDEX IDX_9394B4A681C06096 ON criteria_user (activity_id)');
+        $this->addSql('ALTER TABLE alert ADD activity_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE alert ADD CONSTRAINT FK_9394B4A681C06096 FOREIGN KEY (activity_id) REFERENCES activity (id)');
+        $this->addSql('CREATE INDEX IDX_9394B4A681C06096 ON alert (activity_id)');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +32,8 @@ final class Version20191120133156 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE criteria_user DROP FOREIGN KEY FK_9394B4A681C06096');
-        $this->addSql('DROP INDEX IDX_9394B4A681C06096 ON criteria_user');
-        $this->addSql('ALTER TABLE criteria_user DROP activity_id');
+        $this->addSql('ALTER TABLE alert DROP FOREIGN KEY FK_9394B4A681C06096');
+        $this->addSql('DROP INDEX IDX_9394B4A681C06096 ON alert');
+        $this->addSql('ALTER TABLE alert DROP activity_id');
     }
 }

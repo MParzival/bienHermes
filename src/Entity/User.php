@@ -43,12 +43,12 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ListPropertyByUser", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="WishList", mappedBy="user")
      */
     private $properties;
 
     /**
-     * @ORM\OneToMany(targetEntity="Alert.php", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Alert", mappedBy="user")
      */
     private $criteriaList;
 
@@ -152,14 +152,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|ListPropertyByUser[]
+     * @return Collection|WishList[]
      */
     public function getProperties(): Collection
     {
         return $this->properties;
     }
 
-    public function addProperty(ListPropertyByUser $property): self
+    public function addProperty(WishList $property): self
     {
         if (!$this->properties->contains($property)) {
             $this->properties[] = $property;
@@ -169,7 +169,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeProperty(ListPropertyByUser $property): self
+    public function removeProperty(WishList $property): self
     {
         if ($this->properties->contains($property)) {
             $this->properties->removeElement($property);

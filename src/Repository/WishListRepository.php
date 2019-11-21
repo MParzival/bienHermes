@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\ListPropertyByUser;
+use App\Entity\WishList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method ListPropertyByUser|null find($id, $lockMode = null, $lockVersion = null)
- * @method ListPropertyByUser|null findOneBy(array $criteria, array $orderBy = null)
- * @method ListPropertyByUser[]    findAll()
- * @method ListPropertyByUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method WishList|null find($id, $lockMode = null, $lockVersion = null)
+ * @method WishList|null findOneBy(array $criteria, array $orderBy = null)
+ * @method WishList[]    findAll()
+ * @method WishList[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ListPropertyByUserRepository extends ServiceEntityRepository
+class WishListRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ListPropertyByUser::class);
+        parent::__construct($registry, WishList::class);
     }
 
     // /**
-    //  * @return ListPropertyByUser[] Returns an array of ListPropertyByUser objects
+    //  * @return WishList[] Returns an array of WishList objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ListPropertyByUserRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ListPropertyByUser
+    public function findOneBySomeField($value): ?WishList
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

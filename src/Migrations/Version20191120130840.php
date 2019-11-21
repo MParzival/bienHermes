@@ -23,8 +23,8 @@ final class Version20191120130840 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE activity (id INT AUTO_INCREMENT NOT NULL, criteria_user_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_AC74095ACC7FD890 (criteria_user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE activity ADD CONSTRAINT FK_AC74095ACC7FD890 FOREIGN KEY (criteria_user_id) REFERENCES criteria_user (id)');
-        $this->addSql('ALTER TABLE criteria_user DROP activity');
+        $this->addSql('ALTER TABLE activity ADD CONSTRAINT FK_AC74095ACC7FD890 FOREIGN KEY (criteria_user_id) REFERENCES alert (id)');
+        $this->addSql('ALTER TABLE alert DROP activity');
     }
 
     public function down(Schema $schema) : void
@@ -33,6 +33,6 @@ final class Version20191120130840 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE activity');
-        $this->addSql('ALTER TABLE criteria_user ADD activity VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
+        $this->addSql('ALTER TABLE alert ADD activity VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
     }
 }

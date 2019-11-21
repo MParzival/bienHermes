@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit CriteriaUser</h1>
 
-    {{ include('criteria_user/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('alert/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('criteria_user_index') }}">back to list</a>
 
-    {{ include('criteria_user/_delete_form.html.twig') }}
+    {{ include('alert/_delete_form.html.twig') }}
 {% endblock %}

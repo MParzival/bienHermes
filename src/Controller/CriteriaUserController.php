@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Alert;
 use App\Entity\User;
 use App\Form\CriteriaUserType;
-use App\Repository\CriteriaUsersRepository;
+use App\Repository\AlertRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +19,7 @@ class CriteriaUserController extends AbstractController
     /**
      * @Route("/", name="criteria_user_index", methods={"GET"})
      */
-    public function index(CriteriaUsersRepository $criteriaUsersRepository): Response
+    public function index(AlertRepository $criteriaUsersRepository): Response
     {
         return $this->render('criteria_user/index.html.twig', [
             'criteria_users' => $criteriaUsersRepository->findAll(),
@@ -42,7 +42,7 @@ class CriteriaUserController extends AbstractController
             return $this->redirectToRoute('criteria_user_index');
         }
         return $this->render('criteria_user/new.html.twig', [
-            'criteria_user' => $criteriaUser,
+            'alert' => $criteriaUser,
             'form' => $form->createView(),
         ]);
 
@@ -54,7 +54,7 @@ class CriteriaUserController extends AbstractController
     public function show(Alert $criteriaUser): Response
     {
         return $this->render('criteria_user/show.html.twig', [
-            'criteria_user' => $criteriaUser,
+            'alert' => $criteriaUser,
         ]);
     }
 
@@ -73,7 +73,7 @@ class CriteriaUserController extends AbstractController
         }
 
         return $this->render('criteria_user/edit.html.twig', [
-            'criteria_user' => $criteriaUser,
+            'alert' => $criteriaUser,
             'form' => $form->createView(),
         ]);
     }

@@ -1400,7 +1400,7 @@ class BienHermes
     private $codepostalpub;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ListPropertyByUser", mappedBy="bien")
+     * @ORM\OneToMany(targetEntity="WishList", mappedBy="bien")
      */
     private $properties;
 
@@ -4917,14 +4917,14 @@ class BienHermes
     }
 
     /**
-     * @return Collection|ListPropertyByUser[]
+     * @return Collection|WishList[]
      */
     public function getProperties(): Collection
     {
         return $this->properties;
     }
 
-    public function addProperty(ListPropertyByUser $property): self
+    public function addProperty(WishList $property): self
     {
         if (!$this->properties->contains($property)) {
             $this->properties[] = $property;
@@ -4934,7 +4934,7 @@ class BienHermes
         return $this;
     }
 
-    public function removeProperty(ListPropertyByUser $property): self
+    public function removeProperty(WishList $property): self
     {
         if ($this->properties->contains($property)) {
             $this->properties->removeElement($property);

@@ -15,6 +15,14 @@
                         <a href="{{ path('bien_show', { id: listProperty.bien.id, slug : listProperty.bien.slug}) }}"><li>{{ listProperty.bien.titreannonce }}</li></a>
                     {% endfor %}
                 </ul>
+                <ul>
+                    {% if app.user %}
+                        {% for alert in alerts  %}
+                            <p>{{ alert.maxPrice }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                </ul>
             </div>
             <div class="col-md-4">
                 <h4>Nom du compte</h4>
@@ -30,9 +38,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 {% endif %}
 
             </div>

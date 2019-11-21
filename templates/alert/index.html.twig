@@ -22,7 +22,7 @@
                 <td>{{ criteria_user.postalCode }}</td>
                 <td>
                     <a class="btn btn-sm btn-primary" href="{{ path('criteria_user_edit', {'id': criteria_user.id}) }}">edit</a>
-                    {{ include('criteria_user/_delete_form.html.twig') }}
+                    {{ include('alert/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
