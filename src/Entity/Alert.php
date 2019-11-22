@@ -38,6 +38,11 @@ class Alert
      */
     private $activity;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PropertyAlert", inversedBy="alert")
+     */
+    private $propertyAlert;
+
 
 
 
@@ -90,6 +95,18 @@ class Alert
     public function setActivity(?Activity $activity): self
     {
         $this->activity = $activity;
+
+        return $this;
+    }
+
+    public function getPropertyAlert(): ?PropertyAlert
+    {
+        return $this->propertyAlert;
+    }
+
+    public function setPropertyAlert(?PropertyAlert $propertyAlert): self
+    {
+        $this->propertyAlert = $propertyAlert;
 
         return $this;
     }

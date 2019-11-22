@@ -1404,6 +1404,11 @@ class BienHermes
      */
     private $properties;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PropertyAlert", inversedBy="bien")
+     */
+    private $propertyAlert;
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
@@ -4943,6 +4948,18 @@ class BienHermes
                 $property->setBien(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPropertyAlert(): ?PropertyAlert
+    {
+        return $this->propertyAlert;
+    }
+
+    public function setPropertyAlert(?PropertyAlert $propertyAlert): self
+    {
+        $this->propertyAlert = $propertyAlert;
 
         return $this;
     }
