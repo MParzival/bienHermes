@@ -2,12 +2,13 @@
 namespace App\Notification;
 
 use App\Entity\Contact;
+use Swift_Mailer;
 use Twig\Environment;
 
 class ContactNotification{
 
     /**
-     * @var \Swift_Mailer
+     * @var Swift_Mailer
      */
     private $mailer;
     /**
@@ -15,7 +16,7 @@ class ContactNotification{
      */
     private $renderer;
 
-    public function __construct(\Swift_Mailer $mailer, Environment $renderer)
+    public function __construct(Swift_Mailer $mailer, Environment $renderer)
     {
 
         $this->mailer = $mailer;

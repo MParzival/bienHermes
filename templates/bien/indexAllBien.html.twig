@@ -40,15 +40,15 @@
                                 <p class="card-text">prix public : {{ bien.prixpublic }}</p>
                                 <div class="btn btn-danger pull-right prixAnnonce">
 
-                                    {{ bien.prixpublic }}  € FAI* - ({{ bien.loyerannuel }} € HT / AN)
+                                    {#{{ bien.prixpublic }}  € FAI* - ({{ bien.loyerannuel }} € HT / AN)#}
 
-                                   {# {% if bien.prixpublic != 0 %}
+                                    {% if bien.prixpublic != 0 %}
                                         {{ bien.prixpublic | number_format(0,',', ' ') }} € FAI*
                                     {% elseif bien.prixpublic > 0 and bien.loyerannuel > 0 %}
                                         {{ bien.prixpublic| number_format(0, ',', ' ') }} € FAI* - {{ bien.loyerannuel }} € HT / AN
                                     {% else %}
                                         {{ bien.loyerannuel }} € HT / AN
-                                    {% endif %}#}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

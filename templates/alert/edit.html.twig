@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit CriteriaUser{% endblock %}
+{% block title %}Edit alert{% endblock %}
 
 {% block body %}
-    <h1>Edit CriteriaUser</h1>
+    <h1>Editer votre alerte</h1>
 
-    {{ include('alert/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('alert/_form.html.twig', {'button_label': 'Mise à jour'}) }}
 
-    <a href="{{ path('criteria_user_index') }}">back to list</a>
+    <a href="{{ path('alert_index') }}">Retour à vos alertes</a>
 
     {{ include('alert/_delete_form.html.twig') }}
 {% endblock %}

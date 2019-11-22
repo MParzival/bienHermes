@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CriteriaUser{% endblock %}
+{% block title %}alert{% endblock %}
 
 {% block body %}
     <h1>Vos listes de critères</h1>
@@ -9,22 +9,26 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ criteria_user.id }}</td>
+                <td>{{ alert.id }}</td>
             </tr>
             <tr>
-                <th>MaxPrice</th>
-                <td>{{ criteria_user.maxPrice }}</td>
+                <th>Budget max</th>
+                <td>{{ alert.maxPrice }}</td>
             </tr>
             <tr>
                 <th>PostalCode</th>
-                <td>{{ criteria_user.postalCode }}</td>
+                <td>{{ alert.postalCode }}</td>
+            </tr>
+            <tr>
+                <th>Activité</th>
+                <td>{{ alert.activity }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('criteria_user_index') }}">back to list</a>
+    <a href="{{ path('alert_index') }}">back to list</a>
 
-    <a href="{{ path('criteria_user_edit', {'id': criteria_user.id}) }}">edit</a>
+    <a href="{{ path('alert_edit', {'id': alert.id}) }}">edit</a>
 
 
 {% endblock %}

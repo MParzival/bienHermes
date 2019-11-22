@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CriteriaUser index{% endblock %}
+{% block title %}alert index{% endblock %}
 
 {% block body %}
     <h1>Vos alertes</h1>
@@ -15,13 +15,13 @@
             </tr>
         </thead>
         <tbody>
-        {% for criteria_user in criteria_users %}
+        {% for alert in alerts %}
             <tr>
-                <td>{{ criteria_user.maxPrice }}</td>
-                <td>{{ criteria_user.activity.name }}</td>
-                <td>{{ criteria_user.postalCode }}</td>
+                <td>{{ alert.maxPrice }}</td>
+                <td>{{ alert.activity.name }}</td>
+                <td>{{ alert.postalCode }}</td>
                 <td>
-                    <a class="btn btn-sm btn-primary" href="{{ path('criteria_user_edit', {'id': criteria_user.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-primary" href="{{ path('alert_edit', {'id': alert.id}) }}">editer</a>
                     {{ include('alert/_delete_form.html.twig') }}
                 </td>
             </tr>
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('criteria_user_new') }}">Nouvelle alerte</a>
+    <a href="{{ path('alert_new') }}">Nouvelle alerte</a>
 {% endblock %}
