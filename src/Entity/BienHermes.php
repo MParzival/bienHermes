@@ -1405,13 +1405,14 @@ class BienHermes
     private $properties;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PropertyAlert", inversedBy="bien")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Alert", mappedBy="bien")
      */
-    private $propertyAlert;
+    private $alerts;
 
     public function __construct()
     {
         $this->properties = new ArrayCollection();
+        $this->alerts = new ArrayCollection();
     }
 
 
@@ -4952,16 +4953,31 @@ class BienHermes
         return $this;
     }
 
-    public function getPropertyAlert(): ?PropertyAlert
+    /**
+     * @return Collection|Alert[]
+     */
+    public function getAlerts(): Collection
     {
-        return $this->propertyAlert;
+        return $this->alerts;
     }
 
-    public function setPropertyAlert(?PropertyAlert $propertyAlert): self
+    public function addAlert(Alert $alert): self
     {
-        $this->propertyAlert = $propertyAlert;
+        if (!$this->alerts->contains($alert)) {
+            $this->alerts[] = $alert;
+            $alert->addBien($this);
+        }
 
         return $this;
     }
 
+    public function removeAlert(Alert $alert): self
+    {
+        if ($this->alerts->contains($alert)) {
+            $this->alerts->removeElement($alert);
+            $alert->removeBien($this);
+        }
+
+        return $this;
+    }
 }

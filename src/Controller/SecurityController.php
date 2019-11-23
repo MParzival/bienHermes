@@ -107,7 +107,7 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('app_home');
             }
 
-            $user->setResetToken(null);
+            $user->setResetToken($token);
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
             $entityManager->flush();
 

@@ -39,11 +39,14 @@ class Alert
     private $activity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PropertyAlert", inversedBy="alert")
+     * @ORM\ManyToMany(targetEntity="App\Entity\BienHermes", inversedBy="alerts")
      */
-    private $propertyAlert;
+    private $bien;
 
-
+    public function __construct()
+    {
+        $this->bien = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -99,17 +102,29 @@ class Alert
         return $this;
     }
 
-    public function getPropertyAlert(): ?PropertyAlert
+    /**
+     * @return Collection|BienHermes[]
+     */
+    public function getBien(): Collection
     {
-        return $this->propertyAlert;
+        return $this->bien;
     }
 
-    public function setPropertyAlert(?PropertyAlert $propertyAlert): self
+    public function addBien(BienHermes $bien): self
     {
-        $this->propertyAlert = $propertyAlert;
+        if (!$this->bien->contains($bien)) {
+            $this->bien[] = $bien;
+        }
 
         return $this;
     }
-    
-    
+
+    public function removeBien(BienHermes $bien): self
+    {
+        if ($this->bien->contains($bien)) {
+            $this->bien->removeElement($bien);
+        }
+
+        return $this;
+    }
 }
