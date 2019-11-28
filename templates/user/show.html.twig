@@ -15,14 +15,6 @@
                         <a href="{{ path('bien_show', { id: listProperty.bien.id, slug : listProperty.bien.slug}) }}"><li>{{ listProperty.bien.titreannonce }}</li></a>
                     {% endfor %}
                 </ul>
-                <ul>
-                    {% if app.user %}
-                        {% for alert in alerts  %}
-                            <p>{{ alert.maxPrice }}</p>
-                        {% endfor %}
-                    {% endif %}
-
-                </ul>
             </div>
             <div class="col-md-4">
                 <h4>Nom du compte</h4>
@@ -31,10 +23,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
-                                <a href="{{ path('alert_index', { id : user.id}) }}">Vos alertes</a>
+                                <a href="{{ path('alert_user_index', { id : user.id}) }}">Vos alertes</a>
                             </div>
                             <div class="col-12">
-                                <a href="{{ path('alert_new', { id : user.id}) }}">Créer une nouvelle alerte</a>
+                                <a href="{{ path('alert_user_new', { id : user.id}) }}">Créer une nouvelle alerte</a>
                             </div>
                         </div>
                     </div>

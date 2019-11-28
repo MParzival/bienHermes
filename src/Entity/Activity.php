@@ -24,14 +24,16 @@ class Activity
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Alert", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="AlertUser", mappedBy="idActivity")
      */
-    private $Critere;
+    private $alertUSers;
 
     public function __construct()
     {
-        $this->Critere = new ArrayCollection();
+        $this->alertUSers = new ArrayCollection();
     }
+
+
 
 
 
@@ -53,34 +55,35 @@ class Activity
     }
 
     /**
-     * @return Collection|Alert[]
+     * @return Collection|AlertUser[]
      */
-    public function getCritere(): Collection
+    public function getAlertUSers(): Collection
     {
-        return $this->Critere;
+        return $this->alertUSers;
     }
 
-    public function addCritere(Alert $critere): self
+    public function addAlertUSer(AlertUser $alertUSer): self
     {
-        if (!$this->Critere->contains($critere)) {
-            $this->Critere[] = $critere;
-            $critere->setActivity($this);
+        if (!$this->alertUSers->contains($alertUSer)) {
+            $this->alertUSers[] = $alertUSer;
+            $alertUSer->setIdActivity($this);
         }
 
         return $this;
     }
 
-    public function removeCritere(Alert $critere): self
+    public function removeAlertUSer(AlertUser $alertUSer): self
     {
-        if ($this->Critere->contains($critere)) {
-            $this->Critere->removeElement($critere);
+        if ($this->alertUSers->contains($alertUSer)) {
+            $this->alertUSers->removeElement($alertUSer);
             // set the owning side to null (unless already changed)
-            if ($critere->getActivity() === $this) {
-                $critere->setActivity(null);
+            if ($alertUSer->getIdActivity() === $this) {
+                $alertUSer->setIdActivity(null);
             }
         }
 
         return $this;
     }
+
 
 }

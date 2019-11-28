@@ -1405,13 +1405,16 @@ class BienHermes
     private $properties;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PropertyAlert", inversedBy="bien")
+     * @ORM\OneToMany(targetEntity="App\Entity\PropertyAlert", mappedBy="bien")
      */
-    private $propertyAlert;
+    private $propertyAlerts;
+
+
 
     public function __construct()
     {
         $this->properties = new ArrayCollection();
+        $this->propertyAlerts = new ArrayCollection();
     }
 
 
@@ -4952,16 +4955,37 @@ class BienHermes
         return $this;
     }
 
-    public function getPropertyAlert(): ?PropertyAlert
+    /**
+     * @return Collection|PropertyAlert[]
+     */
+    public function getPropertyAlerts(): Collection
     {
-        return $this->propertyAlert;
+        return $this->propertyAlerts;
     }
 
-    public function setPropertyAlert(?PropertyAlert $propertyAlert): self
+    public function addPropertyAlert(PropertyAlert $propertyAlert): self
     {
-        $this->propertyAlert = $propertyAlert;
+        if (!$this->propertyAlerts->contains($propertyAlert)) {
+            $this->propertyAlerts[] = $propertyAlert;
+            $propertyAlert->setBien($this);
+        }
 
         return $this;
     }
+
+    public function removePropertyAlert(PropertyAlert $propertyAlert): self
+    {
+        if ($this->propertyAlerts->contains($propertyAlert)) {
+            $this->propertyAlerts->removeElement($propertyAlert);
+            // set the owning side to null (unless already changed)
+            if ($propertyAlert->getBien() === $this) {
+                $propertyAlert->setBien(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 }

@@ -26,16 +26,14 @@ class UserController extends AbstractController
      * @param User|null $user
      * @return Response
      */
-    public function show(?User $user, BienHermesRepository $repository, AlertRepository $alertRepository) : Response
+    public function show(?User $user, BienHermesRepository $repository) : Response
     {
         if ($this->getUser() === $user)
         {
-            $alerts = $alertRepository->findAll();
             $bien = $repository->findAllVisible();
             return $this->render('user/show.html.twig',[
                 'user' => $user,
                 'bien' => $bien,
-                'alerts' => $alertRepository
             ]);
         }
     }

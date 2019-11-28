@@ -43,14 +43,10 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="WishList", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="WishList", mappedBy="user", orphanRemoval=true)
      */
     private $properties;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Alert", mappedBy="user")
-     */
-    private $criteriaList;
 
     /**
      * @var string
@@ -59,10 +55,16 @@ class User implements UserInterface
      */
     protected $resetToken;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AlertUser", mappedBy="idUser", orphanRemoval=true)
+     */
+    private $alertUsers;
+
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
-        $this->criteriaList = new ArrayCollection();
+        $this->alertUsers = new ArrayCollection();
     }
 
 
@@ -189,36 +191,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Alert[]
-     */
-    public function getCriteriaList(): Collection
-    {
-        return $this->criteriaList;
-    }
 
-    public function addCriteriaList(Alert $criteriaList): self
-    {
-        if (!$this->criteriaList->contains($criteriaList)) {
-            $this->criteriaList[] = $criteriaList;
-            $criteriaList->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCriteriaList(Alert $criteriaList): self
-    {
-        if ($this->criteriaList->contains($criteriaList)) {
-            $this->criteriaList->removeElement($criteriaList);
-            // set the owning side to null (unless already changed)
-            if ($criteriaList->getUser() === $this) {
-                $criteriaList->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return string
@@ -238,6 +211,35 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|AlertUser[]
+     */
+    public function getAlertUsers(): Collection
+    {
+        return $this->alertUsers;
+    }
 
+    public function addAlertUser(AlertUser $alertUser): self
+    {
+        if (!$this->alertUsers->contains($alertUser)) {
+            $this->alertUsers[] = $alertUser;
+            $alertUser->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlertUser(AlertUser $alertUser): self
+    {
+        if ($this->alertUsers->contains($alertUser)) {
+            $this->alertUsers->removeElement($alertUser);
+            // set the owning side to null (unless already changed)
+            if ($alertUser->getIdUser() === $this) {
+                $alertUser->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

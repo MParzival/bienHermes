@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AlertUser{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Create new AlertUser</h1>
+        {{ form_start(form) }}
+        {{ form_row(form.maxPrice) }}
+        {{ form_row(form.idActivity) }}
+        {{ form_row(form.postalCode) }}
+        <button class="btn btn-sm btn-primary">Sauvegarder</button>
+        {{ form_end(form) }}
+        <a href="{{ path('alert_user_index') }}">back to list</a>
+    </div>
+
+
+
+{% endblock %}

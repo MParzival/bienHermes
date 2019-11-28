@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AlertUser index{% endblock %}
+
+{% block body %}
+    <h1>AlertUser index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MaxPrice</th>
+                <th>PostalCode</th>
+                <th>Activité</th>
+                <th>Utilisateur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alert_user in alert_users %}
+            <tr>
+                <td>{{ alert_user.id }}</td>
+                <td>{{ alert_user.maxPrice }}</td>
+                <td>{{ alert_user.postalCode }}</td>
+                <td>{{ alert_user.idActivity.name }}</td>
+                <td>{{ alert_user.idUser.username }}</td>
+                <td>
+                        <a href="{{ path('alert_user_show', {'id': alert_user.id}) }}">show</a>
+                        <a href="{{ path('alert_user_edit', {'id': alert_user.id}) }}">edit</a>
+                        <form method="post" action="{{ path('alert_user_delete', {'id': alert_user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ alert_user.id) }}">
+                            <button class="btn">Delete</button>
+                        </form>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <a href="{{ path('alert_user_new') }}">Create new</a>
+
+{% endblock %}

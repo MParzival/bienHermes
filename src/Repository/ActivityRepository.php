@@ -19,6 +19,8 @@ class ActivityRepository extends ServiceEntityRepository
         parent::__construct($registry, Activity::class);
     }
 
+
+
     // /**
     //  * @return Activity[] Returns an array of Activity objects
     //  */

@@ -19,6 +19,18 @@ class PropertyAlertRepository extends ServiceEntityRepository
         parent::__construct($registry, PropertyAlert::class);
     }
 
+    public function findByBienAndAlert()
+    {
+        return $this->createQueryBuilder('ab')
+            ->Join('ab.bien', 'abb')
+            ->addSelect('abb.prixpublic', 'abb.id', 'abb.codepostal')
+            ->Join('ab.alert', 'aba')
+            ->addSelect('aba.maxPrice', 'aba.postalCode', 'aba.id')
+            ->getQuery()
+            ->getResult();
+    }
+
+
     // /**
     //  * @return PropertyAlert[] Returns an array of PropertyAlert objects
     //  */

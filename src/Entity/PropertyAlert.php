@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,101 +17,57 @@ class PropertyAlert
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\BienHermes", mappedBy="propertyAlert")
+     * @ORM\ManyToOne(targetEntity="App\Entity\BienHermes", inversedBy="propertyAlerts")
      */
     private $bien;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Alert", mappedBy="propertyAlert")
+     * @ORM\ManyToOne(targetEntity="App\Entity\AlertUser", inversedBy="propertyAlerts")
      */
-    private $alert;
+    private $alertUser;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="boolean")
      */
-    private $sendedAt;
-
-    public function __construct()
-    {
-        $this->bien = new ArrayCollection();
-        $this->alert = new ArrayCollection();
-    }
+    private $isSent;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection|BienHermes[]
-     */
-    public function getBien(): Collection
+    public function getBien(): ?BienHermes
     {
         return $this->bien;
     }
 
-    public function addBien(BienHermes $bien): self
+    public function setBien(?BienHermes $bien): self
     {
-        if (!$this->bien->contains($bien)) {
-            $this->bien[] = $bien;
-            $bien->setPropertyAlert($this);
-        }
+        $this->bien = $bien;
 
         return $this;
     }
 
-    public function removeBien(BienHermes $bien): self
+    public function getAlertUser(): ?AlertUser
     {
-        if ($this->bien->contains($bien)) {
-            $this->bien->removeElement($bien);
-            // set the owning side to null (unless already changed)
-            if ($bien->getPropertyAlert() === $this) {
-                $bien->setPropertyAlert(null);
-            }
-        }
+        return $this->alertUser;
+    }
+
+    public function setAlertUser(?AlertUser $alertUser): self
+    {
+        $this->alertUser = $alertUser;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Alert[]
-     */
-    public function getAlert(): Collection
+    public function getIsSent(): ?bool
     {
-        return $this->alert;
+        return $this->isSent;
     }
 
-    public function addAlert(Alert $alert): self
+    public function setIsSent(bool $isSent): self
     {
-        if (!$this->alert->contains($alert)) {
-            $this->alert[] = $alert;
-            $alert->setPropertyAlert($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAlert(Alert $alert): self
-    {
-        if ($this->alert->contains($alert)) {
-            $this->alert->removeElement($alert);
-            // set the owning side to null (unless already changed)
-            if ($alert->getPropertyAlert() === $this) {
-                $alert->setPropertyAlert(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getSendedAt(): ?\DateTimeInterface
-    {
-        return $this->sendedAt;
-    }
-
-    public function setSendedAt(\DateTimeInterface $sendedAt): self
-    {
-        $this->sendedAt = $sendedAt;
+        $this->isSent = $isSent;
 
         return $this;
     }
