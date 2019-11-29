@@ -56,7 +56,7 @@ class User implements UserInterface
     protected $resetToken;
 
     /**
-     * @ORM\OneToMany(targetEntity="AlertUser", mappedBy="idUser", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AlertUser", mappedBy="idUser")
      */
     private $alertUsers;
 

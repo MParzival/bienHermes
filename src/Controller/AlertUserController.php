@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\AlertUser;
 use App\Entity\User;
+use App\Events;
 use App\Form\AlertUserType;
 use App\Repository\AlertUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,18 +24,19 @@ class AlertUserController extends AbstractController
      */
     public function index(AlertUserRepository $alertUserRepository): Response
     {
-        dd($alertUserRepository->findAllByUser());
+        $user= $this->getUser();
+        //dd($user);
         return $this->render('alert_user/index.html.twig', [
-            'alert_users' => $alertUserRepository->findAllByUser(),
+            'alert_users' => $alertUserRepository->findAllByUser($user),
         ]);
     }
 
     /**
      * @Route("/new", name="alert_user_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EventDispatcherInterface $dispatcher): Response
     {
-        /** User $user **/
+        /** App\Entity\User $user */
         $user = $this->getUser();
         //dd($this->getUser());
         $alertUser = new AlertUser();
@@ -44,6 +48,9 @@ class AlertUserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($alertUser);
             $entityManager->flush();
+
+            $event = new GenericEvent($alertUser);
+            $dispatcher->dispatch(Events::USER_ALERT,$event);
 
             return $this->redirectToRoute('alert_user_index');
         }

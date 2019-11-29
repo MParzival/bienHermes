@@ -29,17 +29,17 @@ class AlertUser
     private $postalCode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Activity", inversedBy="alertUSers")
+     * @ORM\ManyToOne(targetEntity="Activity", inversedBy="alertUSers")
      */
     private $idActivity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="alertUSers")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="alertUSers")
      */
     private $idUser;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PropertyAlert", mappedBy="alertUser")
+     * @ORM\OneToMany(targetEntity="PropertyAlert", mappedBy="alertUser")
      */
     private $propertyAlerts;
 
@@ -99,7 +99,7 @@ class AlertUser
 
 
     /**
-     * @param User|null $idUser
+     * @param User $idUser
      * @return $this
      */
     public function setIdUser(User $idUser)

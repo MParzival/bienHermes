@@ -23,6 +23,7 @@ class BienHermesRepository extends ServiceEntityRepository
         parent::__construct($registry, BienHermes::class);
     }
 
+
     /**
      * @return array
      */

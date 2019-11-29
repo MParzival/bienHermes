@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\AlertUser;
+use App\Entity\BienHermes;
 use App\Entity\PropertyAlert;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -28,6 +30,14 @@ class PropertyAlertRepository extends ServiceEntityRepository
             ->addSelect('aba.maxPrice', 'aba.postalCode', 'aba.id')
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByPropertyAndAlert(BienHermes $bienHermes, AlertUser $alertUser)
+    {
+        return $this->createQueryBuilder('pa')
+            ->leftJoin()
+
+
     }
 
 

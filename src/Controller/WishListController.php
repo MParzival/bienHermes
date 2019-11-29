@@ -16,7 +16,7 @@ class WishListController extends AbstractController
      */
     public function index()
     {
-        return $this->render('list_property_by_user/index.html.twig', [
+        return $this->render('wish_list_property/index.html.twig', [
             'controller_name' => 'WishListController',
         ]);
     }
@@ -51,7 +51,10 @@ class WishListController extends AbstractController
             }
         }
         // dans tous les cas je redirige l'utilisateur vers la page index_Bien
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('bien_show', [
+            'id' => $bienHermes->getId(),
+            'slug' => $bienHermes->getSlug()
+        ]);
     }
 
     /**
@@ -79,6 +82,9 @@ class WishListController extends AbstractController
             }
         }
         // dans tous les cas je redirige l'utilisateur vers la page index_Bien
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('bien_show', [
+            'id' => $bienHermes->getId(),
+            'slug' => $bienHermes->getSlug()
+        ]);
     }
 }

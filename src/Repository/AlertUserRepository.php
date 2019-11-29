@@ -31,12 +31,11 @@ class AlertUserRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findAllByUser()
+    public function findAllByUser($user)
     {
         return $this->createQueryBuilder('a')
-            ->innerJoin('a.idUser', 'u')
-            ->addSelect('u.id')
-            ->where('a.idUser = u.id')
+            ->where('a.idUser = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
     }
