@@ -133,10 +133,10 @@
         "version": "v1.2.17"
     },
     "knplabs/knp-components": {
-        "version": "v2.2.0"
+        "version": "v2.3.0"
     },
     "knplabs/knp-paginator-bundle": {
-        "version": "v4.0.0"
+        "version": "v5.0.0"
     },
     "liip/imagine-bundle": {
         "version": "1.8",

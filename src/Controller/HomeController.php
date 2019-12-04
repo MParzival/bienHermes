@@ -13,9 +13,7 @@ use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use App\Repository\BienHermesRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,7 +44,7 @@ class HomeController extends AbstractController
         $bienSearch->page = $request->get('page', 1);
         $form = $this->createForm(BienSearchType::class, $bienSearch);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+       if ($form->isSubmitted() && $form->isValid()){
             $result = $repository->findSearchByCriteriaForm($bienSearch);
             return $this->render('bien/index.html.twig', [
                 'biens' => $result,

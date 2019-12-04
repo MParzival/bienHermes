@@ -8,15 +8,15 @@
         {#<div class="count">
             Vous avez {{ biens.getTotalItemCount }} biens qui correspondent à votre recherche !
         </div>#}
-        <div class="sortable" style="display: inline-block">
-            {{ knp_pagination_sortable(biens,'prix', 'p.prixpublic') }}
-        </div>
-        <div class="sortable" style="display: inline-block">
-            {{ knp_pagination_sortable(biens,'surface', 'p.surfacetotale') }}
-        </div>
-        <div class="sortable" style="display: inline-block">
-            {{ knp_pagination_sortable(biens,'loyer', 'p.loyerannuel') }}
-        </div>
+{#        <div class="sortable" style="display: inline-block">#}
+{#            {{ knp_pagination_sortable(biens,'prix', 'p.prixpublic') }}#}
+{#        </div>#}
+{#        <div class="sortable" style="display: inline-block">#}
+{#            {{ knp_pagination_sortable(biens,'surface', 'p.surfacetotale') }}#}
+{#        </div>#}
+{#        <div class="sortable" style="display: inline-block">#}
+{#            {{ knp_pagination_sortable(biens,'loyer', 'p.loyerannuel') }}#}
+{#        </div>#}
 
         <div class="row flex">
 
@@ -56,8 +56,8 @@
                 {% endfor %}
 
         </div>
-        <div class="pagination">
-            {{ knp_pagination_render(biens) }}
-        </div>
+{#        <div class="pagination">#}
+{#            {{ knp_pagination_render(biens) }}#}
+{#        </div>#}
     </div>
 {% endblock %}
