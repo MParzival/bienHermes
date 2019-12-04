@@ -24,8 +24,10 @@
                     </div>
                     <div class="col">
                         {{ form_row(form.maxPrice) }}
+                        <div id="price-slider"></div>
                         {{ form_row(form.minSurface) }}
                     </div>
+
                     <div class="col-12">
                         <div class="form-group pull-right">
                             <button class="btn btn-primary">Rechercher</button>
@@ -158,9 +160,9 @@
 <!-- fin dernier biens ajouté -->
 
     <!-- Début bien vendu -->
-        <div class="bien-alert mt-4 pt-2 pb-2">
+        <div class="bien-vendu mt-4 pt-2 pb-2">
             <div class="container mt-4">
-                <h2>Bien Vendu</h2>
+                <h2>Ils nous ont fait confiance !</h2>
                 <div class="row flex">
                     {% for bien in bienSold  %}
                         <div class="col-md-3 mt-4">

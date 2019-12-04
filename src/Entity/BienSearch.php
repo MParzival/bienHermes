@@ -7,6 +7,10 @@ namespace App\Entity;
 class BienSearch
 {
     /**
+     * @var int
+     */
+    public $page;
+    /**
      * @var int|null
      */
     private $maxPrice;
@@ -35,6 +39,7 @@ class BienSearch
      * @var string|null
      */
     private $activite;
+
 
     /**
      * @return int|null

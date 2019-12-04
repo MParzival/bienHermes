@@ -161,3 +161,15 @@ li a{
     background-color: rgba(0, 0, 0, 0);
     background-image: none;
 }
+
+
+/***************************/
+/*                         */
+/*   ActualityController   */
+/*                         */
+/***************************/
+
+section {
+    margin-top: 50px;
+}
+

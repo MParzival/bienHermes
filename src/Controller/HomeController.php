@@ -43,6 +43,7 @@ class HomeController extends AbstractController
          * soit directement par la référence du bien "$bienRefSearch"
          */
         $bienSearch = new BienSearch();
+        $bienSearch->page = $request->get('page', 1);
         $form = $this->createForm(BienSearchType::class, $bienSearch);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){

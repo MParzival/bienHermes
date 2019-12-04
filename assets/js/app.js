@@ -1,13 +1,8 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
 
-// any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
 
+import noUiSlider from 'nouislider';
+import 'nouislider/distribute/nouislider.css'
 
 $('#contactButton').click(e => {
     e.preventDefault();
@@ -20,3 +15,24 @@ $('#contactButton').click(e => {
 // const $ = require('jquery');
 
 console.log('Hello Webpack Encore! Edit me in media/js/app.js');
+
+const slider = document.getElementById('price-slider');
+if (slider){
+    const max = document.getElementById('max');
+    const range = noUiSlider.create(slider, {
+        start: [0, max.value || 8000000],
+        connect: true,
+        step: 100,
+        range: {
+            'min': 0,
+            'max': 8000000
+        }
+    });
+
+    range.on('slide', function (values, handle){
+       //console.log(values, handle)
+        if (handle === 1){
+            max.value = Math.round(values[0])
+        }
+    })
+}

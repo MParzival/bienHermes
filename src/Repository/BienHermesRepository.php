@@ -9,6 +9,8 @@ use App\Entity\BienSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method BienHermes|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,9 +20,15 @@ use Doctrine\ORM\Query;
  */
 class BienHermesRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, BienHermes::class);
+        $this->paginator = $paginator;
     }
 
 
@@ -278,9 +286,9 @@ class BienHermesRepository extends ServiceEntityRepository
 
     /**
      * @param BienSearch $bienSearch
-     * @return array
+     * @return PaginationInterface
      */
-    public function findSearchByCriteriaForm(BienSearch $bienSearch) : array
+    public function findSearchByCriteriaForm(BienSearch $bienSearch) : PaginationInterface
     {
         $query = $this->createQueryBuilder('p');
         if($bienSearch->getTitle()){
@@ -310,9 +318,12 @@ class BienHermesRepository extends ServiceEntityRepository
                 ->andWhere('p.surfacetotale >= :surfacetotale')
                 ->setParameter('surfacetotale',$bienSearch->getMinSurface());
         }
-        return $query
-            ->getQuery()
-            ->getResult();
+        $query = $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $bienSearch->page,15
+        );
+
     }
 
 
