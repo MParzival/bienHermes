@@ -42,7 +42,11 @@ class Contact{
      */
     private $content;
 
-    
+    /**
+     * @var string|null
+     * @Assert\NotBlank()
+     */
+    private $subject;
 
     /**
      * @var BienHermes|null
@@ -156,6 +160,25 @@ class Contact{
         $this->bien = $bien;
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param string|null $subject
+     * @return Contact
+     */
+    public function setSubject(?string $subject): Contact
+    {
+        $this->subject = $subject;
+        return $this;
+    }
+
 
 
 
