@@ -11,5 +11,6 @@ final class Events
      */
     const USER_REGISTERED = 'user.registered';
     Const USER_ALERT = 'user.create.alert';
+    Const PROPERTY_ALERT = 'property.alert.available';
 
 }

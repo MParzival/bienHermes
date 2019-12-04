@@ -30,10 +30,13 @@ class HomeController extends AbstractController
     public function index(BienHermesRepository $repository, Request $request, ContactNotification $contactNotification): Response
     {
         /**
-         * methode permettant d'afficher les derniers bien ajoutés et les bien qui ont été mis en top
+         * methode permettant d'afficher les derniers bien ajoutés
+         * les bien qui ont été mis en top
+         * et les biens qui ont été vendu
          */
         $biensLatest = $repository->findLatest();
         $bienTops = $repository->findTopVisible();
+        $bienSold = $repository->findBienSold();
 
         /**
          * methode permettant la recherche d'un bien grâce une liste de de critères "$bienSearch"
@@ -76,6 +79,7 @@ class HomeController extends AbstractController
         return $this->render('home/home.html.twig', [
             'biensLatest' => $biensLatest,
             'bienTops' => $bienTops,
+            'bienSold' => $bienSold,
             'form' => $form->createView(),
             'formRef' => $formRef->createView(),
             'formContact' => $formContact->createView()

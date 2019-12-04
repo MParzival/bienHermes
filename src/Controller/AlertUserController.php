@@ -50,7 +50,7 @@ class AlertUserController extends AbstractController
             $entityManager->flush();
 
             $event = new GenericEvent($alertUser);
-            $dispatcher->dispatch(Events::USER_ALERT,$event);
+           $dispatcher->dispatch( Events::USER_ALERT,$event);
 
             return $this->redirectToRoute('alert_user_index');
         }

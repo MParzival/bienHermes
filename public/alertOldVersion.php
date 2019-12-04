@@ -161,12 +161,8 @@ $headers = "From: ".$site." <".$expediteur.">" . "\r\n";
 
 
 
-//mail($dest, $sujet, $msg, $headers);
+mail($dest, $sujet, $msg, $headers);
 
 
 
 ?>
-
-</body>
-
-</html>

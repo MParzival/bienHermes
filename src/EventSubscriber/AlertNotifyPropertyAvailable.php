@@ -4,24 +4,22 @@ namespace App\EventSubscriber;
 
 
 
-use App\Entity\AlertUser;
+
 use App\Events;
-use Swift_Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
-
-class AlertNotifyCreate implements EventSubscriberInterface
+class AlertNotifyPropertyAvailable implements EventSubscriberInterface
 {
 
     /**
-     * @var Swift_Mailer
+     * @var \Swift_Mailer
      */
     private $mailer;
     private $sender;
 
 
-    public function __construct(Swift_Mailer $mailer, string $sender)
+    public function __construct(\Swift_Mailer $mailer, string $sender)
     {
 
         $this->mailer = $mailer;
@@ -49,24 +47,24 @@ class AlertNotifyCreate implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            Events::USER_ALERT => 'onUserCreateAlert'
+            Events::PROPERTY_ALERT => 'onPropertyAvailable'
         ];
     }
 
-    public function onUserCreateAlert(GenericEvent $event)
+    public function onPropertyAvailable(GenericEvent $event)
     {
 
         /**
-         * @var AlertUser $alertUser
+         * @var
          */
-        $alertUser = $event->getSubject();
-        /*dd($alertUser);*/
-        $subject = "Félicitations pour la création de votre alerte";
-        $body = "Merci d'avoir créée votre alerte ".$alertUser->getIdUser()->getUsername();
+        $propertyAlert = $event->getSubject();
+        /*dd($propertyAlert);*/
+        $subject = "Félicitations vous avez un nouveau bien qui correspond à vos critère";
+        $body = "Merci";
 
         $message = (new \Swift_Message())
             ->setSubject($subject)
-            ->setTo($alertUser->getIdUser()->getEmail())
+            ->setTo("mick.aubin@gmail.com")
             ->setFrom($this->sender)
             ->setBody($body, 'text/html');
         $this->mailer->send($message);

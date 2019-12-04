@@ -42,6 +42,8 @@ class Contact{
      */
     private $content;
 
+    
+
     /**
      * @var BienHermes|null
      */

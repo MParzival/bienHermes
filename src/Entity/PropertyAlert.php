@@ -14,7 +14,7 @@ class PropertyAlert
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $idProperty;
+    private $id_property;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\BienHermes", inversedBy="propertyAlerts")
@@ -33,7 +33,7 @@ class PropertyAlert
 
     public function getId(): ?int
     {
-        return $this->idProperty;
+        return $this->id_property;
     }
 
     public function getBien(): ?BienHermes

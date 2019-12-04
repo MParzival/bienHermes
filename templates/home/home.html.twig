@@ -157,4 +157,35 @@
 </div>
 <!-- fin dernier biens ajouté -->
 
+    <!-- Début bien vendu -->
+        <div class="bien-alert mt-4 pt-2 pb-2">
+            <div class="container mt-4">
+                <h2>Bien Vendu</h2>
+                <div class="row flex">
+                    {% for bien in bienSold  %}
+                        <div class="col-md-3 mt-4">
+                            <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
+                                <div class="card">
+                                    {% if bien.phototransaction is not empty %}
+                                        <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.phototransaction }}" alt="min_{{ bien.phototransaction }}">
+                                    {% else %}
+                                        <img src="{{ asset('media/image/placeholder.png') }}" alt="min_placeholder" class="empty">
+                                    {% endif %}
+                                    <div class="card-body p-0">
+                                        <p class="card-title text-center">
+                                            <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">{{ bien.nouvelleenseigne }}</a>
+                                        </p>
+                                        <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.notenouvelleenseigne }}</p>
+                                        <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.nomvoie }}</p>
+                                        <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} {{ bien.ville }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
 {% endblock %}

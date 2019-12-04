@@ -24,6 +24,19 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
 
+    public function findBienAndAlert()
+    {
+        $this->createQueryBuilder()
+            ->select('bh.prixpublic', 'bh.activite','bh.codepostal')
+            ->from('App:BienHermes', 'bh')
+            ->leftJoin('bh.propertyAlerts', 'pa')
+            ->where('bh.codepostal',
+                $this->createQueryBuilder()
+                    ->select('au.postalcode')
+                    ->from('App:AlertUser', 'au')
+            );
+    }
+
     /**
      * @return array
      */
@@ -298,6 +311,29 @@ class BienHermesRepository extends ServiceEntityRepository
                 ->setParameter('surfacetotale',$bienSearch->getMinSurface());
         }
         return $query
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findBienByPropertyAlert()
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT bien_hermes.id, bien_hermes.PrixPublic, bien_hermes.CodePostal FROM bien_hermes
+            LEFT OUTER JOIN property_alert ON bien_hermes.id = property_alert.bien_id
+            WHERE bien_hermes.CodePostal = (SELECT alert_user.postal_code FROM alert_user limit 1)
+            AND bien_hermes.PrixPublic <= (SELECT alert_user.max_price FROM alert_user LIMIT 1)
+            AND bien_hermes.Activite LIKE CONCAT('%',(SELECT activity.name FROM alert_user JOIN activity ON alert_user.id_activity_id = activity.id),'%') 
+            AND property_alert.bien_id IS null")
+            ->getResult();
+    }
+
+    public function findBienSold()
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.statut = true')
+            ->orderBy('r.numero', 'ASC')
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }

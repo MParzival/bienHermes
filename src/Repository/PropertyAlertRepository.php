@@ -23,22 +23,14 @@ class PropertyAlertRepository extends ServiceEntityRepository
 
     public function findByBienAndAlert()
     {
-        return $this->createQueryBuilder('ab')
-            ->Join('ab.bien', 'abb')
-            ->addSelect('abb.prixpublic', 'abb.id', 'abb.codepostal')
-            ->Join('ab.alert', 'aba')
-            ->addSelect('aba.maxPrice', 'aba.postalCode', 'aba.id')
+        return $this->createQueryBuilder('pa')
+            ->leftJoin('pa.bien', 'pab')
+            ->addSelect('pab.activite','pab.prixpublic','pab.codepostal')
             ->getQuery()
             ->getResult();
-    }
-
-    public function findByPropertyAndAlert(BienHermes $bienHermes, AlertUser $alertUser)
-    {
-        return $this->createQueryBuilder('pa')
-            ->leftJoin()
-
 
     }
+
 
 
     // /**

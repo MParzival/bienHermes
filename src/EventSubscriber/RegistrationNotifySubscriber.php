@@ -4,7 +4,7 @@ namespace App\EventSubscriber;
 
 use App\Entity\User;
 use App\Events;
-use Swift_Mailer;
+use \Swift_Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
@@ -17,7 +17,7 @@ class RegistrationNotifySubscriber implements EventSubscriberInterface
     private $mailer;
     private $sender;
 
-    public function __construct(Swift_Mailer $mailer, $sender)
+    public function __construct(\Swift_Mailer $mailer, $sender)
     {
         // on injecte notre expediteur et la classe pour envoyer des emails
         $this->mailer = $mailer;

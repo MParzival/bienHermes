@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PropertyAlertController!{% endblock %}
+
+{% block body %}
+    <!-- Début bien correspondant aux alertes de l'utilisateur s'il est connécté -->
+    {% if app.user %}
+        <div class="bien-alert mt-4 pt-2 pb-2">
+            <div class="container mt-4">
+                <h2>Bien alerte</h2>
+                <div class="row flex">
+                    {% for bien in bienAlert  %}
+                        <div class="col-md-3 mt-4">
+                                <div class="card">
+                                    <div class="car-body">
+                                        <p>{{ bien.activite }}</p>
+                                        <p>{{ bien.prixpublic }}</p>
+                                        <p>{{ bien.codepostal }}</p>
+                                    </div>
+                                </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

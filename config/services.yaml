@@ -36,3 +36,6 @@ services:
 
     App\EventSubscriber\AlertNotifyCreate:
         $sender: '%app.notifications.email_sender%'
+
+    App\EventSubscriber\AlertNotifyPropertyAvailable:
+        $sender: '%app.notifications.email_sender%'
