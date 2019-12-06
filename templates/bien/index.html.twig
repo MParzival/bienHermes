@@ -4,6 +4,10 @@
 {% block body %}
     <div class="container mt-4">
         <h2>les biens : </h2>
+        <div class="d-flex justify-content-end sortable" >
+            {{ knp_pagination_sortable(biens,'prix', 'p.prixpublic') }}
+            {{ knp_pagination_sortable(biens,'surface', 'p.surfacetotale') }}
+        </div>
         <div class="row flex">
             {% if biens != null and biens|length > 0 %}
                 {% for bien in biens %}

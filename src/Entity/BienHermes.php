@@ -1417,8 +1417,6 @@ class BienHermes
         $this->propertyAlerts = new ArrayCollection();
     }
 
-
-
     /**
      * @return int
      */

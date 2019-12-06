@@ -4,11 +4,9 @@ namespace App\Controller;
 
 use App\Entity\BienHermes;
 use App\Entity\Contact;
-use App\Entity\WishListProperties;
 use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use App\Repository\BienHermesRepository;
-use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,8 +24,6 @@ class BienController extends AbstractController
      */
     public function index(Request $request, BienHermesRepository $repository, PaginatorInterface $paginator) :Response
     {
-
-
         $result = $paginator->paginate(
         $repository->findVisibleWithPaginate(),
         $request->query->getInt('page', 1),
