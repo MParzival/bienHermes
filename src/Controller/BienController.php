@@ -26,8 +26,6 @@ class BienController extends AbstractController
      */
     public function index(Request $request, BienHermesRepository $repository, PaginatorInterface $paginator) :Response
     {
-
-
         $result = $paginator->paginate(
         $repository->findVisibleWithPaginate(),
         $request->query->getInt('page', 1),
@@ -37,7 +35,6 @@ class BienController extends AbstractController
            'biens' => $result,
         ]);
     }
-
 
 
     /**
@@ -76,5 +73,4 @@ class BienController extends AbstractController
             'form' => $formContact->createView()
         ]);
     }
-
 }
