@@ -12,6 +12,29 @@
             </p>
         </div>
     </div>
+    <div class="container mt-4">
+        <h2>L'actualité...</h2>
+        <div class="row flex">
+            {% if actualities != null and actualities|length > 0 %}
+                {% for actuality in actualities  %}
+                    <div class="col-md-6 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ actuality.title }}</h5>
+                            </div>
+
+                            PHOTO
+                            <p class="card-text">{{ actuality.content | raw}}</p>
+                        </div>
+                    </div>
+                    
+
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+
 
 
 

@@ -35,7 +35,6 @@ class BienController extends AbstractController
     }
 
 
-
     /**
      * @Route("/biens/{slug}-{id}", name="bien_show", requirements={"slug": "[a-z0-9\-]*"}, methods={"GET", "POST"})
      * @param string $slug
@@ -72,5 +71,4 @@ class BienController extends AbstractController
             'form' => $formContact->createView()
         ]);
     }
-
 }

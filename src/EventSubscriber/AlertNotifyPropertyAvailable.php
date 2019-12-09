@@ -58,9 +58,9 @@ class AlertNotifyPropertyAvailable implements EventSubscriberInterface
          * @var
          */
         $propertyAlert = $event->getSubject();
-        /*dd($propertyAlert);*/
+        dd($propertyAlert);
         $subject = "Félicitations vous avez un nouveau bien qui correspond à vos critère";
-        $body = "Merci";
+        $body = "Merci, nous avons un nouveau bien qui corespond à votre alerte ";
 
         $message = (new \Swift_Message())
             ->setSubject($subject)
@@ -69,6 +69,4 @@ class AlertNotifyPropertyAvailable implements EventSubscriberInterface
             ->setBody($body, 'text/html');
         $this->mailer->send($message);
     }
-
-
 }

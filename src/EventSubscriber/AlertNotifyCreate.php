@@ -62,7 +62,8 @@ class AlertNotifyCreate implements EventSubscriberInterface
         $alertUser = $event->getSubject();
         /*dd($alertUser);*/
         $subject = "Félicitations pour la création de votre alerte";
-        $body = "Merci d'avoir créée votre alerte ".$alertUser->getIdUser()->getUsername();
+        $body = "Merci d'avoir créée votre alerte ".$alertUser->getIdUser()->getUsername()."<br>"
+            .$alertUser->getPostalCode()."<br>".$alertUser->getMaxPrice();
 
         $message = (new \Swift_Message())
             ->setSubject($subject)

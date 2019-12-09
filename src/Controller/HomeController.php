@@ -66,68 +66,13 @@ class HomeController extends AbstractController
             ]);
         }
 
-//        /**
-//         * methode permettant d'envoyer un mail de contact
-//         */
-//        $contact = new Contact();
-//        $formContact = $this->createForm(ContactType::class, $contact);
-//        $formContact->handleRequest($request);
-//        if($formContact->isSubmitted() && $formContact->isValid()){
-//            $contactNotification->notify($contact);
-//            $this->addFlash('success', 'Votre email a bien été envoyé');
-//            return $this->render('home/home.html.twig');
-//        }
-
         return $this->render('home/home.html.twig', [
             'biensLatest' => $biensLatest,
             'bienTops' => $bienTops,
             'bienSold' => $bienSold,
             'form' => $form->createView(),
             'formRef' => $formRef->createView(),
-//            'formContact' => $formContact->createView()
         ]);
     }
-
-
-    /**
-     * @Route("/ckeditor", name="ckeditor_app")
-     * @return Response
-     */
-    public function ckeditor()
-    {
-        $form = $this->createFormBuilder()
-            ->add('content', CKEditorType::class,[
-                'config' =>[
-                    'uiColor' => '#e2e2e2',
-                    'toolbar' => 'full',
-                    'required' => true
-                ]
-            ])
-            ->getForm();
-
-        return $this->render('home/ckeditor.html.twig', [
-            'form' =>$form->createView()
-        ]);
-    }
-
-//    /**
-//     * @Route("/", name="app_home")
-//     */
-//    public function getPropertyBySearch(BienHermesRepository $repository, Request $request)
-//    {
-//        /**
-//         * methode permettant la recherche d'un bien grâce une liste de de critères "$bienSearch"
-//         * soit directement par la référence du bien "$bienRefSearch"
-//         */
-//        $bienSearch = new BienSearch();
-//        $bienSearch->page = $request->get('page', 1);
-//        $form = $this->createForm(BienSearchType::class, $bienSearch);
-//        $form->handleRequest($request);
-//        $result = $repository->findSearchByCriteriaForm($bienSearch);
-//        return $this->render('home/home.html.twig', [
-//            'form' => $form->createView(),
-//            'biens' => $result,
-//        ]);
-//    }
 }
 

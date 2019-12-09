@@ -9,21 +9,27 @@
             <div class="col-md-9">
                 <div class="jumbotron">
                     <div class="container">
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <!-- Si le formulaire n'a pas été remplis correctement -->
                         {% for bien in biens  %}
                             <div class="row">
                                 <div class="col-md-8">
                                     <h5>{{ bien.titreannonce }}</h5>
                                     <span class="ml-5">Réf : {{ bien.numero }}</span>
                                 </div>
-                                <div class="col-md-4 ml-auto">
-                                    <div class="text-success" style="font-weight: bold; font-size: 1.5rem;">
+                                <div class="form-group">
+                                    <div class="btn btn-success btn-sm text-white" style="font-weight: bold; font-size: 1.5rem;display: inline-block">
                                         {% if bien.prixpublic != 0 %}
                                             {{ bien.formattedPrice }} € FAI*
                                         {% else %}
                                             {{ bien.loyerannuel }} € HT / AN
                                         {% endif %}
                                     </div>
-                                    <div class="mt-2">
+                                    <span class="mt-2">
                                         {% if app.user %}
                                             {% set userLikeProperty = false %}
                                             {% for listPropertyByUser in bien.properties if listPropertyByUser.user.id == app.user.id %}
@@ -31,13 +37,13 @@
                                             {% endfor %}
 
                                             {% if userLikeProperty %}
-                                                <a class="btn btn-warning" href="{{ path('property_notlike', {bienHermes : bien.id, user: app.user.id}) }}">retirer de ma list</a>
+                                                <a class="btn btn-warning" href="{{ path('property_notlike', {bienHermes : bien.id, user: app.user.id}) }}"><i class="fa fa-heart"></i></a>
                                             {% else %}
-                                                <a class="btn btn-primary" href="{{ path('property_like', {bienHermes : bien.id, user: app.user.id}) }}">mettre dans ma list</a>
+                                                <a class="btn btn-primary" href="{{ path('property_like', {bienHermes : bien.id, user: app.user.id}) }}"><i class="fa fa-heart"></i></a>
                                             {% endif %}
 
                                         {% endif %}
-                                    </div>
+                                    </span>
                                 </div>
 
                                 <div class="col-md-12">

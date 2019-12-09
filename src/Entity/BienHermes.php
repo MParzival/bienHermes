@@ -1409,6 +1409,16 @@ class BienHermes
      */
     private $propertyAlerts;
 
+    /**
+     * @ORM\Column(type="float", scale=4 ,precision=6)
+     */
+    private $lat;
+
+    /**
+     * @ORM\Column(type="float", scale=4 ,precision=7)
+     */
+    private $lng;
+
 
 
     public function __construct()
@@ -4980,6 +4990,30 @@ class BienHermes
                 $propertyAlert->setBien(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLng(): ?float
+    {
+        return $this->lng;
+    }
+
+    public function setLng(float $lng): self
+    {
+        $this->lng = $lng;
 
         return $this;
     }
