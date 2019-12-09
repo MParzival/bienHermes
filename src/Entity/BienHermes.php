@@ -1409,6 +1409,11 @@ class BienHermes
      */
     private $propertyAlerts;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\MonEntite", inversedBy="maRelation")
+     */
+    private $monEntite;
+
 
 
     public function __construct()
@@ -4982,6 +4987,18 @@ class BienHermes
                 $propertyAlert->setBien(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMonEntite(): ?MonEntite
+    {
+        return $this->monEntite;
+    }
+
+    public function setMonEntite(?MonEntite $monEntite): self
+    {
+        $this->monEntite = $monEntite;
 
         return $this;
     }
