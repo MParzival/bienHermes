@@ -1412,12 +1412,12 @@ class BienHermes
     /**
      * @ORM\Column(type="float", scale=4 ,precision=6)
      */
-    private $lat;
+   /* private $lat;*/
 
     /**
      * @ORM\Column(type="float", scale=4 ,precision=7)
      */
-    private $lng;
+    /*private $lng;*/
 
 
 
