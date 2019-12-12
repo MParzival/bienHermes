@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @UniqueEntity(fields={"username"}, message="Il existe déjà un compte avec ce pseudo")
  */
 class User implements UserInterface
 {
@@ -32,9 +32,9 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="array")
      */
-    private $roles = [];
+    private $roles = array();
 
     /**
      * @var string The hashed password
@@ -60,11 +60,17 @@ class User implements UserInterface
      */
     private $alertUsers;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isNego = false;
+
 
     public function __construct()
     {
         $this->properties = new ArrayCollection();
         $this->alertUsers = new ArrayCollection();
+        $this->roles = array('ROLE_ADMIN');
     }
 
 
@@ -92,23 +98,23 @@ class User implements UserInterface
     }
 
     /**
-     * @see UserInterface
+     * @return array
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
-    public function setRoles(array $roles): self
+    /**
+     * @param array $roles
+     * @return User
+     */
+    public function setRoles(array $roles): User
     {
         $this->roles = $roles;
-
         return $this;
     }
+
 
     /**
      * @see UserInterface
@@ -238,6 +244,18 @@ class User implements UserInterface
                 $alertUser->setIdUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsNego(): ?bool
+    {
+        return $this->isNego;
+    }
+
+    public function setIsNego(bool $isNego): self
+    {
+        $this->isNego = $isNego;
 
         return $this;
     }

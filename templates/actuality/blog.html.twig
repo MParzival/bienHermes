@@ -14,6 +14,13 @@
     </div>
     <div class="container mt-4">
         <h2>L'actualité...</h2>
+        {#{% if is_granted('ROLE_ADMIN') %}#}
+            <div>
+                <a href="{{ path('actuality_new') }}" class="btn btn-primary" >Créer une nouvelle actualité</a>
+            </div>
+        {#{% endif %}#}
+
+
         <div class="row flex">
             {% if actualities != null and actualities|length > 0 %}
                 {% for actuality in actualities  %}
@@ -22,9 +29,13 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ actuality.title }}</h5>
                             </div>
-
-                            PHOTO
-                            <p class="card-text">{{ actuality.content | raw}}</p>
+                            <div>
+                                <img src="{{ vich_uploader_asset(actuality, 'imageFile')|imagine_filter('thumb') }}" alt="" class="card-img-top">
+                            </div>
+                            <p class="card-text">{{ actuality.resume}}</p>
+                        </div>
+                        <div>
+                            <a href="{{ path('actuality_show', {id: actuality.id}) }}" class="btn btn-sm btn-success">En savoir plus</a>
                         </div>
                     </div>
                     
@@ -33,6 +44,7 @@
             {% endif %}
         </div>
     </div>
+
 
 
 

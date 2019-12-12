@@ -22,9 +22,7 @@ final class Version20191206092215 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE bien_hermes ADD lat DOUBLE PRECISION NOT NULL, ADD lng DOUBLE PRECISION NOT NULL');
-        $this->addSql('ALTER TABLE alert_user CHANGE id_activity_id id_activity_id INT DEFAULT NULL, CHANGE id_user_id id_user_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE property_alert ADD CONSTRAINT FK_D1EE87CC393D7457 FOREIGN KEY (alert_user_id) REFERENCES alert_user (id)');
+
     }
 
     public function down(Schema $schema) : void

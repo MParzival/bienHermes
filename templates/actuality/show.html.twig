@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div>
+            {{ actualities.title }}
+        </div>
+        <div>
+            {{ actualities.content |raw }}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+

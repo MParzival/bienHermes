@@ -3,12 +3,22 @@ security:
         App\Entity\User:
             algorithm: auto
 
+    role_hierarchy:
+        #un négoiateur hérite des droits de l'utilisateur
+        ROLE_NEGO:          ROLE_USER
+        #un Admin hérite des droits de l'utilisateur
+        ROLE_ADMIN:         ROLE_USER
+        #un superAdmin hérite à la fois des droits de l'utilisateur et à la fois des droits de l'admin
+        ROLE_SUPER_ADMIN:   [ROLE_USER, ROLE_ADMIN]
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
+                #classe à utiliser pour pour savoir quel repo doit utiliser doctrine.
                 class: App\Entity\User
+                # on lui dit quel sera l'attribut qui servira d'identifiant.
                 property: username
     firewalls:
         dev:
@@ -37,5 +47,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         #- { path: ^/admin, roles: ROLE_ADMIN }
+         #- { path: ^/, roles: ROLE_USER }
+

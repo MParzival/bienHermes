@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Blog'%}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.resume) }}
+        {{ form_row(form.imageFile) }}
+        {{ form_row(form.content, {'attr': {'placeholder': "content of the article", 'rows':'12', 'cols': '100'}}) }}
+        <button class="btn btn-primary">Editer</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

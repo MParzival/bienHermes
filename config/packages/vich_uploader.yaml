@@ -1,0 +1,10 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        actuality_image:
+            #dossier vers lequel l'image sera envoyé
+            uri_prefix: /images/actualities
+            # destination ou je souhaite encoyer mes images
+            upload_destination: '%kernel.project_dir%/public/images/actualities'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer

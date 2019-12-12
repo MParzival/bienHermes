@@ -11,6 +11,14 @@
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
 
+        <div class="form-group">
+            <p style="display: inline-block">Etes vous négociateur ?</p>
+            <label for="negotiator" style="display: inline-block">
+                <input type="checkbox" id="negotiator" value="Oui"> Oui
+            </label>
+        </div>
+
+
         <button class="btn btn-primary">S'enregistrer</button>
         {{ form_end(registrationForm) }}
     </div>
