@@ -5,9 +5,9 @@
 {% block body %}
     <div class="container mt-4">
         <h2>les biens : </h2>
-        {#<div class="count">
+        <div class="count">
             Vous avez {{ biens.getTotalItemCount }} biens qui correspondent à votre recherche !
-        </div>#}
+        </div>
         <div class="sortable" style="display: inline-block">
             {{ knp_pagination_sortable(biens,'prix', 'p.prixpublic') }}
         </div>

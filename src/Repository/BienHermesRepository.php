@@ -32,18 +32,17 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
 
-    public function findBienAndAlert()
+
+    public function findBienByNegociateur()
     {
-        $this->createQueryBuilder()
-            ->select('bh.prixpublic', 'bh.activite','bh.codepostal')
-            ->from('App:BienHermes', 'bh')
-            ->leftJoin('bh.propertyAlerts', 'pa')
-            ->where('bh.codepostal',
-                $this->createQueryBuilder()
-                    ->select('au.postalcode')
-                    ->from('App:AlertUser', 'au')
-            );
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.negociateur LIKE :negociateur')
+            ->andWhere('n.statut = false')
+            ->setParameter('negociateur', '%BOURBONNAIS%')
+            ->getQuery()
+            ->getResult();
     }
+
 
     /**
      * @return array
