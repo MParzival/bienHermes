@@ -17,12 +17,12 @@ class BienController extends AbstractController
 {
 
     /**
-     * @Route("/biens", name="app_bien", methods={"GET","POST"})
+     * @Route("/biens/all", name="app_bien_all", methods={"GET","POST"})
      * @param Request $request
      * @param BienHermesRepository $repository
      * @return Response
      */
-    public function index(Request $request, BienHermesRepository $repository, PaginatorInterface $paginator) :Response
+    public function indexAll(Request $request, BienHermesRepository $repository, PaginatorInterface $paginator) :Response
     {
         $result = $paginator->paginate(
         $repository->findVisibleWithPaginate(),
@@ -69,6 +69,73 @@ class BienController extends AbstractController
         return $this->render('bien/show.html.twig',[
             'bien' => $bienHermes,
             'form' => $formContact->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/biens/fonddecommerce", name="app_bien", methods={"GET","POST"})
+     * @param Request $request
+     * @param BienHermesRepository $repository
+     * @return Response
+     */
+    public function index(BienHermesRepository $repository, Request $request, PaginatorInterface $paginator)
+    {
+        $result = $paginator->paginate(
+            $repository->findByFondDeCommerce(),
+            $request->query->getInt('page', 1),12);
+
+        return $this->render('bien/byTypeTransac.html.twig', [
+            'biens' => $result,
+        ]);
+    }
+
+    /**
+     * @Route("/biens/localcommercial", name="app_bien_localCommercial", methods={"GET","POST"})
+     * @param Request $request
+     * @param BienHermesRepository $repository
+     * @return Response
+     */
+    public function indexLocalCommercial(BienHermesRepository $repository, Request $request, PaginatorInterface $paginator)
+    {
+        $result = $paginator->paginate(
+            $repository->findByLocalCommercial(),
+            $request->query->getInt('page', 1),12);
+        return $this->render('bien/byTypeTransac.html.twig', [
+            'biens' => $result,
+        ]);
+    }
+
+    /**
+     * @Route("/biens/immobilierEntreprise", name="app_bien_immobilierEntreprise", methods={"GET","POST"})
+     * @param Request $request
+     * @param BienHermesRepository $repository
+     * @return Response
+     */
+    public function indexImmobilierEntreprise(BienHermesRepository $repository, Request $request, PaginatorInterface $paginator)
+    {
+        $result = $paginator->paginate(
+            $repository->findByImmobilierEntreprise(),
+            $request->query->getInt('page', 1),12);
+
+        return $this->render('bien/byTypeTransac.html.twig', [
+            'biens' => $result,
+        ]);
+    }
+
+    /**
+     * @Route("/biens/investissementImmobilier", name="app_bien_investissementImmobilier", methods={"GET","POST"})
+     * @param Request $request
+     * @param BienHermesRepository $repository
+     * @return Response
+     */
+    public function indexInvestissementImmobilier(BienHermesRepository $repository, Request $request, PaginatorInterface $paginator)
+    {
+        $result = $paginator->paginate(
+            $repository->findByInvestissementImmo(),
+            $request->query->getInt('page', 1),12);
+
+        return $this->render('bien/byTypeTransac.html.twig', [
+            'biens' => $result,
         ]);
     }
 }

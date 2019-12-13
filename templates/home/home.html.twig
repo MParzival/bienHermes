@@ -6,10 +6,18 @@
 <!-- début header -->
 <div class="jumbotron home">
     <div class="text-center">
-        <h2 class="pt-4 title">CABINET HERMES</h2>
-        <p class="para-title">Expert immobilier d'entreprise en Auvergne-Rhône-Alpes,
-            le Cabinet Hermès vous accompagne dans l'achat et la vente de fonds de commerce ou d’investissement immobilier.
-        </p>
+        <!-- Début navbar searchBiensByTypeTransac -->
+        <section>
+            <div class="container mt-4 ">
+                <ul class="list-group list-group-horizontal justify-content-center">
+                    <a href="{{ path('app_bien') }}" class="btn green" style="font-size: 20px">Fonds de commerce</a>
+                    <a href="{{ path('app_bien_localCommercial') }}" class="btn blue" style="font-size: 20px">Local commercial</a>
+                    <a href="{{ path('app_bien_immobilierEntreprise') }}" class="btn purple" style="font-size: 20px">Immobilier d'entreprise</a>
+                    <a href="{{ path('app_bien_investissementImmobilier') }}" class="btn orange" style="font-size: 20px">Investissement immobillier</a>
+                </ul>
+            </div>
+        </section>
+        <!-- Début navbar searchBiensByTypeTransac -->
     </div>
 
     <!-- debut formulaire de recherche -->
@@ -60,8 +68,8 @@
 <!-- fin header -->
 
 <!-- début bien à la une -->
-<div class="biens_a_la_une pt-2 pb-2">
-    <div class="container mt-4">
+<div class="bg-pattern pt-2 pb-2">
+    <div class="container mt-4 white-bg p-3">
         <h2><i class="fa fa-star mr-2"></i>Les biens à la une !</h2>
         <div class="row">
             <div class="col-md-9">
@@ -78,20 +86,74 @@
                                     {% endif %}
 
                                     <div class="card-body p-0">
-                                        <h6 class="card-title text-center">
-                                            <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
-                                                {% if bien.titreannonce is not empty %}
-                                                    {{ bien.titreannonce }}
-                                                    {% else %}
-                                                    Contactez-nous !
-                                                {% endif %}
+                                        {% if bien.typetransact == 1  %}
+                                            <h6 class="card-title-green text-center">
+                                                <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
 
-                                            </a>
-                                        </h6>
-                                        <div class="card-text">
+                                                    {% if bien.titreannonce is not empty %}
+                                                        {{ bien.titreannonce }}
+                                                    {% else %}
+                                                        Contactez-nous !
+                                                    {% endif %}
+                                                </a>
+                                            </h6>
+                                            {% elseif bien.typetransact == 4 %}
+                                            <h6 class="card-title-blue text-center">
+                                                <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                    {% if bien.titreannonce is not empty %}
+                                                        {{ bien.titreannonce }}
+                                                    {% else %}
+                                                        Contactez-nous !
+                                                    {% endif %}
+                                                </a>
+                                            </h6>
+                                            {% elseif bien.typebien == 2  %}
+                                                <h6 class="card-title-purple text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% elseif bien.typetransact == 3 and (bien.typebien == 1 or bien.typebien == 2)  %}
+                                                <h6 class="card-title-purple text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% else %}
+                                                <h6 class="card-title text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                        {% endif %}
+
+
+                                        <div class="card-text text-center mb-3">
                                             <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
                                         </div>
-                                        <div class="card-text">
+                                        <div class="card-text text-center mb-3">
+                                            <i class="fa fa-briefcase mr-2"></i>{{ bien.typetransact }}
+                                        </div>
+                                        <div class="card-text text-center mb-3">
+                                            <i class="fa fa-briefcase mr-2"></i>{{ bien.typebien }}
+                                        </div>
+                                        <div class="card-text text-center mb-3">
                                             <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
                                         </div>
                                         <div class="prixAnnonce text-center">
@@ -123,46 +185,98 @@
 <!-- fin bien à la une -->
 
 <!-- début dernier biens ajoutés -->
-<div class="dernier_bien_ajoute mt-4 pt-2 pb-2">
-    <div class="container mt-4">
-        <h2><i class="fa fa-history mr-2"></i>les derniers biens ajoutés !</h2>
-        <div class="row flex">
-            {% for bien in biensLatest %}
-                <div class="col-md-3 mt-4">
-                    <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
-                        <div class="card">
-                            {% if bien.pictfilename1 is not empty %}
-                                <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
-                            {% else %}
-                                <img src="{{ asset('media/image/placeholder.png') }}" alt="min_placeholder" class="empty">
-                            {% endif %}
-                            <div class="card-body p-0">
-                                <p class="card-title text-center">
-                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
-                                </p>
-                                <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)</p>
-                                <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
-                                <div class="prixAnnonce text-center">
-                                    {% if bien.prixpublic != 0 %}
-                                        {{ bien.formattedPrice }} € FAI*
-                                    {% else %}
-                                        {{ bien.loyerannuel }} € HT / AN
-                                    {% endif %}
-                                </div>
+    <div class="dernier_bien_ajoute pt-2 pb-2">
+        <div class="container">
+            <h2><i class="fas fa-history mr-2"></i>Les derniers biens ajouté !</h2>
+            <div class="row">
+                    <div class="row flex">
+                        {% for bien in biensLatest %}
+                            <div class="col-md-4 mt-4 p-4">
+                                <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
+                                    <div class="card image-header">
+
+                                        {% if bien.pictfilename1 is not empty %}
+                                            <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                                        {% else %}
+                                            <img src="{{ asset('media/image/placeholder.png') }}" alt="min_placeholder" class="empty">
+                                        {% endif %}
+
+                                        <div class="card-body p-0">
+                                            {% if  bien.typetransact == 4 %}
+                                                <h6 class="card-title-blue text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% elseif bien.typebien == 2 %}
+                                                <h6 class="card-title-purple text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% elseif bien.typetransact == 1 %}
+                                                <h6 class="card-title-green text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% else %}
+                                                <h6 class="card-title-orange text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% endif %}
+                                            <div class="card-text text-center mb-3">
+                                                <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
+                                            </div>
+                                            <div class="card-text text-center mb-3">
+                                                <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
+                                            </div>
+                                            <div class="prixAnnonce text-center">
+                                                {% if bien.prixpublic != 0 %}
+                                                    {{ bien.formattedPrice }} € FAI*
+                                                {% else %}
+                                                    {{ bien.loyerannuel }} € HT / AN
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
+                        {% endfor %}
+                    </div>
+            </div>
+
         </div>
     </div>
-</div>
 <!-- fin dernier biens ajouté -->
 
-    <!-- Début bien vendu -->
+    <!-- Début il nous ont fait confiance -->
         <div class="bien-vendu mt-4 pt-2 pb-2">
             <div class="container mt-4">
-                <h2>Ils nous ont fait confiance !</h2>
+                <h2><i class="fas fa-handshake mr-2"></i>Ils nous ont fait confiance !</h2>
                 <div class="row flex">
                     {% for bien in bienSold  %}
                         <div class="col-md-3 mt-4">

@@ -5,6 +5,68 @@
     background-color: #868686;
 }
 
+.title{
+    color: #fed200;
+}
+
+/**
+Début Button navbar searchBiensByTypeTransac
+ */
+.purple{
+    background-color: #8c6fb4;
+    color: white;
+    transition-duration: 0.4s;
+}
+.purple:hover{
+    background-color: white;
+    color: #8c6fb4;
+    border: 2px solid #8c6fb4;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.green{
+     background-color: #6eae66;
+     color: white;
+    transition-duration: 0.4s
+}
+.green:hover{
+    background-color: white;
+    color: #6eae66;
+    border: 2px solid #6eae66;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.blue{
+    background-color: #6099c8;
+    color: white;
+    transition-duration: 0.4s
+}
+.blue:hover{
+    background-color: white;
+    color: #6099c8;
+    border: 2px solid #6099c8;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.orange{
+    background-color: #f78a2a;
+    color: white;
+    transition-duration: 0.4s
+}
+.orange:Hover{
+    background-color: white;
+    color: #f78a2a;
+    border: 2px solid #f78a2a;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+/**
+Fin navbar searchBiensByTypeTransac
+ */
+
+/**
+debut sidebar
+ */
+
+/**
+fin sidebar
+ */
 .place{
     font-size: 12px;
     font-weight: bold;
@@ -14,17 +76,39 @@ img {
     height: 200px;
 }
 .card-title{
-    background-color: #868686;
+    background-color: #fed200;
+    color: black;
+    height: 40px;
+}
+.card-title-green{
+    background-color: #6eae66;
+    color: black;
+    height: 40px;
+}
+.card-title-purple{
+    background-color: #8c6fb4;
+    color: black;
+    height: 40px;
+}
+.card-title-blue{
+    background-color: #6099c8;
+    color: black;
+    height: 40px;
+}
+.card-title-orange{
+    background-color: #f78a2a;
+    color: black;
+    height: 40px;
 }
 .annonceCardHome{
     font-size: 15px;
     font-weight: bold;
-    color: white;
+    color: black;
     margin: 2px 10px;
 }
 
 .card-text{
-    font-size: 12px;
+    font-size: 15px;
     font-weight: bold;
     color: #868686;
 }

@@ -29,12 +29,65 @@
                                 <img src="{{ asset ('media/image/placeholder.png')}}" alt="min_placeholder" class="empty">
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="{{ path('bien_show', { id: bien.id, slug: bien.slug}) }}">{{ bien.titreannonce }}</a>
-                                </h5>
+                                {% if bien.typetransact == 1  %}
+                                    <h6 class="card-title-green text-center">
+                                        <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                            {% if bien.titreannonce is not empty %}
+                                                {{ bien.titreannonce }}
+                                            {% else %}
+                                                Contactez-nous !
+                                            {% endif %}
+                                        </a>
+                                    </h6>
+                                {% elseif bien.typetransact == 4 %}
+                                    <h6 class="card-title-blue text-center">
+                                        <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                            {% if bien.titreannonce is not empty %}
+                                                {{ bien.titreannonce }}
+                                            {% else %}
+                                                Contactez-nous !
+                                            {% endif %}
+                                        </a>
+                                    </h6>
+                                {% elseif bien.typebien == 2  %}
+                                    <h6 class="card-title-purple text-center">
+                                        <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                            {% if bien.titreannonce is not empty %}
+                                                {{ bien.titreannonce }}
+                                            {% else %}
+                                                Contactez-nous !
+                                            {% endif %}
+                                        </a>
+                                    </h6>
+                                {% elseif bien.typetransact == 3 and (bien.typebien == 1 or bien.typebien == 2)  %}
+                                    <h6 class="card-title-purple text-center">
+                                        <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                            {% if bien.titreannonce is not empty %}
+                                                {{ bien.titreannonce }}
+                                            {% else %}
+                                                Contactez-nous !
+                                            {% endif %}
+                                        </a>
+                                    </h6>
+                                {% else %}
+                                    <h6 class="card-title text-center">
+                                        <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                            {% if bien.titreannonce is not empty %}
+                                                {{ bien.titreannonce }}
+                                            {% else %}
+                                                Contactez-nous !
+                                            {% endif %}
+                                        </a>
+                                    </h6>
+                                {% endif %}
                                 <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
                                 <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
-                                <p class="card-text">Surface : {{ bien.surfacetotale }}</p>
+                                <p class="card-text">Surface : {{ bien.typetransact }}</p>
                                 <p class="card-text">Ref : {{ bien.numero }}</p>
                                 <p class="card-text">loyer annuel : {{ bien.loyerannuel }}</p>
                                 <p class="card-text">prix public : {{ bien.prixpublic }}</p>

@@ -78,44 +78,8 @@ class ActualityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/actuality/cabinetHermes", name="cabinet_hermes_index")
-     */
-    public function indexCabinetHermes()
-    {
-        return $this->render('actuality/cabinetHermes.html.twig', [
-            'controller_name' => 'ActualityController',
-        ]);
-    }
 
-    /**
-     * @Route("/actuality/values", name="values_index")
-     */
-    public function indexValues()
-    {
-        return $this->render('actuality/values.html.twig', [
-            'controller_name' => 'ActualityController',
-        ]);
-    }
 
-    /**
-     * @Route("/ckeditor", name="ckeditor_app")
-     * @return Response
-     */
-    public function ckeditor()
-    {
-        $form = $this->createFormBuilder()
-            ->add('content', CKEditorType::class,[
-                'config' =>[
-                    'uiColor' => '#e2e2e2',
-                    'toolbar' => 'full',
-                    'required' => true
-                ]
-            ])
-            ->getForm();
 
-        return $this->render('home/ckeditor.html.twig', [
-            'form' =>$form->createView()
-        ]);
-    }
+
 }

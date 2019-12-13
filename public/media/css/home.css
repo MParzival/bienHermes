@@ -1,5 +1,5 @@
 .home{
-    background-image: url("../image/bandeau-histoire-1920px.jpg");
+    background-image: url("https://www.cabinet-hermes.fr/wp-content/themes/hermes/assets/images/bg_search_home.jpg");
     background-size: cover;
     min-height: 445px;
     color: white;
@@ -9,12 +9,13 @@
     background-image: url("../image/Title-background-1920x600-News.jpg");
     background-size: cover;
     min-height: 600px;
-    color: #868686;
+    color: #fed200;
 }
 
 .bg-pattern{
     background-image: url("https://www.cabinet-hermes.fr/wp-content/themes/hermes/assets/images/pattern.jpg");
     min-height: 600px;
+    color: #fed200;
 }
 
 .white-bg{

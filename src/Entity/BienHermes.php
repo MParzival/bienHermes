@@ -119,11 +119,11 @@ class BienHermes
     private $top = '0';
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="TypeTransact", type="boolean", nullable=false)
+     * @ORM\Column(name="TypeTransact", type="smallint", nullable=false)
      */
-    private $typetransact = '0';
+    private $typetransact ;
 
     /**
      * @var int|null
@@ -1616,18 +1616,18 @@ class BienHermes
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function isTypetransact(): bool
+    public function getTypetransact() :int
     {
         return $this->typetransact;
     }
 
     /**
-     * @param bool $typetransact
+     * @param int $typetransact
      * @return BienHermes
      */
-    public function setTypetransact(bool $typetransact): BienHermes
+    public function setTypetransact(int $typetransact): BienHermes
     {
         $this->typetransact = $typetransact;
         return $this;

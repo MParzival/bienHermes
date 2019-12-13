@@ -31,21 +31,8 @@ class BienHermesRepository extends ServiceEntityRepository
         $this->paginator = $paginator;
     }
 
-
-    public function findBienAndAlert()
-    {
-        $this->createQueryBuilder()
-            ->select('bh.prixpublic', 'bh.activite','bh.codepostal')
-            ->from('App:BienHermes', 'bh')
-            ->leftJoin('bh.propertyAlerts', 'pa')
-            ->where('bh.codepostal',
-                $this->createQueryBuilder()
-                    ->select('au.postalcode')
-                    ->from('App:AlertUser', 'au')
-            );
-    }
-
     /**
+     * requête permettant la recherche de tout les biens visible en fonction de leur numero
      * @return array
      */
     public function findAllVisible() : array
@@ -66,208 +53,33 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $value1
-     * @param string $value2
-     * @param int $value3
-     * @return array
-     */
-    public function findByAllSearch(string $value1, string $value2 , int $value3): array
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.titreannonce LIKE :val1')
-            ->andWhere('r.codepostal = :val2')
-            ->andWhere('r.prixpublic <= :val3')
-            ->setParameters([
-                'val1' => '%'.$value1.'%',
-                'val2' => $value2,
-                'val3' => $value3
-            ])
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**git pull
-     * @param string $value1
-     * @param string $value2
-     * @return array
-     */
-    public function findByNameAndPostalCode(string $value1, string $value2): array
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.titreannonce LIKE :val1')
-            ->andWhere('r.codepostal = :val2')
-            ->setParameters([
-                'val1' => '%'.$value1.'%',
-                'val2' => $value2
-            ])
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param string $value1
-     * @param int $value2
-     * @return array
-     */
-    public function findByNameAndMaxPrice(string $value1, int $value2): array
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.titreannonce LIKE :val1')
-            ->andWhere('r.prixpublic <= :val2')
-            ->setParameters([
-                'val1' => '%'.$value1.'%',
-                'val2' => $value2
-            ])
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param string $value1
-     * @param int $value2
-     * @return mixed
-     */
-    public function findByPostalCodeAndMaxPrice(string $value1, int $value2)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.codepostal = :val1')
-            ->andWhere('r.prixpublic <= :val2')
-            ->setParameters([
-                'val1' => $value1,
-                'val2' => $value2,
-            ])
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param string|null $nameSearch
-     * @param string|null $postalCodeSearch
-     * @param int|null $priceSearch
-     * @param int|null $rentSearch
-     * @return array
-     */
-    public function findByCriteria(string $nameSearch = null, string $postalCodeSearch = null, int $priceSearch = null, int $rentSearch = null): array
-    {
-        $query = $this->createQueryBuilder('q');
-        if($nameSearch){
-            //dump($nameSearch);
-            $query
-                ->where('q.titreannonce LIKE :titreannonce')
-                ->distinct(true)
-                ->setParameter('titreannonce', '%'.$nameSearch.'%');
-        }
-        if ($postalCodeSearch) {
-            //dump($postalCodeSearch);
-            $query
-                ->andWhere('q.codepostal = :codepostal')
-                ->setParameter('codepostal', $postalCodeSearch);
-        }
-        if ($priceSearch){
-            //dump($priceSearch);
-            $query
-                ->andWhere('q.prixpublic <= :prixpublic')
-                ->setParameter('prixpublic', $priceSearch);
-        }
-        if ($rentSearch){
-            //dump($rentSearch);
-            $query
-                ->andWhere('q.loyerannuel <= :loyerannuel')
-                ->setParameter('loyerannuel', $rentSearch);
-        }
-
-        //dump($query->getQuery());
-        return $query
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
+     * requête permettant la recherche des derniers bien ajouté en base par leur date d'entrée
      * @return array
      */
     public function findLatest() : array
     {
         return $this->createQueryBuilder('r')
             ->orderBy('r.dateentree', 'ASC')
-            ->setMaxResults(4)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * @param $nomSearch
-     * @return array
-     */
-    public function findByTitle($nomSearch) : array
-    {
-        return $this->createQueryBuilder('r')
-            ->where('r.titreannonce LIKE :val')
-            ->setParameter('val','%'.$nomSearch.'%')
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param $codePostalSearch
-     * @return array
-     */
-    public function findByPostalCode($codePostalSearch) : array
-    {
-        return $this->createQueryBuilder('r')
-            ->where('r.codepostal = :val')
-            ->setParameter('val', $codePostalSearch)
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param $priceSearch
-     * @return array
-     */
-    public function findByPrice($priceSearch) : array
-    {
-
-        return $this->createQueryBuilder('r')
-            ->where('r.prixpublic < :val')
-            ->setParameter('val', $priceSearch)
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param $loyerSearch
-     * @return array
-     */
-    public function findByRentPrice($loyerSearch) : array
-    {
-        return $this->createQueryBuilder('r')
-            ->where('r.loyerannuel < :val')
-            ->setParameter('val', $loyerSearch)
-            ->orderBy('r.titreannonce', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
+     * requête permettant la recherche des bien en top (AVP 90%)
      * @return array
      */
     public function findTopVisible() : array
     {
         return $this->createQueryBuilder('r')
-            ->where('r.top = true')
+            ->andWhere('r.top = true')
             ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }
 
     /**
+     * requête permettant la recherche par numero de bien
      * @param BienRefSearch $bienRefSearch
      * @return array
      */
@@ -283,8 +95,8 @@ class BienHermesRepository extends ServiceEntityRepository
 
     }
 
-
     /**
+     * requête permettant la recherche par different critères que le bien possède.
      * @param BienSearch $bienSearch
      * @return PaginationInterface
      */
@@ -326,25 +138,69 @@ class BienHermesRepository extends ServiceEntityRepository
 
     }
 
-
-    public function findBienByPropertyAlert()
-    {
-        return $this->getEntityManager()
-            ->createQuery("SELECT bien_hermes.id, bien_hermes.PrixPublic, bien_hermes.CodePostal FROM bien_hermes
-            LEFT OUTER JOIN property_alert ON bien_hermes.id = property_alert.bien_id
-            WHERE bien_hermes.CodePostal = (SELECT alert_user.postal_code FROM alert_user limit 1)
-            AND bien_hermes.PrixPublic <= (SELECT alert_user.max_price FROM alert_user LIMIT 1)
-            AND bien_hermes.Activite LIKE CONCAT('%',(SELECT activity.name FROM alert_user JOIN activity ON alert_user.id_activity_id = activity.id),'%') 
-            AND property_alert.bien_id IS null")
-            ->getResult();
-    }
-
-    public function findBienSold()
+    /**
+     * requête permettant la recherche des biens vendus
+     * @return array
+     */
+    public function findBienSold() :array
     {
         return $this->createQueryBuilder('r')
             ->where('r.statut = true')
             ->orderBy('r.numero', 'ASC')
             ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * requête permettant la recherche par fond de commerce
+     * @return array
+     */
+    public function findByFondDeCommerce(): array
+    {
+        return $this->createQueryBuilder('fc')
+            ->andWhere('fc.typetransact = 1')
+            ->andWhere('fc.statut = false')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * requête permettant la recherche par local commercial
+     * @return array
+     */
+    public function findByLocalCommercial(): array
+    {
+        return $this->createQueryBuilder('lc')
+            ->andWhere('lc.typetransact = 4')
+            ->andWhere('lc.statut = false')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * requête permettant la recherche par Immobilier d'entreprise
+     * @return array
+     */
+    public function findByImmobilierEntreprise() : array
+    {
+        return $this->createQueryBuilder('lc')
+            ->andWhere('lc.typetransact = 3')
+            ->andWhere('lc.statut = false')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * requête permettant la recherche par Investissement immobilier
+     * @return array
+     */
+    public function findByInvestissementImmo(): array
+    {
+        return $this->createQueryBuilder('ii')
+            ->andWhere('ii.typebien = 1')
+            ->orWhere('ii.typebien = 2')
+            ->andWhere('ii.typetransact = 3')
             ->getQuery()
             ->getResult();
     }

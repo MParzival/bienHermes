@@ -14,7 +14,7 @@
     </div>
     <div class="container mt-4">
         <h2>L'actualité...</h2>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_ACTUALITY') %}
             <div>
                 <a href="{{ path('actuality_new') }}" class="btn btn-primary" >Créer une nouvelle actualité</a>
             </div>

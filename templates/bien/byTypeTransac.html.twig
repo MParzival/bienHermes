@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les biens{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2 class="count">
+            Vous avez {{ biens.getTotalItemCount }} locaux commerciaux qui correspondent à votre recherche !
+        </h2>
+        <div class="">
+            <div class="sortable" style="display: inline-block">
+                {{ knp_pagination_sortable(biens,'prix', 'p.prixpublic') }}
+            </div>
+            <div class="sortable" style="display: inline-block">
+                {{ knp_pagination_sortable(biens,'surface', 'p.surfacetotale') }}
+            </div>
+            <div class="sortable" style="display: inline-block">
+                {{ knp_pagination_sortable(biens,'loyer', 'p.loyerannuel') }}
+            </div>
+        </div>
+
+        <div class="row flex">
+
+            {% for bien in biens %}
+                <div class="col-md-4 mt-4">
+                    <div class="card">
+                        {% if bien.pictfilename1 is not empty %}
+                            <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                        {% else %}
+                            <img src="{{ asset ('media/image/placeholder.png')}}" alt="min_placeholder" class="empty">
+                        {% endif %}
+                        <div class="card-body">
+                            {% if bien.typetransact == 1  %}
+                                <h6 class="card-title-green text-center">
+                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                        {% if bien.titreannonce is not empty %}
+                                            {{ bien.titreannonce }}
+                                        {% else %}
+                                            Contactez-nous !
+                                        {% endif %}
+                                    </a>
+                                </h6>
+                            {% elseif bien.typetransact == 4 %}
+                                <h6 class="card-title-blue text-center">
+                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                        {% if bien.titreannonce is not empty %}
+                                            {{ bien.titreannonce }}
+                                        {% else %}
+                                            Contactez-nous !
+                                        {% endif %}
+                                    </a>
+                                </h6>
+                            {% elseif bien.typebien == 2  %}
+                                <h6 class="card-title-purple text-center">
+                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                        {% if bien.titreannonce is not empty %}
+                                            {{ bien.titreannonce }}
+                                        {% else %}
+                                            Contactez-nous !
+                                        {% endif %}
+                                    </a>
+                                </h6>
+                            {% elseif bien.typetransact == 3 and (bien.typebien == 1 or bien.typebien == 2)  %}
+                                <h6 class="card-title-purple text-center">
+                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                        {% if bien.titreannonce is not empty %}
+                                            {{ bien.titreannonce }}
+                                        {% else %}
+                                            Contactez-nous !
+                                        {% endif %}
+                                    </a>
+                                </h6>
+                            {% else %}
+                                <h6 class="card-title text-center">
+                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                        {% if bien.titreannonce is not empty %}
+                                            {{ bien.titreannonce }}
+                                        {% else %}
+                                            Contactez-nous !
+                                        {% endif %}
+                                    </a>
+                                </h6>
+                            {% endif %}
+                            <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
+                            <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
+                            <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.typetransact }}</p>
+                            <p class="card-text">Surface : {{ bien.surfacetotale }}</p>
+                            <p class="card-text">Ref : {{ bien.numero }}</p>
+                            <p class="card-text">loyer annuel : {{ bien.loyerannuel }}</p>
+                            <p class="card-text">prix public : {{ bien.prixpublic }}</p>
+                            <div class="btn btn-danger pull-right prixAnnonce">
+
+                                {#{{ bien.prixpublic }}  € FAI* - ({{ bien.loyerannuel }} € HT / AN)#}
+
+                                {% if bien.prixpublic != 0 %}
+                                    {{ bien.prixpublic | number_format(0,',', ' ') }} € FAI*
+                                {% elseif bien.prixpublic > 0 and bien.loyerannuel > 0 %}
+                                    {{ bien.prixpublic| number_format(0, ',', ' ') }} € FAI* - {{ bien.loyerannuel }} € HT / AN
+                                {% else %}
+                                    {{ bien.loyerannuel }} € HT / AN
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="pagination">
+            {{ knp_pagination_render(biens) }}
+        </div>
+    </div>
+{% endblock %}

@@ -25,7 +25,7 @@
                                     </h5>
                                     <p class="card-text"><i class="fa fa-map-marker mr-2"></i>{{ bien.ville }} ({{ bien.codepostal }})</p>
                                     <p class="card-text"><i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}</p>
-                                    <p class="card-text">{{ bien.numero }}</p>
+                                    <p class="card-text">{{ bien.typetransact }}</p>
                                     <div class="btn btn-danger pull-right prixAnnonce">
                                         {% if bien.prixpublic != 0 %}
                                             {{ bien.prixpublic | number_format(0,',', ' ') }} € FAI*
