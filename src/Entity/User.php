@@ -70,7 +70,7 @@ class User implements UserInterface
     {
         $this->properties = new ArrayCollection();
         $this->alertUsers = new ArrayCollection();
-        $this->roles = array('ROLE_ADMIN');
+        $this->roles = array('ROLE_USER');
     }
 
 
