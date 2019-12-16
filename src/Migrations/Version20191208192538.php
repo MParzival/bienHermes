@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191213154047 extends AbstractMigration
+final class Version20191208192538 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -29,7 +29,6 @@ final class Version20191213154047 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE bien_hermes CHANGE TypeTransact TypeTransact TINYINT(1) NOT NULL');
-        $this->addSql('ALTER TABLE property_alert DROP FOREIGN KEY FK_D1EE87CC393D7457');
+
     }
 }

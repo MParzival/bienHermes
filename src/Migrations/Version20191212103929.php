@@ -22,7 +22,6 @@ final class Version20191212103929 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE actuality ADD updated_at DATETIME NOT NULL, CHANGE image_name filename VARCHAR(255) NOT NULL');
 
     }
 

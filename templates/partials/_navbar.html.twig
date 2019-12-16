@@ -1,5 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ path('app_home') }}">Cabinet Hermès</a>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{{ path('app_home') }}">
+        <img src="https://www.cabinet-hermes.fr/wp-content/themes/hermes/assets/images/logo_header.svg" alt="Retour à l'accueil" title data-toggle="tooltip" data-placement="right"
+        data-original-title="Retour à l'accueil" style="height: 100px">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,18 +28,18 @@
         <ul class="navbar-nav ml-auto">
             {% if app.user %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_show', {id : app.user.id}) }}">Mon compte : {{ app.user.username }}</a>
+                    <a class="nav-link auth" href="{{ path('user_show', {id : app.user.id}) }}">Mon compte : {{ app.user.username }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Se deconnecter</a>
+                    <a class="nav-link auth" href="{{ path('app_logout') }}">Se deconnecter</a>
                 </li>
 
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_register') }}">Créer un compte</a>
+                    <a class="nav-link auth" href="{{ path('app_register') }}">Créer un compte</a>
                 </li>
                <li class="nav-item">
-                   <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+                   <a class="nav-link auth" href="{{ path('app_login') }}">Se connecter</a>
                </li>
 
             {% endif %}

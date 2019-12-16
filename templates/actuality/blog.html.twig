@@ -20,34 +20,26 @@
             </div>
         {% endif %}
 
-
         <div class="row flex">
-            {% if actualities != null and actualities|length > 0 %}
-                {% for actuality in actualities  %}
-                    <div class="col-md-6 mt-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ actuality.title }}</h5>
-                            </div>
-                            <div>
-                                <img src="{{ vich_uploader_asset(actuality, 'imageFile')|imagine_filter('thumb') }}" alt="" class="card-img-top">
-                            </div>
-                            <p class="card-text">{{ actuality.resume}}</p>
-                        </div>
-                        <div>
-                            <a href="{{ path('actuality_show', {id: actuality.id}) }}" class="btn btn-sm btn-success">En savoir plus</a>
-                        </div>
-                    </div>
-                    
-
-                {% endfor %}
-            {% endif %}
+{% if actualities != null and actualities|length > 0 %}
+    {% for actuality in actualities  %}
+        <div class="col-md-6 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ actuality.title }}</h5>
+                </div>
+                <div>
+                    <img src="{{ vich_uploader_asset(actuality, 'imageFile')|imagine_filter('thumb') }}" alt="" class="card-img-top">
+                </div>
+                <p class="card-text">{{ actuality.resume}}</p>
+            </div>
+            <div>
+                <a href="{{ path('actuality_show', {id: actuality.id}) }}" class="btn btn-sm btn-success">En savoir plus</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
         </div>
     </div>
-
-
-
-
-
-
 {% endblock %}
+

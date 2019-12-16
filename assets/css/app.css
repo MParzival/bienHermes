@@ -1,3 +1,12 @@
+.nav-link{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.auth{
+   color: #2e383c;
+}
+
 .prixAnnonce{
     font-size: 20px;
     color: white;

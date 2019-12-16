@@ -8,12 +8,12 @@
     <div class="text-center">
         <!-- Début navbar searchBiensByTypeTransac -->
         <section>
-            <div class="container mt-4 ">
+            <div class="container mt-4 mb-4">
                 <ul class="list-group list-group-horizontal justify-content-center">
-                    <a href="{{ path('app_bien') }}" class="btn green" style="font-size: 20px">Fonds de commerce</a>
-                    <a href="{{ path('app_bien_localCommercial') }}" class="btn blue" style="font-size: 20px">Local commercial</a>
-                    <a href="{{ path('app_bien_immobilierEntreprise') }}" class="btn purple" style="font-size: 20px">Immobilier d'entreprise</a>
-                    <a href="{{ path('app_bien_investissementImmobilier') }}" class="btn orange" style="font-size: 20px">Investissement immobillier</a>
+                    <a href="{{ path('app_bien') }}" class="btn green" style="font-size: 30px">Fonds de commerce</a>
+                    <a href="{{ path('app_bien_localCommercial') }}" class="btn blue" style="font-size: 30px">Local commercial</a>
+                    <a href="{{ path('app_bien_immobilierEntreprise') }}" class="btn purple" style="font-size: 30px">Immobilier d'entreprise</a>
+                    <a href="{{ path('app_bien_investissementImmobilier') }}" class="btn orange" style="font-size: 30px">Investissement immobillier</a>
                 </ul>
             </div>
         </section>
@@ -146,12 +146,6 @@
 
                                         <div class="card-text text-center mb-3">
                                             <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
-                                        </div>
-                                        <div class="card-text text-center mb-3">
-                                            <i class="fa fa-briefcase mr-2"></i>{{ bien.typetransact }}
-                                        </div>
-                                        <div class="card-text text-center mb-3">
-                                            <i class="fa fa-briefcase mr-2"></i>{{ bien.typebien }}
                                         </div>
                                         <div class="card-text text-center mb-3">
                                             <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
