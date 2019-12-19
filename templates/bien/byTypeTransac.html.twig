@@ -63,8 +63,8 @@
                                         {% endif %}
                                     </a>
                                 </h6>
-                            {% elseif bien.typetransact == 3 and (bien.typebien == 1 or bien.typebien == 2)  %}
-                                <h6 class="card-title-purple text-center">
+                            {% elseif bien.prixpublic > 0 and (bien.typebien == 1 or bien.typebien == 2)  %}
+                                <h6 class="card-title-orange text-center">
                                     <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
 
                                         {% if bien.titreannonce is not empty %}

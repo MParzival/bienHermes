@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AgenceController!{% endblock %}
+
+{% block body %}
+    <section class="bloc_page_title m-0" role="search">
+        <div class="container p-5">
+            <h1 class="mt-5">AGENCE D'ANNECY</h1>
+        </div>
+    </section>
+    
+    <section class="bg-pattern mt-0 p-5">
+        <div class="container white-bg mt-0">
+            <div>
+                <h2 style="color: #2e383c"><i class="fas fa-home mr-2" style="color: #fed200"></i>Notre Agence d'Annecy</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <p style="color: #2e383c; font-size: 15px">
+                        <img class="alignleft imgAnnecy" style="height: 400px; width: 300px" src="{{ asset('media/image/36516931_2023494481025367_2643163289600655360_n-225x300.jpg') }}" alt="" >
+                        Fort de son dynamisme, le Cabinet Hermès, associé d’Action Commerce depuis 2013,
+                        a racheté́ l’agence historique du marché́ annecien,
+                        avec pour ambition de mettre au service des acteurs
+                        économiques de la région, ses différentes expertises.
+                        <br>
+                        Dirigé par Gerard Derigny, c’est un plaisir de compter un nouveau Cabinet
+                        Hermès au sein du groupe. Le Cabinet Hermès développe depuis plus de 30 ans son
+                        expertise dans la cession de fonds de commerce CHR (Cafés Hôtels Restaurants, Boulangerie, Salon de coiffure…)
+                        et de droits au bail (locaux commerciaux, boutiques…). L’agence a également
+                        su se positionner sur l’immobilier d’entreprise (bureaux, entrepôts) ainsi que sur l’investissement immobilier.
+                        <br>
+                        Vous souhaitez une estimation de votre fonds de commerce, ou droit au bail ?
+                        Vous souhaitez vendre ou louer votre commerce ? Vos bureaux ? Ou tout simplement investir ?
+                        Notre équipe est là pour vous accompagner.
+                    </p>
+                </div>
+                <div class="col-md-4 col-xs-12 bg-rhoneAlpes">
+                    <h5 style="font-size: 20px;font-weight: bold" class="mt-3">Expert immobilier Auvergne-Rhône-Alpes</h5>
+                    <img src="{{ asset('media/image/rhone_alpes.png') }}" alt="" style="height:100px; width: 100px; float:right">
+                    <ul class="p-0" style="margin-top:50px">
+                        <li style="list-style: none">
+                            <h5 style="font-size: 13px;font-weight: bold; color: #fed200">ANNECY</h5>
+                            <a href="mailto:contact@cabinet-hermes.fr" style="font-size: 13px;font-weight: bold;">annecy@cabinet-hermes.fr</a>
+                            <br>
+                            <strong style="font-size: 13px;font-weight: bold">04 50 10 27 15</strong>
+                            <br>
+                            <a href="" target="_blank" style="font-size: 13px;font-weight: bold">54 rue Sommeiller
+                                <br> ANNECY - 74000
+                            </a>
+                            <br>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="dernier_bien_ajoute pt-2 pb-2">
+            <div class="container">
+                <h2><i class="fas fa-history mr-2"></i>Les bien à la une à ANNECY !</h2>
+                <div class="row">
+                    <div class="row flex">
+                        {% for bien in biens %}
+                            <div class="col-md-4 mt-4 p-4">
+                                <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
+                                    <div class="card image-header">
+
+                                        {% if bien.pictfilename1 is not empty %}
+                                            <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                                        {% else %}
+                                            <img src="{{ asset('media/image/fondcommerce_cafe.jpg') }}" alt="min_placeholder" class="empty">
+                                        {% endif %}
+
+                                        <div class="card-body p-0">
+                                            {% if  bien.typetransact == 4 %}
+                                                <h6 class="card-title-blue text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% elseif bien.typebien == 2 %}
+                                                <h6 class="card-title-purple text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% elseif bien.typetransact == 1 %}
+                                                <h6 class="card-title-green text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% else %}
+                                                <h6 class="card-title-orange text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% endif %}
+                                            <div class="card-text text-center mb-3">
+                                                <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
+                                            </div>
+                                            <div class="card-text text-center mb-3">
+                                                <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
+                                            </div>
+                                            <div class="prixAnnonce text-center">
+                                                {% if bien.prixpublic != 0 %}
+                                                    {{ bien.formattedPrice }} € FAI*
+                                                {% else %}
+                                                    {{ bien.loyerannuel }} € HT / AN
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

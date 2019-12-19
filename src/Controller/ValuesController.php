@@ -12,7 +12,7 @@ class ValuesController extends AbstractController
      */
     public function indexValues()
     {
-        return $this->render('actuality/values.html.twig', [
+        return $this->render('values/values.html.twig', [
             'controller_name' => 'ActualityController',
         ]);
     }

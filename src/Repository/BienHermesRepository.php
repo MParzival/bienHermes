@@ -184,9 +184,10 @@ class BienHermesRepository extends ServiceEntityRepository
      */
     public function findByImmobilierEntreprise() : array
     {
-        return $this->createQueryBuilder('lc')
-            ->andWhere('lc.typetransact = 3')
-            ->andWhere('lc.statut = false')
+        return $this->createQueryBuilder('ie')
+            ->andWhere('ie.typetransact = 3')
+            ->andWhere('ie.typebien = 2')
+            ->andWhere('ie.statut = false')
             ->getQuery()
             ->getResult();
     }
@@ -198,9 +199,56 @@ class BienHermesRepository extends ServiceEntityRepository
     public function findByInvestissementImmo(): array
     {
         return $this->createQueryBuilder('ii')
-            ->andWhere('ii.typebien = 1')
-            ->orWhere('ii.typebien = 2')
             ->andWhere('ii.typetransact = 3')
+            ->andWhere('ii.prixpublic > 0')
+            ->andWhere('ii.statut = false')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByAgenceLyon()
+    {
+        return $this->createQueryBuilder('ag')
+            ->andWhere('ag.statut = false')
+            ->andWhere('ag.top = true')
+            ->andWhere('ag.codeagence = 2136')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByAgenceAnnecy()
+    {
+        return $this->createQueryBuilder('ag')
+            ->andWhere('ag.statut = false')
+            ->andWhere('ag.top = true')
+            ->andWhere('ag.codeagence = 328')
+            ->orderBy('ag.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByAgenceGrenoble()
+    {
+        return $this->createQueryBuilder('ag')
+            ->andWhere('ag.statut = false')
+            ->andWhere('ag.top = true')
+            ->andWhere('ag.codeagence = 2553')
+            ->orderBy('ag.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByAgenceClermont()
+    {
+        return $this->createQueryBuilder('ag')
+            ->andWhere('ag.statut = false')
+            ->andWhere('ag.top = true')
+            ->andWhere('ag.codeagence = 9007')
+            ->orderBy('ag.id', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }

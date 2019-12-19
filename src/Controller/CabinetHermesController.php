@@ -12,7 +12,7 @@ class CabinetHermesController extends AbstractController
      */
     public function indexCabinetHermes()
     {
-        return $this->render('actuality/cabinetHermes.html.twig', [
+        return $this->render('cabinet_hermes/cabinetHermes.html.twig', [
             'controller_name' => 'ActualityController',
         ]);
     }

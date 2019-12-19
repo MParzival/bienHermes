@@ -8,12 +8,12 @@
     <div class="text-center">
         <!-- Début navbar searchBiensByTypeTransac -->
         <section>
-            <div class="container mt-4 ">
-                <ul class="list-group list-group-horizontal justify-content-center">
-                    <a href="{{ path('app_bien') }}" class="btn green" style="font-size: 20px">Fonds de commerce</a>
-                    <a href="{{ path('app_bien_localCommercial') }}" class="btn blue" style="font-size: 20px">Local commercial</a>
-                    <a href="{{ path('app_bien_immobilierEntreprise') }}" class="btn purple" style="font-size: 20px">Immobilier d'entreprise</a>
-                    <a href="{{ path('app_bien_investissementImmobilier') }}" class="btn orange" style="font-size: 20px">Investissement immobillier</a>
+            <div class="container mt-4 mb-2 p-0">
+                <ul class="list-group list-group-horizontal justify-content-between">
+                    <a href="{{ path('app_bien') }}" class="btn green" style="font-size: 20px">FONDS DE COMMERCE</a>
+                    <a href="{{ path('app_bien_localCommercial') }}" class="btn blue" style="font-size: 20px">LOCAL COMMERCIAL</a>
+                    <a href="{{ path('app_bien_immobilierEntreprise') }}" class="btn purple" style="font-size: 20px">IMMOBILIER D'ENTREPRISE</a>
+                    <a href="{{ path('app_bien_investissementImmobilier') }}" class="btn orange" style="font-size: 20px">INVESTISSEMENT IMMOBILIER</a>
                 </ul>
             </div>
         </section>
@@ -21,8 +21,8 @@
     </div>
 
     <!-- debut formulaire de recherche -->
-    <div class="container pt-2">
-        <div class="row">
+    <div class="container">
+        <div class="row bg-search p-2">
             <div class="col-md-8">
                 {{ form_start(form) }}
                 <div class="form-row align-items-end">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="col-12">
-                        <div class="form-group pull-right">
+                        <div class="form-group ">
                             <button class="btn btn-primary">Rechercher</button>
                         </div>
                     </div>
@@ -70,24 +70,24 @@
 <!-- début bien à la une -->
 <div class="bg-pattern pt-2 pb-2">
     <div class="container mt-4 white-bg p-3">
-        <h2><i class="fa fa-star mr-2"></i>Les biens à la une !</h2>
+        <h2 style="margin-top: 30px; margin-left: 30px"><i class="fa fa-star mr-2"></i><span style="color: #2e383c">Les biens à la une !</span></h2>
         <div class="row">
             <div class="col-md-9">
                 <div class="row flex">
                     {% for bien in bienTops %}
-                        <div class="col-md-6 mt-4 p-4">
+                        <div class="col-md-6 p-4">
                             <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
                                 <div class="card image-header">
 
                                     {% if bien.pictfilename1 is not empty %}
                                         <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
                                     {% else %}
-                                        <img src="{{ asset('media/image/placeholder.png') }}" alt="min_placeholder" class="empty">
+                                        <img src="{{ asset('media/image/fondcommerce_cafe.jpg') }}" alt="min_placeholder" class="empty">
                                     {% endif %}
 
                                     <div class="card-body p-0">
                                         {% if bien.typetransact == 1  %}
-                                            <h6 class="card-title-green text-center">
+                                            <h6 class="card-title card-title-green text-center">
                                                 <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
 
                                                     {% if bien.titreannonce is not empty %}
@@ -98,7 +98,7 @@
                                                 </a>
                                             </h6>
                                             {% elseif bien.typetransact == 4 %}
-                                            <h6 class="card-title-blue text-center">
+                                            <h6 class="card-title card-title-blue text-center">
                                                 <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
 
                                                     {% if bien.titreannonce is not empty %}
@@ -108,8 +108,8 @@
                                                     {% endif %}
                                                 </a>
                                             </h6>
-                                            {% elseif bien.typebien == 2  %}
-                                                <h6 class="card-title-purple text-center">
+                                            {% elseif bien.typebien == 2 and bien.typetransact == 3  %}
+                                                <h6 class="card-title card-title-purple text-center">
                                                     <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
 
                                                         {% if bien.titreannonce is not empty %}
@@ -119,8 +119,8 @@
                                                         {% endif %}
                                                     </a>
                                                 </h6>
-                                            {% elseif bien.typetransact == 3 and (bien.typebien == 1 or bien.typebien == 2)  %}
-                                                <h6 class="card-title-purple text-center">
+                                            {% elseif bien.typetransact == 3 and bien.prixpublic > 0  %}
+                                                <h6 class="card-title card-title-orange text-center">
                                                     <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
 
                                                         {% if bien.titreannonce is not empty %}
@@ -150,13 +150,48 @@
                                         <div class="card-text text-center mb-3">
                                             <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
                                         </div>
-                                        <div class="prixAnnonce text-center">
-                                            {% if bien.prixpublic != 0 %}
-                                                {{ bien.formattedPrice }} € FAI*
+                                        {% if bien.typetransact == 1 %}
+                                            <div class="prixAnnonce card-title-green text-center">
+                                                {% if bien.prixpublic != 0 %}
+                                                    {{ bien.formattedPrice }} € FAI*
+                                                {% else %}
+                                                    {{ bien.loyerannuel }} € HT / AN
+                                                {% endif %}
+                                            </div>
+                                            {% elseif bien.typetransact == 4 %}
+                                            <div class="prixAnnonce card-title-blue text-center">
+                                                {% if bien.prixpublic != 0 %}
+                                                    {{ bien.formattedPrice }} € FAI*
+                                                {% else %}
+                                                    {{ bien.loyerannuel }} € HT / AN
+                                                {% endif %}
+                                            </div>
+                                            {% elseif bien.typeBien == 2 %}
+                                            <div class="prixAnnonce card-title-purple text-center">
+                                                {% if bien.prixpublic != 0 %}
+                                                    {{ bien.formattedPrice }} € FAI*
+                                                {% else %}
+                                                    {{ bien.loyerannuel }} € HT / AN
+                                                {% endif %}
+                                            </div>
+                                            {% elseif  bien.typetransact == 3 and (bien.typebien == 1 or bien.typebien == 2) %}
+                                                <div class="prixAnnonce card-title-orange text-center">
+                                                    {% if bien.prixpublic != 0 %}
+                                                        {{ bien.formattedPrice }} € FAI*
+                                                    {% else %}
+                                                        {{ bien.loyerannuel }} € HT / AN
+                                                    {% endif %}
+                                                </div>
                                             {% else %}
-                                                {{ bien.loyerannuel }} € HT / AN
-                                            {% endif %}
-                                        </div>
+                                                <div class="prixAnnonce text-center">
+                                                    {% if bien.prixpublic != 0 %}
+                                                        {{ bien.formattedPrice }} € FAI*
+                                                    {% else %}
+                                                        {{ bien.loyerannuel }} € HT / AN
+                                                    {% endif %}
+                                                </div>
+                                        {% endif %}
+
                                     </div>
 
                                 </div>
@@ -165,7 +200,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-3 mt-4">
+            <div class="col-md-3">
                 <div class="backgroundSidebare">
                     {% include 'home/partials/sidebare.html.twig' %}
                 </div>
@@ -247,13 +282,47 @@
                                             <div class="card-text text-center mb-3">
                                                 <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
                                             </div>
-                                            <div class="prixAnnonce text-center">
-                                                {% if bien.prixpublic != 0 %}
-                                                    {{ bien.formattedPrice }} € FAI*
-                                                {% else %}
-                                                    {{ bien.loyerannuel }} € HT / AN
-                                                {% endif %}
-                                            </div>
+                                            {% if bien.typetransact == 1 %}
+                                                <div class="prixAnnonce card-title-green text-center">
+                                                    {% if bien.prixpublic != 0 %}
+                                                        {{ bien.formattedPrice }} € FAI*
+                                                    {% else %}
+                                                        {{ bien.loyerannuel }} € HT / AN
+                                                    {% endif %}
+                                                </div>
+                                            {% elseif bien.typetransact == 4 %}
+                                                <div class="prixAnnonce card-title-blue text-center">
+                                                    {% if bien.prixpublic != 0 %}
+                                                        {{ bien.formattedPrice }} € FAI*
+                                                    {% else %}
+                                                        {{ bien.loyerannuel }} € HT / AN
+                                                    {% endif %}
+                                                </div>
+                                            {% elseif bien.typeBien == 2 %}
+                                                <div class="prixAnnonce card-title-purple text-center">
+                                                    {% if bien.prixpublic != 0 %}
+                                                        {{ bien.formattedPrice }} € FAI*
+                                                    {% else %}
+                                                        {{ bien.loyerannuel }} € HT / AN
+                                                    {% endif %}
+                                                </div>
+                                            {% elseif  bien.typetransact == 3 and (bien.typebien == 1 or bien.typebien == 2) %}
+                                                <div class="prixAnnonce card-title-orange text-center">
+                                                    {% if bien.prixpublic != 0 %}
+                                                        {{ bien.formattedPrice }} € FAI*
+                                                    {% else %}
+                                                        {{ bien.loyerannuel }} € HT / AN
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <div class="prixAnnonce text-center">
+                                                    {% if bien.prixpublic != 0 %}
+                                                        {{ bien.formattedPrice }} € FAI*
+                                                    {% else %}
+                                                        {{ bien.loyerannuel }} € HT / AN
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
                                         </div>
 
                                     </div>

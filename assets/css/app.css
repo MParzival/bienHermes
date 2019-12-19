@@ -1,3 +1,35 @@
+*{
+    font-family: "brandon_grotesqueblack", sans-serif;
+}
+
+.nav-link{
+    font-size: 17px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    display: inline-block;
+    font-family: "brandon_grotesqueblack", sans-serif;
+}
+
+.nav-link:hover{
+    color: #fed200;
+}
+
+.dropdown-item{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-family: "brandon_grotesqueblack", sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.auth{
+    color: #2e383c2;
+}
+
 .prixAnnonce{
     font-size: 20px;
     color: white;
@@ -9,11 +41,16 @@
     color: #fed200;
 }
 
+.title_agence{
+    margin-top: 50px;
+}
 /**
 Début Button navbar searchBiensByTypeTransac
  */
+
 .purple{
     background-color: #8c6fb4;
+    width: 270px;
     color: white;
     transition-duration: 0.4s;
 }
@@ -24,8 +61,9 @@ Début Button navbar searchBiensByTypeTransac
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .green{
-     background-color: #6eae66;
-     color: white;
+    background-color: #6eae66;
+    color: white;
+    width: 270px;
     transition-duration: 0.4s
 }
 .green:hover{
@@ -37,6 +75,7 @@ Début Button navbar searchBiensByTypeTransac
 .blue{
     background-color: #6099c8;
     color: white;
+    width: 270px;
     transition-duration: 0.4s
 }
 .blue:hover{
@@ -48,6 +87,7 @@ Début Button navbar searchBiensByTypeTransac
 .orange{
     background-color: #f78a2a;
     color: white;
+    width: 270px;
     transition-duration: 0.4s
 }
 .orange:Hover{
@@ -59,6 +99,11 @@ Début Button navbar searchBiensByTypeTransac
 /**
 Fin navbar searchBiensByTypeTransac
  */
+.bg-search{
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
 
 /**
 debut sidebar
@@ -75,31 +120,30 @@ img {
     width: 100%;
     height: 200px;
 }
+
 .card-title{
     background-color: #fed200;
     color: black;
     height: 40px;
+    padding: 10px;
 }
+
 .card-title-green{
     background-color: #6eae66;
-    color: black;
-    height: 40px;
 }
+
 .card-title-purple{
     background-color: #8c6fb4;
-    color: black;
-    height: 40px;
 }
+
 .card-title-blue{
     background-color: #6099c8;
-    color: black;
-    height: 40px;
 }
-.card-title-orange{
+
+.card-title-orange {
     background-color: #f78a2a;
-    color: black;
-    height: 40px;
 }
+
 .annonceCardHome{
     font-size: 15px;
     font-weight: bold;
@@ -137,7 +181,7 @@ li a{
     color: white;
 }
 .colorTitle{
-    color: yellow;
+    color: #fed200;
     font-size: 15px;
 }
 
@@ -146,8 +190,8 @@ li a{
     color: white;
 }
 .button-vendre{
-    background-color: yellow;
-    border: 1px solid black;
+    background-color: #fed200;
+    border: 1px solid #fed200;
 }
 
 .borderLeft{
@@ -155,14 +199,14 @@ li a{
     margin-top: 15px;
     margin-left: 20px;
     padding: 10px;
-    border-left: 4px solid #494949;
+    border-left: 4px solid #fed200;
     background-color: #e6edf7;
     border-radius: 10px;
 }
 
 .borderBottom{
     margin-top: 15px;
-    border-bottom: 4px solid #494949;
+    border-bottom: 4px solid #fed200;
 }
 
 .table td, .table th {
@@ -175,7 +219,7 @@ li a{
     margin-bottom: 15px;
     margin-top: 15px;
     padding: 10px;
-    border-left: 4px solid #494949;
+    border-left: 4px solid #fed200;
     background-color: #e6edf7;
     border-radius: 10px;
     font-size: 15px;

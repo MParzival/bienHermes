@@ -15,20 +15,30 @@
                 </li>
             {% endif %}
 
-            <li class="nav-item"><a href="#" class="nav-link">Vendre un bien</a></li>
-            <li class="nav-item">|<a href="{{ path('contact_index') }}" class="nav-link">Contact</a></li>
-            <li class="nav-item">|<a href="{{ path('actuality_index') }}" class="nav-link">Actualités</a></li>
-            <li class="nav-item">|<a href="{{ path('cabinet_hermes_index') }}" class="nav-link">Cabinet Hermès</a></li>
-            <li class="nav-item">|<a href="{{ path('values_index') }}" class="nav-link">Les valeurs</a></li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Vendre un bien</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('contact_index') }}" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('actuality_index') }}" class="nav-link">Actualités</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('cabinet_hermes_index') }}" class="nav-link">Cabinet Hermès</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('values_index') }}" class="nav-link">Les valeurs</a>
+            </li>
             <li class="nav-item dropdown">
-                |<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Nos Agences
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ path('agence_lyon') }}">Lyon</a>
                     <a class="dropdown-item" href="{{ path('agence_annecy') }}">Annecy</a>
-                    <a class="dropdown-item" href="{{ path('agence_grenoble') }}">Grenoble</a>
-                    <a class="dropdown-item" href="{{ path('agence_clermont') }}">Clermont-Ferrand</a>
+                    <a class="dropdown-item" href="#">Grenoble</a>
+                    <a class="dropdown-item" href="#">Clermont-Ferrand</a>
                 </div>
             </li>
         </ul>

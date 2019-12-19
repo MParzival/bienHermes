@@ -24,3 +24,28 @@
     margin-top: 100px;
     margin-bottom: 100px;
 }
+
+.bloc_page_title{
+    background-image: url("../image/bg_search.jpg");
+    background-size: cover;
+    min-height: 300px;
+    color: #fed200;
+}
+
+.bg-rhoneAlpes {
+    background: #2e383c;
+    border: 30px solid white;
+    height: 300px;
+    color: white;
+}
+
+.alignleft {
+    float: left;
+    margin: 0.375em 1.75em 1.75em 0;
+}
+
+.imgAnnecy, .imgGrenoble, .imgClermont {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}

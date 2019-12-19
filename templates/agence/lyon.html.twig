@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AgenceController!{% endblock %}
+
+{% block body %}
+    <section class="bloc_page_title m-0" role="search">
+        <div class="container p-5">
+            <h1 class="mt-5">AGENCE DE LYON</h1>
+        </div>
+    </section>
+    
+    <section class="bg-pattern mt-0 p-5">
+        <div class="container white-bg mt-0">
+            <div>
+                <h2 style="color: #2e383c"><i class="fas fa-home mr-2" style="color: #fed200"></i>Notre Agence de Lyon</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <p style="color: #2e383c">Le Cabinet Hermès Lyon, est le siège social du Cabinet Hermès.
+                        C’est la plus grosse agence du groupe,
+                        elle compte aujourd’hui une vingtaine de collaborateurs.</p>
+                    <img src="{{ asset('media/image/facade-ch.png') }}" alt="" style="width: 710px">
+                    <p style="color: #2e383c">
+                        Nous sommes organisés par secteur d’activité : CHR (Café, hôtel, restaurants) ;
+                        Droit au bail (locaux commerciaux) ; Immobilier d’entreprise (bureaux, locaux d’activités, entrepôts, PMEPMI)
+                        et Immobilier d’investissement (vente de murs libres ou loués).
+                    </p>
+                    <p style="color: #2e383c">
+                        Pour être au plus près de nos clients, nos bureaux sont situés au coeur de la ville, dans le centre d’affaires
+                        de l’Espace Gailleton, dans le deuxième arrondissement de Lyon, proche des transports en commun et de toutes commodités.
+                    </p>
+                </div>
+                <div class="col-md-4 col-xs-12 bg-rhoneAlpes">
+                    <h5 style="font-size: 20px;font-weight: bold" class="mt-3">Expert immobilier Auvergne-Rhône-Alpes</h5>
+                    <img src="{{ asset('media/image/rhone_alpes.png') }}" alt="" style="height:100px; width: 100px; float:right">
+                    <ul class="p-0" style="margin-top:50px">
+                        <li style="list-style: none">
+                            <h5 style="font-size: 13px;font-weight: bold; color: #fed200">LYON</h5>
+                            <a href="mailto:contact@cabinet-hermes.fr" style="font-size: 13px;font-weight: bold;">contact@cabinet-hermes.fr</a>
+                            <br>
+                            <strong style="font-size: 13px;font-weight: bold">04 78 42 40 80</strong>
+                            <br>
+                            <a href="https://www.google.com/maps/search/?api=1&query=2_place_Gailleton_LYON" target="_blank" style="font-size: 13px;font-weight: bold">2 place Gailleton
+                                <br> LYON - 69002
+                            </a>
+                            <br>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="dernier_bien_ajoute pt-2 pb-2">
+            <div class="container">
+                <h2><i class="fas fa-history mr-2"></i>Les bien à la une à LYON !</h2>
+                <div class="row">
+                    <div class="row flex">
+                        {% for bien in biens %}
+                            <div class="col-md-4 mt-4 p-4">
+                                <a href="{{ path('bien_show', {id: bien.id, slug: bien.slug}) }}">
+                                    <div class="card image-header">
+
+                                        {% if bien.pictfilename1 is not empty %}
+                                            <img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" alt="min_{{ bien.pictfilename1 }}">
+                                        {% else %}
+                                            <img src="{{ asset('media/image/fondcommerce_cafe.jpg') }}" alt="min_placeholder" class="empty">
+                                        {% endif %}
+
+                                        <div class="card-body p-0">
+                                            {% if  bien.typetransact == 4 %}
+                                                <h6 class="card-title-blue text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% elseif bien.typebien == 2 %}
+                                                <h6 class="card-title-purple text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% elseif bien.typetransact == 1 %}
+                                                <h6 class="card-title-green text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% else %}
+                                                <h6 class="card-title-orange text-center">
+                                                    <a class="annonceCardHome" href="{{ path('bien_show', {id: bien.id , slug: bien.slug}) }}">
+
+                                                        {% if bien.titreannonce is not empty %}
+                                                            {{ bien.titreannonce }}
+                                                        {% else %}
+                                                            Contactez-nous !
+                                                        {% endif %}
+                                                    </a>
+                                                </h6>
+                                            {% endif %}
+                                            <div class="card-text text-center mb-3">
+                                                <i class="fa fa-briefcase mr-2"></i>{{ bien.activite }}
+                                            </div>
+                                            <div class="card-text text-center mb-3">
+                                                <i class="fa fa-map-marker mr-2"></i>{{ bien.codepostal }} - ({{ bien.surfacetotale }} m²)
+                                            </div>
+                                            <div class="prixAnnonce text-center">
+                                                {% if bien.prixpublic != 0 %}
+                                                    {{ bien.formattedPrice }} € FAI*
+                                                {% else %}
+                                                    {{ bien.loyerannuel }} € HT / AN
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <div class="btn btn-success btn-sm text-white" style="font-weight: bold; font-size: 1.5rem;display: inline-block">
+                                    <div class="btn btn-success btn-sm text-white" style="font-weight: bold; font-size: 1.5rem;display: inline-block; background: #868686">
                                         {% if bien.prixpublic != 0 %}
                                             {{ bien.formattedPrice }} € FAI*
                                         {% else %}
@@ -48,8 +48,8 @@
 
                                         {% endif %}
                                     </span>
-                                    <div class="col-md-12 p-0">
-                                        <a href="#" class="button-vendre form-control text-center" id="contactButton" {% if form.vars.submitted %}style="display: none;"{% endif %}>Contactez Hermes</a>
+                                    <div class="col-md-12 p-0" style="width: 194px">
+                                        <a href="#" class="button-vendre form-control text-center" id="contactButton" {% if form.vars.submitted %}style="display: none"{% endif %}>Contactez Hermes</a>
                                         <div id="contactForm" class="mt-4" {% if not form.vars.submitted %}style="display: none;" {% endif %}>
                                             {{ form_start(form) }}
                                             <div class="row">
@@ -80,7 +80,7 @@
                                                     <a href="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}"><img src="https://gateway.transactium.fr/rep/picts/good/{{ bien.pictfilename1 }}" class="d-block w-100" alt="{{ bien.pictfilename1 }}" style="width: 800px; height: 400px"></a>
                                                 </div>
                                             {% else %}
-                                                <img src="{{ asset('media/image/placeholder.png') }}" style="width: 600px; height: 400px" alt="placeholder">
+                                                <img src="{{ asset('media/image/fondcommerce_cafe.jpg') }}" style="width: 600px; height: 400px" alt="placeholder">
                                             {% endif %}
 
                                             {% if bien.pictfilename2 and bien.pictfilename3 is not empty %}
@@ -136,12 +136,12 @@
                 </div>
                 <div class="container mt-4">
                     <div class="row">
-                        <div class="col-md-7">
-                            <h2 class="borderBottom">Description</h2>
+                        <div class="col-md-7 ">
+                            <h2 class="borderBottom" style="background: #868686; color: #fed200; padding-left: 20px; border-radius: 5px">Description</h2>
                             {{ bien.annonce }}
                         </div>
                         <div class="col-md-5">
-                            <h2 class="borderBottom">Chiffre</h2>
+                            <h2 class="borderBottom" style="background: #868686; color: #fed200; padding-left: 20px; border-radius: 5px">Chiffres</h2>
                             <table class="table table-stripped">
                                 {% if bien.typebail is not empty %}
                                     <tr>
@@ -182,7 +182,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-7">
-                            <h2 class="borderBottom">Caractéristiques</h2>
+                            <h2 class="borderBottom" style="background: #868686; color: #fed200; padding-left: 20px; border-radius: 5px">Caractéristiques</h2>
                             <table class="table table-stripped">
                                 <tbody style="border-top: none">
                                 <tr>
@@ -208,7 +208,7 @@
                             </table>
                         </div>
                         <div class="col-md-5">
-                            <h2 class="borderBottom">Spécificités</h2>
+                            <h2 class="borderBottom" style="background: #868686; color: #fed200; padding-left: 20px; border-radius: 5px">Spécificités</h2>
                             <div class="borderLeft">
                                 <strong>Situation géographique</strong><br>
                                 {{ bien.quartier }}
