@@ -6,4 +6,6 @@ namespace App\Tests\Entity;
 class ActualityTest
 {
 
+
+
 }
