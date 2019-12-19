@@ -22,7 +22,6 @@ final class Version20191213154117 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE bien_hermes CHANGE TypeTransact TypeTransact SMALLINT NOT NULL');;
     }
 
     public function down(Schema $schema) : void

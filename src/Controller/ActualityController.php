@@ -8,10 +8,10 @@ use App\Repository\ActualityRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ActualityController extends AbstractController
 {
@@ -20,8 +20,9 @@ class ActualityController extends AbstractController
      */
     public function index(ActualityRepository $repository)
     {
+        $actualities = $repository->findAll();
         return $this->render('actuality/blog.html.twig', [
-            'actualities' => $repository->findAll(),
+            'actualities' => $actualities,
         ]);
     }
 
@@ -29,9 +30,13 @@ class ActualityController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @Route("/actuality/new", name="actuality_new")
      */
-    public function new(ActualityRepository $repository, Request $request)
+    public function new(Request $request)
     {
+        // Création d'une variable pour instancier un nouveau objet ACTUALITY
         $actuality = new Actuality();
+
+        // Initialisation du formulaire depuis la classe actualityType
+        // et récupération de l'objet $actuality grâce à la variable créer précedement.
         $form = $this->createForm(ActualityType::class, $actuality);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
@@ -45,7 +50,6 @@ class ActualityController extends AbstractController
             'actuality' => $actuality,
             'form' => $form->createView()
         ]);
-
     }
 
     /**
@@ -53,6 +57,8 @@ class ActualityController extends AbstractController
      */
     public function edit(Request $request, Actuality $actuality)
     {
+        // Initialisation du formulaire depuis la classe actualityType
+        // et récupération de l'objet $actuality grâce à la variable créer précedement.
         $form = $this->createForm(ActualityType::class, $actuality);
         $form->handleRequest($request);
 
