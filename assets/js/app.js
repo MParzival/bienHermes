@@ -15,6 +15,21 @@ $(function () {
 });
 
 
+let password = document.getElementById("registration_form_plainPassword_first")
+    , confirm_password = document.getElementById("registration_form_plainPassword_second");
+
+function validatePassword(){
+    if(password.value !== confirm_password.value) {
+        confirm_password.setCustomValidity("vos mots de passes ne sont pas identique !");
+    } else {
+        confirm_password.setCustomValidity('');
+    }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
 

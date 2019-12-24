@@ -60,7 +60,7 @@ class AlertNotifyCreate implements EventSubscriberInterface
          * @var AlertUser $alertUser
          */
         $alertUser = $event->getSubject();
-        /*dd($alertUser);*/
+        dd($alertUser);
         $subject = "Félicitations pour la création de votre alerte";
         $body = "Merci d'avoir créée votre alerte ".$alertUser->getIdUser()->getUsername()."<br>"
             .$alertUser->getPostalCode()."<br>".$alertUser->getMaxPrice();

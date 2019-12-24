@@ -6,18 +6,22 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserTest extends WebTestCase
 {
-    public function testUserSubmission()
-    {
-        $client = static ::createClient();
-        // je recupère le crawler pour pouvoir parcourir le DOM de notre page
-        $crawler = $client->request('GET', '/register');
-        $form = $crawler->selectButton('Submit')->form();
-        $form['username'] = 'Mickael';
-        $form['email'] = 'Mick.aubin@gmail.com';
-        $form['plainPassword'] = 'Mickalel00';
+   public function testCheckPassword()
+   {
+        $client = static :: createClient();
+
+        $crawler = $client->request(
+            'GET',
+            '/register'
+        );
+
+        $form = $crawler->selectButton('Enregistrer')->form();
+        $form['registration_form[email]'] = 'toto@gmail.com';
+        $form['registration_form[username]'] = 'toto61';
+        $form['registration_form[plainPassword][first]'] = "azerty00";
+        $result = $form['registration_form[plainPassword][second]'] = "azerty00";
 
         $crawler = $client->submit($form);
-
-        static ::assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-    }
+        $this->assertSame("azerty00",$result);
+   }
 }

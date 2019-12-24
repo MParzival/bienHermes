@@ -5,7 +5,10 @@ namespace App\EventSubscriber;
 
 
 
+use App\Entity\PropertyAlert;
+use App\Entity\User;
 use App\Events;
+use Swift_Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
@@ -13,13 +16,13 @@ class AlertNotifyPropertyAvailable implements EventSubscriberInterface
 {
 
     /**
-     * @var \Swift_Mailer
+     * @var Swift_Mailer
      */
     private $mailer;
     private $sender;
 
 
-    public function __construct(\Swift_Mailer $mailer, string $sender)
+    public function __construct(Swift_Mailer $mailer, string $sender)
     {
 
         $this->mailer = $mailer;
@@ -55,7 +58,7 @@ class AlertNotifyPropertyAvailable implements EventSubscriberInterface
     {
 
         /**
-         * @var
+         * @var PropertyAlert $propertyAlert
          */
         $propertyAlert = $event->getSubject();
         dd($propertyAlert);

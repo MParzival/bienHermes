@@ -2,8 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\AlertUser;
-use App\Entity\BienHermes;
 use App\Entity\PropertyAlert;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -25,7 +23,8 @@ class PropertyAlertRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('pa')
             ->leftJoin('pa.bien', 'pab')
-            ->addSelect('pab.activite','pab.prixpublic','pab.codepostal')
+            ->addSelect('pab.activite','pab.prixpublic','pab.codepostal','pab.titreannonce')
+            ->join('pa.alertUser', 'paa')
             ->getQuery()
             ->getResult();
 
