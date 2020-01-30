@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"username"}, message="Il existe déjà un compte avec ce pseudo")
@@ -72,7 +73,15 @@ class User implements UserInterface
         $this->alertUsers = new ArrayCollection();
         $this->roles = array('ROLE_SUPER_ADMIN');
     }
-
+    /**
+     * User constructor.
+     */
+//    public function __construct($email, $username, string $password)
+//    {
+//        $this->email = $email;
+//        $this->username = $username;
+//        $this->password = $password;
+//    }
 
 
     public function getId(): ?int

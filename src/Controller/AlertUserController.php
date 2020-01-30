@@ -33,6 +33,9 @@ class AlertUserController extends AbstractController
 
     /**
      * @Route("/new", name="alert_user_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param EventDispatcherInterface $dispatcher
+     * @return Response
      */
     public function new(Request $request, EventDispatcherInterface $dispatcher): Response
     {

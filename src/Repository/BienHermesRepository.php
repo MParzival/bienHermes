@@ -44,15 +44,6 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Query
-     */
-    public function findVisibleWithPaginate() : Query
-    {
-        return $this->createQueryBuilder('p')
-            ->getQuery();
-    }
-
-    /**
      * requête permettant la recherche des derniers bien ajouté en base par leur date d'entrée
      * @return array
      */
@@ -153,60 +144,69 @@ class BienHermesRepository extends ServiceEntityRepository
     }
 
     /**
-     * requête permettant la recherche par fond de commerce
-     * @return array
+     * @return Query
      */
-    public function findByFondDeCommerce(): array
+    public function findVisibleWithPaginate() : Query
     {
-        return $this->createQueryBuilder('fc')
-            ->andWhere('fc.typetransact = 1')
-            ->andWhere('fc.statut = false')
-            ->getQuery()
-            ->getResult();
+        return $this->createQueryBuilder('p')
+            ->getQuery();
+    }
+
+    /**
+     * requête permettant la recherche par fond de commerce
+     * @return Query
+     */
+    public function findByFondDeCommerce(): Query
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.typetransact = 1')
+            ->andWhere('p.statut = false')
+            ->getQuery();
     }
 
     /**
      * requête permettant la recherche par local commercial
-     * @return array
+     * @return Query
      */
-    public function findByLocalCommercial(): array
+    public function findByLocalCommercial(): Query
     {
-        return $this->createQueryBuilder('lc')
-            ->andWhere('lc.typetransact = 4')
-            ->andWhere('lc.statut = false')
-            ->getQuery()
-            ->getResult();
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.typetransact = 4')
+            ->andWhere('p.statut = false')
+            ->getQuery();
     }
 
     /**
      * requête permettant la recherche par Immobilier d'entreprise
-     * @return array
+     * @return Query
      */
-    public function findByImmobilierEntreprise() : array
+    public function findByImmobilierEntreprise() : Query
     {
-        return $this->createQueryBuilder('ie')
-            ->andWhere('ie.typetransact = 3')
-            ->andWhere('ie.typebien = 2')
-            ->andWhere('ie.statut = false')
-            ->getQuery()
-            ->getResult();
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.typetransact = 3')
+            ->andWhere('p.typebien = 2')
+            ->andWhere('p.statut = false')
+            ->getQuery();
     }
 
     /**
      * requête permettant la recherche par Investissement immobilier
-     * @return array
+     * @return Query
      */
-    public function findByInvestissementImmo(): array
+    public function findByInvestissementImmo(): Query
     {
-        return $this->createQueryBuilder('ii')
-            ->andWhere('ii.typetransact = 3')
-            ->andWhere('ii.prixpublic > 0')
-            ->andWhere('ii.statut = false')
-            ->getQuery()
-            ->getResult();
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.typetransact = 3')
+            ->andWhere('p.prixpublic > 0')
+            ->andWhere('p.statut = false')
+            ->getQuery();
     }
 
-    public function findByAgenceLyon()
+    /**
+     * Requête permettant d'afficher tous les biens dispo dans l'agence de lyon
+     * @return array
+     */
+    public function findByAgenceLyon(): array
     {
         return $this->createQueryBuilder('ag')
             ->andWhere('ag.statut = false')
@@ -217,7 +217,11 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByAgenceAnnecy()
+    /**
+     * Requête permettant d'afficher tous les biens dispo dans l'agence d'annecy
+     * @return array
+     */
+    public function findByAgenceAnnecy(): array
     {
         return $this->createQueryBuilder('ag')
             ->andWhere('ag.statut = false')
@@ -229,7 +233,11 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByAgenceGrenoble()
+    /**
+     * Requête permettant d'afficher tous les biens dispo dans l'agence de Grenoble
+     * @return array
+     */
+    public function findByAgenceGrenoble(): array
     {
         return $this->createQueryBuilder('ag')
             ->andWhere('ag.statut = false')
@@ -241,7 +249,11 @@ class BienHermesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByAgenceClermont()
+    /**
+     * Requête permettant d'afficher tous les biens dispo dans l'agence de Clermont
+     * @return array
+     */
+    public function findByAgenceClermont(): array
     {
         return $this->createQueryBuilder('ag')
             ->andWhere('ag.statut = false')

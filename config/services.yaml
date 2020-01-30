@@ -27,9 +27,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\Listener\UserAlertSubscriber:
-        tags:
-            - {name: doctrine.event_subscriber}
+#    App\Listener\UserAlertSubscriber:
+#        tags:
+#            - {name: doctrine.event_subscriber}
 
     App\EventSubscriber\RegistrationNotifySubscriber:
         $sender: '%app.notifications.email_sender%'

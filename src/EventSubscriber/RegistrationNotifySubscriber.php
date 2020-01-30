@@ -7,6 +7,7 @@ use App\Events;
 use \Swift_Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Twig\Environment;
 
 class RegistrationNotifySubscriber implements EventSubscriberInterface
 {
@@ -16,12 +17,23 @@ class RegistrationNotifySubscriber implements EventSubscriberInterface
      */
     private $mailer;
     private $sender;
+    /**
+     * @var Environment
+     */
+    private $renderer;
 
-    public function __construct(\Swift_Mailer $mailer, $sender)
+    /**
+     * RegistrationNotifySubscriber constructor.
+     * @param Swift_Mailer $mailer
+     * @param $sender
+     * @param Environment $renderer
+     */
+    public function __construct(\Swift_Mailer $mailer, $sender, Environment $renderer)
     {
         // on injecte notre expediteur et la classe pour envoyer des emails
         $this->mailer = $mailer;
         $this->sender = $sender;
+        $this->renderer = $renderer;
     }
 
 
@@ -41,14 +53,16 @@ class RegistrationNotifySubscriber implements EventSubscriberInterface
          */
         $user = $event->getSubject();
 
-        $subject = "Bienvenue";
-        $body = "Bienvenue sur le site du cabinet hermes";
+        $subject = "Bienvenue sur le site de l'agence";
+        $body = "Bienvenue sur le site de l'agence"." ".$user->getUsername();
 
         $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setTo($user->getEmail())
             ->setFrom($this->sender)
-            ->setBody($body, 'text/html')
+            ->setBody($this->renderer->render('emails/bienvenu.html.twig',[
+                'user'=> $user
+            ]), 'text/html')
             ;
         $this->mailer->send($message);
     }

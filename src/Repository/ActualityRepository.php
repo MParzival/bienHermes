@@ -18,33 +18,15 @@ class ActualityRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Actuality::class);
     }
-
-    // /**
-    //  * @return Actuality[] Returns an array of Actuality objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Cette requête va recuperer les dernieres actualité créer par leur date de parution
+     * @return array
+     */
+    public function findByLatest() : array
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('a.dateParution', 'DESC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Actuality
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

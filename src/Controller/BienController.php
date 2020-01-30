@@ -20,6 +20,7 @@ class BienController extends AbstractController
      * @Route("/biens/all", name="app_bien_all", methods={"GET","POST"})
      * @param Request $request
      * @param BienHermesRepository $repository
+     * @param PaginatorInterface $paginator
      * @return Response
      */
     public function indexAll(Request $request, BienHermesRepository $repository, PaginatorInterface $paginator) :Response
@@ -74,8 +75,9 @@ class BienController extends AbstractController
 
     /**
      * @Route("/biens/fonddecommerce", name="app_bien", methods={"GET","POST"})
-     * @param Request $request
      * @param BienHermesRepository $repository
+     * @param Request $request
+     * @param PaginatorInterface $paginator
      * @return Response
      */
     public function index(BienHermesRepository $repository, Request $request, PaginatorInterface $paginator)
